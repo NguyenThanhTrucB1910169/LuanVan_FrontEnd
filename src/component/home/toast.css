@@ -1,0 +1,35 @@
+.success{
+    border-radius:5px!important;
+    background-color: #c9eed8!important;
+    box-shadow: 7px 0 11px 1px #838383!important;
+    margin: 0!important;
+      color: #000!important;
+      border-left: 4px solid green;
+  }
+  
+  .success button{
+    margin-top: 8px;
+  }
+  
+  .success button > svg{
+    width: 32px;
+    height: 26px;
+  }
+
+  .fail{
+    border-radius:5px!important;
+    background-color: #c7585821!important;
+    box-shadow: 7px 0 11px 1px #838383!important;
+    margin: 0!important;
+      color: #000!important;
+      border-left: 4px solid red;
+  }
+  
+  .fail button{
+    margin-top: 8px;
+  }
+  
+  .fail button > svg{
+    width: 32px;
+    height: 26px;
+  }
