@@ -1,0 +1,8 @@
+export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const FETCH_PRODUCTS_FAIL = 'FETCH_PRODUCTS_FAIL';
+export const FETCH_CART = 'FETCH_CART';
+export const CREATE_USER = 'CREATE_USER';
+export const AUTH_USER = 'AUTH_USER';
+export const AUTH_USER_FAILED = 'AUTH_USER_FAILED';
+

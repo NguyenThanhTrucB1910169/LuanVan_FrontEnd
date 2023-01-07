@@ -1,0 +1,171 @@
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
+.card-registration .select-arrow {
+  top: 13px;
+}
+.img-signup {
+    border-radius: 10px;
+    height: 70%!important;
+    margin: 2rem 0;
+}
+
+.signup {
+  /* margin: 2rem 10rem !important; */
+  
+  left: 12rem;
+  top: 2.5rem!important;
+  background-color: #fff;
+  /* box-shadow: 0 6px 60px rgb(0 0 0 / 20%); */
+  /* box-shadow: 10px 0 7px -2px rgb(0 0 0 / 20%); */
+    box-shadow: 14px 18px 14px -2px rgb(0 0 0 / 20%); 
+  border-radius: 15px;
+  /* border: 1px solid #000; */
+  position: absolute;
+    z-index: 5;
+    top: 13px;
+    width: 55%;
+}
+
+.button-reset {
+  background: #fff;
+  box-shadow: none;
+  color: #000;
+  display: inline-block;
+  height: 30px;
+  text-transform: uppercase;
+  border: none;
+  position: relative;
+  font-size: 15px;
+  font-weight: 700;
+  margin-right: auto;
+  padding-top: 6px;
+}
+
+.button-reset:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #9bd8e0;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.button-reset:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.button-submit {
+  background: #a8741a;
+  box-shadow: none;
+  color: #fff;
+  display: inline-block;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 22px;
+  text-transform: uppercase;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+.button-submit:hover {
+  color: #000;
+  background-color: #bbb;
+}
+
+.signup-img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-image: url(./sign-4.jpg); */
+    padding: 2.5rem 0;
+    opacity: 0.;
+    z-index: -1;
+    position: relative;
+    height: 43rem;
+    filter: brightness(0.6);
+}
+
+.check-gerder {
+  width: 1.35rem !important;
+  height: 1.35rem !important;
+}
+
+/* .buttons {
+  margin: 10%;
+  text-align: center;
+} */
+
+.btn-submit {   
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  padding: 5px 29px;
+  background-size: 300% 100%;
+  border-radius: 27px;
+  font-size: 18px;
+  transition: all .4s ease-in-out;
+  /* background-image: linear-gradient(to right, #31cabb, #11b7a7, #15ac9d, #34e3d1); */
+  
+  background-image: linear-gradient(to right, #e4a848, #e79c24, #d59124, #a96c0a);
+}
+
+.btn-submit:hover {
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
+}
+
+.btn-submit:focus {
+  outline: none;
+}
+
+.border-bt{
+  border: none!important;
+  border-bottom: 2px solid!important;
+  border-radius: 0!important;
+}
+
+/* .border-bt:focuss */
+
+.border-bt:focus{
+  border: none!important;
+  border-bottom: 1px solid #81d8d0!important;
+  /* box-shadow: 0 0 0 0.25rem rgba(129, 216, 208, 0.251)!important; */
+  box-shadow: 0 5px 14px -3px rgba(129, 216, 208, 0.251)!important;
+}
+
+.font-title {
+  font-family: 'Sevillana', cursive;
+}
+
+/* .success{
+  border-radius:5px!important;
+  background-color: #c9eed8!important;
+  box-shadow: 7px 0 11px 1px #838383!important;
+  margin: 0!important;
+    color: #000!important;
+    border-left: 4px solid green;
+}
+
+.success button{
+  margin-top: 8px;
+}
+
+.success button > svg{
+  width: 32px;
+  height: 26px;
+} */
+
+.btn-direct{
+  color: #000;
+  font-weight: 600;
+  font-family: 'Sevillana', cursive;
+}
