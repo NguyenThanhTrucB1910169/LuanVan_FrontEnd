@@ -1,0 +1,115 @@
+.product-card {
+  background-color: darkgray;
+  padding: 0 !important;
+  height: 380px;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.product-card:hover .product_hover {
+  opacity: 1;
+  visibility: visible;
+  position: absolute;
+  top: -10px;
+  border: 1px solid;
+  width: 100%;
+  left: 0;
+  height: 545px;
+}
+
+.product_hover {
+  position: absolute;
+  z-index: 9;
+  left: 0;
+  background: #fff;
+
+  transition: all 600ms ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  width: 90%;
+  height: 380px;
+  top: 0;
+  left: 16px;
+}
+
+.card {
+  height: 100% !important;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+.card .add-btn p {
+  font-size: 15px;
+  margin: 0;
+}
+
+.add-btn {
+  margin: 3rem auto 1rem !important;
+  height: 60px;
+  line-height: 50px;
+  width: 100%;
+  background-color: #000;
+  justify-content: space-between;
+  color: #fff;
+  font-size: 20px;
+}
+
+.add-btn:hover {
+  background-color: #81d8d0;
+  color: #000;
+  border: none;
+  width: 100%;
+}
+
+.button-detail {
+  background: #fff;
+  box-shadow: none;
+  color: #000;
+  display: inline-block;
+  height: 30px;
+  border: none;
+  position: relative;
+  font-size: 15px;
+  padding-top: 6px;
+}
+
+.button-detail:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #9bd8e0;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.button-detail:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.img-slide {
+  margin-top: 5px;
+  height: 60%;
+}
+
+.img-slide span {
+  padding: 0;
+  margin: auto 0 !important;
+}
+
+.add-icon {
+  font-size: 25px;
+  margin-top: 12px;
+}
