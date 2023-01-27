@@ -44,5 +44,5 @@ const createProduct = (req) => {
 
 export {
   fetchProducts,
-  createProduct
+  createProduct,
 }

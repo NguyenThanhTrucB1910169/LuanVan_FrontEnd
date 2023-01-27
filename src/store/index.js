@@ -10,9 +10,13 @@ import {
   createUser
 } from "./reducers/usersReducer";
 
+import {cartReducer} from "./reducers/cartReducer";
+
+
 const reducer = combineReducers({
   getAllProducts: products,
   newUser: createUser,
+  cart: cartReducer
   // authen: authUsers
 });
 

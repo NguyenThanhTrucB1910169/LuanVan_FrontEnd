@@ -1,0 +1,77 @@
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #6a11cb;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(106, 17, 203, 1),
+    rgba(37, 117, 252, 1)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right,
+    rgba(106, 17, 203, 1),
+    rgba(37, 117, 252, 1)
+  );
+}
+
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+
+.quantity-cart input {
+    width: 30%;
+    border: none;
+    font-size: 20px;
+    text-align: center;
+}
+
+.quantity-cart {
+    margin-left: 20px;
+}
+
+.quantity-change {
+    border: none;
+    background-color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 3px;
+}
+
+.item-body{
+  box-shadow: 0 0 14px #ccc;
+  border: none;
+  border-radius: 20px;
+}
+
+.item {
+  border: none!important;
+}
+
+.flex-cart{
+  padding-right: 0!important;
+  padding-left: 7rem!important;
+}
+
+.quantity{
+  position: absolute;
+  left: 31px;
+  width: 21px;
+  line-height: 20px;
+  text-align: center;
+  color: #000;
+  border-radius: 50%;
+  background-color: #81d8d0;
+  top: 6px;
+  font-weight: 600;
+  height: 21px;
+}
+
+.btn-remove {
+  border: none;
+    background-color: #fff;
+}

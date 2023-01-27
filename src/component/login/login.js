@@ -20,9 +20,10 @@ class Login extends React.Component {
     e.preventDefault();
     // this.props.result = ''
     await this.props.authUser(this.state)
-    console.log(this.props.user)
+    // console.log(this.props.user)
+    // console.log(this.props.result)
     if(this.props.result){
-        this.props.history.push('/')
+      // this.props.history.push('/')
     }
     else {
       toast.error( <Toast message='Tên hoặc mật khẩu không hợp lệ'/>,{
@@ -34,7 +35,7 @@ class Login extends React.Component {
 }
 
 render() {
-    // console.log(this.props.result)
+    // console.log(this.props.user)
     return (
       <Fragment>
         <div className="login-container">

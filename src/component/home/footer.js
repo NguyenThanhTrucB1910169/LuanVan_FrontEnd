@@ -107,7 +107,7 @@ class Footer extends React.Component {
           >
             © 2023 Copyright: &nbsp;
             <a className="text-reset fw-bold text-decoration-none" href="/">
-              jazzyjewls.com
+              jazzyjewels.com
             </a>
           </div>
         </footer>

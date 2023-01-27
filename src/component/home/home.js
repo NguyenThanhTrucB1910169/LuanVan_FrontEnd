@@ -11,38 +11,55 @@ class Home extends React.Component {
     // this.showSlides = this.showSlides.bind(this);
     this.state = {
       currentSlide: 0,
+      blur: false,
     };
     this.slideImages = [
       {
         url: "/slider-1.webp",
-        caption: "giảm giá 10% trong tuần",
-        title: "Nhẫn cưới",
       },
       {
-        url: "/slider-2.jpg",
-        caption: "giảm giá 20% trong tuần",
-        title: "Vòng cổ",
+        url: "/slide-9.webp",
       },
       {
-        url: "/slider-3.jpg",
-        caption: "giảm giá 40% trong tuần",
-        title: "Hoa tai & Vòng tay",
+        url: "/slide-6.webp",
       },
+      {
+        url: "/slider-4.webp",
+      },
+      {
+        url: "/slide-4.webp",
+      },
+    
     ];
   }
 
   componentDidMount() {
     setInterval(() => {
-      if (this.state.currentSlide === 2) this.setState({ currentSlide: 0 });
+      if (this.state.currentSlide === 4) this.setState({ currentSlide: 0 });
       else this.setState({ currentSlide: this.state.currentSlide + 1 });
     }, 5000);
+    const now = new Date();
+    let getTime = localStorage.getItem("isactive")
+    let time = JSON.parse(getTime).expiry
+    if(now.getTime() > time) {
+      localStorage.setItem("isactive", null);
+    }
+    // window.addEventListener('click', () => {
+      // if(this.state.blur) this.setState({ blur: false });
+    // })
   }
+
+  handleBlur = () => {
+    this.setState({blur: !this.state.blur})
+  }
+
+
 
   render() {
     return (
       <Fragment>
-      <Header />
-      <div>
+      <Header onBlurScreen = {this.handleBlur}/>
+      <div className={`home-content ${this.state.blur ? 'add-fil' : ''}`}>
 
         <div className="home-slide">
           <div className="slider-container">
@@ -54,28 +71,11 @@ class Home extends React.Component {
                 })`,
               }}
             >
-              <div className="container slide-stick">
-                <div className="row align-items-center">
-                  <div className="col-6">
-                    <div className="slider_content">
-                      <p>{this.slideImages[this.state.currentSlide].caption}</p>
-                      <h1>{this.slideImages[this.state.currentSlide].title}</h1>
-                      <p className="slider_price">
-                        Bắt đầu <span>2023.01.23</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-6"></div>
-                </div>
+             
               </div>
-            </div>
           </div>
         </div>
-        <div className="shop-btn">
-          <a href="/" className="button">
-            Mua sắm ngay
-          </a>
-        </div>
+    
         <div className="home-intro">
           <div className="intro-1">
             <h1 className="text-center">Trang sức cao cấp</h1>
@@ -90,7 +90,7 @@ class Home extends React.Component {
             <img src="./home-1.webp" alt="" />
             <div className="box-1">
               <h3 className="text-center text-capitalize">Món quà hoàn hảo</h3>
-              <p className="text-capitalize">
+              <p className="">
                 Việc tìm kiếm món quà cho ngày lễ hoàn hảo không thể dễ dàng
                 hơn.
               </p>
@@ -100,14 +100,13 @@ class Home extends React.Component {
               </button>
             </div>
           </div>
-          <hr className="hr margin-t" />
-          <div className="row intro-flex ">
-            <div className="col-3 intro-flex-item">
-              <img src="./flex-1.jpg" alt="" />
-              <h2 className="text-capitalize text-center mt-4">nhẫn cưới</h2>
+          {/* <hr className="hr margin-t" /> */}
+          <div className="row intro-flex margin-t justify-content-around">
+            {/* <div className="col-3 intro-flex-item">
+              <img src="./flex-5.avif" alt="" />
+              <h2 className="text-capitalize text-center mt-4">nhẫn</h2>
               <p>
-                Khám phá những thiết kế độc đáo mang vẻ đẹp tinh khôi, thanh
-                lịch, sang trọng.
+                Khám phá những thiết kế độc đáo mang vẻ đẹp tinh khôi, sang trọng.
               </p>
               <button className="button-explore ms-3 fw-bold text-center">
                 Khám phá
@@ -115,7 +114,7 @@ class Home extends React.Component {
               </button>
             </div>
             <div className="col-3 intro-flex-item">
-              <img src="./flex-1.webp" alt="" />
+              <img src="./flex-8.jpg" alt="" />
               <h2 className="text-capitalize text-center mt-4">đồng hồ</h2>
               <p>
                 Xóa mờ ranh giới giữa kỷ vật thời gian và trang sức với vẻ đẹp
@@ -127,7 +126,7 @@ class Home extends React.Component {
               </button>
             </div>
             <div className="col-3 intro-flex-item">
-              <img src="./flex-3.webp" alt="" />
+              <img src="./flex-4.avif" alt="" />
               <h2 className="text-capitalize text-center mt-4">
                 Trang sức cao cấp
               </h2>
@@ -139,15 +138,37 @@ class Home extends React.Component {
                 Khám phá
                 <i className="fa-solid fa-angle-right ms-2"></i>
               </button>
+            </div> */}
+            <div className="col-5 home-flex p-0">
+            <img src="./flex-new-1.webp" alt="" className="h-100"/>
+            <div className="overlay">
+              <div className="content">
+              <button className="button-explore ms-3 fw-bold text-center">
+                Khám phá
+                <i className="fa-solid fa-angle-right ms-2"></i>
+              </button>
+              </div>
+            </div>
+            </div>
+            <div className="col-5 home-flex p-0">
+            <img src="./flex-new-2.avif" alt="" className="h-100"/>
+            <div className="overlay">
+              <div className="content">
+              <button className="button-explore ms-3 fw-bold text-center">
+                Khám phá
+                <i className="fa-solid fa-angle-right ms-2"></i>
+              </button>
+              </div>
+            </div>
             </div>
           </div>
           <div className="intro-img">
             <img src="./service.webp" alt="" />
             <div className="box-2">
               <h3 className="text-center text-capitalize">
-                Dịch vụ của chúng tôi
+                Dịch vụ 
               </h3>
-              <p className="text-capitalize">
+              <p className="">
                 Từ việc chọn một món quà ngày lễ đến cung cấp các cuộc hẹn tại
                 cửa hàng, chúng tôi luôn sẵn sàng phục vụ bạn với đội ngũ tư vấn
                 chuyên nghiệp và nhiệt tình. Jazzyy Jewelry cung cấp dịch vụ bảo

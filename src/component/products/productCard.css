@@ -1,7 +1,7 @@
 .product-card {
   background-color: darkgray;
   padding: 0 !important;
-  height: 380px;
+  height: 360px;
   position: relative;
   background-position: center;
   background-repeat: no-repeat;
@@ -24,8 +24,6 @@
   z-index: 9;
   left: 0;
   background: #fff;
-
-  transition: all 600ms ease-in-out;
   opacity: 0;
   visibility: hidden;
   width: 90%;
@@ -34,7 +32,7 @@
   left: 16px;
 }
 
-.card {
+.carditem {
   height: 100% !important;
   width: 100%;
   background-color: #fff;
@@ -46,15 +44,15 @@
   overflow: hidden;
 }
 
-.card .add-btn p {
+.carditem .add-btn p {
   font-size: 15px;
   margin: 0;
 }
 
 .add-btn {
-  margin: 3rem auto 1rem !important;
-  height: 60px;
-  line-height: 50px;
+  margin: 0 auto 1rem !important;
+  height: 51px;
+  line-height: 51px;
   width: 100%;
   background-color: #000;
   justify-content: space-between;
@@ -101,12 +99,18 @@
 
 .img-slide {
   margin-top: 5px;
-  height: 60%;
+  height: 70%;
 }
 
-.img-slide span {
+.img-slide button {
   padding: 0;
   margin: auto 0 !important;
+  border: none;
+  background-color: #fff;
+}
+
+.img-slide button i {
+  font-size: 28px
 }
 
 .add-icon {

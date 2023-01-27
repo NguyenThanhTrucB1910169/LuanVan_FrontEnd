@@ -3,33 +3,91 @@ import { Fragment } from "react";
 import "./productCard.css";
 
 class ProductCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      arrayImages: [],
+      slideIndex: 0
+    }
+  }
+
+  handleAdd = () => {
+    this.props.onSendProduct(this.props.cardItem.id)
+  }
+
+  nextSlide = () => {
+    console.log(this.state.arrayImages.length)
+    if(this.state.slideIndex !== this.state.arrayImages.length - 1){
+        this.setState({slideIndex: this.state.slideIndex + 1})
+    } 
+    else if (this.state.slideIndex === this.state.arrayImages.length - 1){
+      this.setState({slideIndex: 0})
+    }
+}
+
+ prevSlide = () => {
+    if(this.state.slideIndex !== 0){
+      this.setState({slideIndex: this.state.slideIndex - 1})
+    }
+    else if (this.state.slideIndex === 0){
+      this.setState({slideIndex: this.state.arrayImages.length - 1})
+    }
+}
+
+  configImage = (images) => {
+   
+      var myArrayImages = images.split(',')
+      this.setState({
+        arrayImages: myArrayImages
+      })
+    
+  }
+
+  componentDidMount() {
+    this.configImage(this.props.cardItem.image)
+    setInterval(() => {
+      if (this.state.slideIndex === this.state.arrayImages.length - 1) this.setState({ slideIndex: 0 });
+      else this.setState({ slideIndex: this.state.slideIndex + 1 });
+    }, 5000);
+  }
+
   render() {
+    // console.log("list images:", this.props.cardItem)
     return (
       <Fragment>
         <div
-          className="m-3 product-card"
-          style={{ backgroundImage: `url("${this.props.cardItem.image}")` }}
+          className="my-3 product-card"
+          style={{ backgroundImage: `url("${this.state.arrayImages[1]}")` }}
         >
           <div className="product_hover">
-            <div className="card">
+            <div className="carditem">
               <div className="row img-slide">
-                <span className="col-1 text-center">
+                <button className="col-1 text-center" onClick={this.prevSlide}>
                   <i className="fa fa-angle-left"></i>
-                </span>
+                </button>
                 <div className="col-10 p-0">
-                  <img src="./pd-2.webp" className="h-100"/>
+                  <img src={this.state.arrayImages[this.state.slideIndex]} className="h-100"/>
                 </div>
-                <span className="col-1 text-center">
+                <button className="col-1 text-center" onClick={this.nextSlide}>
                   <i className="fa-solid fa-angle-right"></i>
-                </span>
+                </button>
               </div>
-              <div className="mt-3">
-                <h4 className="text-center">{this.props.cardItem.name}</h4>
+              <div className="my-3">
+              <h4 className="text-center">{this.props.cardItem.name}</h4>
+
+                {/* <h4 className="text-center">{this.props.cardItem.name}</h4> */}
               </div>
-              <button className="row add-btn">
+              {/* <div className="mt-2">
+              <p className="mb-0" style={{fontFamily: "'Bulgari Type','Futura'"}}>Chất liệu: {this.props.cardItem.material}</p>
+              <h6 className="">Loại trang sức: {this.props.cardItem.type}</h6>
+
+
+                {/* <h4 className="text-center">{this.props.cardItem.name}</h4> 
+              </div> */}
+              <button className="row add-btn" onClick={this.handleAdd}>
                 <div className="col-9 h-100 text-start">
                   <p>
-                    <span id="price">{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.props.cardItem.price)}</span>
+                  <span>{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.props.cardItem.price)}</span>                   
                   </p>
                 </div>
                 <div className="col-3 h-100 add-icon">

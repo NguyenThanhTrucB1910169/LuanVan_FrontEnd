@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap');
+
+
+
 .home-slide {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   font-family: "Roboto", sans-serif;
   position: relative;
-  z-index: -1;
+  z-index: -1; */
+  height: 50rem;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
@@ -78,8 +85,8 @@
 .shop-btn {
   position: absolute;
   z-index: 9;
-  top: 500px;
-  left: 270px;
+  top: 460px;
+  left: 190px;
 }
 
 /* .shop-btn a {
@@ -96,17 +103,19 @@ img {
 }
 
 .slider-container {
-  height: 90vh;
+  height: 100%;
   width: 100%;
   position: relative;
   overflow: hidden;
   text-align: center;
-  animation: slideMe 0.7s ease-in;
+  /* animation: slideMe 0.7s ease-in; */
 }
 
 .slide-stick {
   position: absolute;
-  top: 45vh;
+  top: 43vh;
+  width: 92%;
+  left: 8vw;
 }
 
 .slide {
@@ -115,15 +124,14 @@ img {
   position: absolute;
   top: 0;
 
-  z-index: 10;
+  z-index: 2;
   padding: 8em 1em 0;
-  background-size: cover;
+  background-size:cover;
   background-position: 50% 50%;
-  transition: background-image 0.6s ease-in;
+  transition: background-image 0.5s ease-in-out;
 }
 
 .home-intro .intro-1 {
-  font-family: WilliamsCaslonText, "Times New Roman", Times, serif;
   padding: 80px 0;
   width: 45rem;
   margin: 0 auto;
@@ -248,6 +256,7 @@ img {
   box-shadow: 14px 18px 14px -2px rgb(0 0 0 / 20%); 
   padding: 20px;
   height: fit-content;
+  background-color: #fff;
 }
 
 .intro-flex-item img {
@@ -261,5 +270,45 @@ img {
 }
 
 .margin-t {
-  margin: 6rem auto 0;
+  margin: 6rem auto 0!important;
+}
+
+
+.home-content {
+  background-color: rgb(255, 255, 255);
+  font-family: 'Raleway', sans-serif;
+}
+
+.add-fil{
+  filter:brightness(0.8);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  background: #000000f0;
+  cursor: pointer;
+}
+
+.content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.home-flex{
+  position: relative;
+}
+.home-flex:hover .overlay {
+  opacity: 0.8;
+}
+.content .button-explore{
+  background: none;
+  color: #fff;
+  font-size: 23px;
 }
