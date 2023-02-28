@@ -59,14 +59,14 @@
 
 .quantity{
   position: absolute;
-  left: 31px;
+  left: 15px;
   width: 21px;
   line-height: 20px;
   text-align: center;
   color: #000;
   border-radius: 50%;
   background-color: #81d8d0;
-  top: 6px;
+  top: 4px;
   font-weight: 600;
   height: 21px;
 }

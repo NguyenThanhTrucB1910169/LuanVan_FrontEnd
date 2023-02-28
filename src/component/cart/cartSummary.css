@@ -4,5 +4,21 @@
 }
 
 .sum-head h5 {
-    font-family: 'Dancing Script', cursive;
+}
+
+.btn_order{
+    background-color: #81d8d0;
+    text-align: center;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 7px;
+    font-size: 20px;
+    /* display: flex; */
+    /* text-align: center; */
+    /* margin: auto; */
+}
+
+.font_sum{
+    font-family: 'Montserrat', sans-serif;
+
 }

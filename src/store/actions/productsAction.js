@@ -5,7 +5,7 @@ import axios from "axios";
 const fetchProducts = () => {
     return async (dispatch, getState) => {
     try {
-        let res = await axios.get('http://localhost:3001/api/products');
+        let res = await axios.get('http://localhost:3005/api/products');
         // console.log(res.data);
       if (res) {
         dispatch({
@@ -26,7 +26,7 @@ const createProduct = (req) => {
   return async (dispatch) => {
     try {
       console.log(req)
-      await axios.post('http://localhost:3001/api/products', req)
+      await axios.post('http://localhost:3005/api/products', req)
       .then ((res) => {
         dispatch({
           type: Types.CREATE_PRODUCT,

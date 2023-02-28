@@ -1,6 +1,7 @@
 import React from "react";
 import { Fragment } from "react";
 import "./cartHeader.css";
+import { Link } from "react-router-dom";
 
 class CartHeader extends React.Component {
   render() {
@@ -10,7 +11,7 @@ class CartHeader extends React.Component {
           {/* <div className="cart-top"> */}
             <div className=" me-0 ms-4">
               <div className="row align-items-center justify-content-between">
-                <div className="col-lg-5 col-md-6">
+                <div className="col-lg-5 col-md-6 mt-4">
                   <div className="main_menu">
                     <nav>
                       <ul className="">
@@ -18,7 +19,7 @@ class CartHeader extends React.Component {
                           <a href="/" className="text-decoration-none fs-6">
                             Trang Chủ <i className="ion-chevron-down"></i>
                           </a>
-                          <ul className="sub_menu cart-nav">
+                          {/* <ul className="sub_menu cart-nav">
                             <li>
                               <a href="/">Banner</a>
                             </li>
@@ -37,63 +38,9 @@ class CartHeader extends React.Component {
                             <li>
                               <a href="/">Blog</a>
                             </li>
-                          </ul>
+                          </ul> */}
                         </li>
-                        <li>
-                          <a href="/" className="text-decoration-none fs-6">
-                            Danh Mục <i className="ion-chevron-down"></i>
-                          </a>
-                          <ul className="mega_menu cart_mega">
-                            <li>
-                              <ul>
-                                <li>
-                                  <a href="/">Hoa Tai</a>
-                                </li>
-                                <li>
-                                  <a href="/">Mặt Dây Chuyền</a>
-                                </li>
-                                <li>
-                                  <a href="/">Nhẫn</a>
-                                </li>
-                                <li>
-                                  <a href="/">Chuỗi ngọc</a>
-                                </li>
-                              </ul>
-                            </li>
-                            <li>
-                              <ul>
-                                <li>
-                                  <a href="/">Lắc Tay</a>
-                                </li>
-
-                                <li>
-                                  <a href="/">Vòng tay</a>
-                                </li>
-
-                                <li>
-                                  <a href="/">Đá quý</a>
-                                </li>
-                              </ul>
-                            </li>
-                            <li>
-                              {/* <a href="/">Other</a> */}
-                              <ul>
-                                <li>
-                                  <a href="/">Bạch Kim</a>
-                                </li>
-                                <li>
-                                  <a href="/">Bạc</a>
-                                </li>
-                                {/* <li>
-                                  <a href="/">Coins</a>
-                                </li> */}
-                                <li>
-                                  <a href="/">Pha Lê</a>
-                                </li>
-                              </ul>
-                            </li>
-                          </ul>
-                        </li>
+                     
 
                         <li>
                           <a href="/" className="text-decoration-none fs-6">
@@ -114,7 +61,7 @@ class CartHeader extends React.Component {
                     <h1>Jazzy</h1>
                   </div>
                 </div>
-                <div className="col-lg-4 col-md-6 flex-cart">
+                <div className="col-lg-4 col-md-6 flex-cart mt-4">
                   <div className="top_right text-right">
                     <ul className="p-0">
                       <li>
@@ -138,12 +85,15 @@ class CartHeader extends React.Component {
                       <li>
                       <div className="middel_right">
                     <div className="cart_link ms-0 mb-0">
-                      <a href="/" className="text-decoration-none">
+                    <a href="/cart" className="text-decoration-none">
                         <i className="fa-solid fa-bag-shopping fs-4 me-4"></i>
-                        <span className="me-2">67,598</span>
+                        {/* <span className="me-2">67,598</span> */}
                         <i className="fa fa-solid fa-chevron-down"></i>
-                      </a>
-                      <span className="quantity">2</span>
+                          {this.props.amount ? ( <span className="quantity">{this.props.amount}</span>) : null}
+                    </a>
+                      {/* <a href="/" >
+                      </a> */}
+                      {/* */}
                     </div>
                   </div>
                       </li>

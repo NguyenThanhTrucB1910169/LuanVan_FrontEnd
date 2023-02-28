@@ -6,7 +6,7 @@ const initState = {
 
 export const cartReducer = (state = initState, action) => {
   switch (action.type) {
-    case Types.ADD_TO_CART:
+    case Types.ADD_TO_CART_SUCCESS:
       // let item = {
       //   ...state,
       //   cartItem: [...state.cartItem, action.payload]
@@ -20,8 +20,8 @@ export const cartReducer = (state = initState, action) => {
       // console.log(item);
       return {
         ...state,
-        cartItem: [...state.cartItem, action.payload]
-        // message: action.payload,
+        // cartItem: [...state.cartItem, action.payload]
+        message: action.payload,
       };
       // const item = action.payload;
       // // console.log(item);
@@ -48,10 +48,14 @@ export const cartReducer = (state = initState, action) => {
       // }
     case Types.LOAD_CART_SUCCESS: 
       state.cartItem = action.payload;
+      // console.log(state)
+      // console.log(state.cartItem);
       return {...state}
     case Types.UPDATE_CART_SUCCESS: 
       state.cartItem = action.payload;
       return {...state}
+    case Types.UPDATE_CART_FAILED: 
+      return {...state, message: action.payload}
     case Types.REMOVE_ITEM_SUCCESS: 
       state.cartItem = action.payload;
       return {...state}

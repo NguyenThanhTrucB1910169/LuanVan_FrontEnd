@@ -7,46 +7,43 @@ class ProductCard extends React.Component {
     super(props);
     this.state = {
       arrayImages: [],
-      slideIndex: 0
-    }
+      slideIndex: 0,
+    };
   }
 
   handleAdd = () => {
-    this.props.onSendProduct(this.props.cardItem.id)
-  }
+    this.props.onSendProduct(this.props.cardItem.id);
+  };
 
   nextSlide = () => {
-    console.log(this.state.arrayImages.length)
-    if(this.state.slideIndex !== this.state.arrayImages.length - 1){
-        this.setState({slideIndex: this.state.slideIndex + 1})
-    } 
-    else if (this.state.slideIndex === this.state.arrayImages.length - 1){
-      this.setState({slideIndex: 0})
+    console.log(this.state.arrayImages.length);
+    if (this.state.slideIndex !== this.state.arrayImages.length - 1) {
+      this.setState({ slideIndex: this.state.slideIndex + 1 });
+    } else if (this.state.slideIndex === this.state.arrayImages.length - 1) {
+      this.setState({ slideIndex: 0 });
     }
-}
+  };
 
- prevSlide = () => {
-    if(this.state.slideIndex !== 0){
-      this.setState({slideIndex: this.state.slideIndex - 1})
+  prevSlide = () => {
+    if (this.state.slideIndex !== 0) {
+      this.setState({ slideIndex: this.state.slideIndex - 1 });
+    } else if (this.state.slideIndex === 0) {
+      this.setState({ slideIndex: this.state.arrayImages.length - 1 });
     }
-    else if (this.state.slideIndex === 0){
-      this.setState({slideIndex: this.state.arrayImages.length - 1})
-    }
-}
+  };
 
   configImage = (images) => {
-   
-      var myArrayImages = images.split(',')
-      this.setState({
-        arrayImages: myArrayImages
-      })
-    
-  }
+    var myArrayImages = images.split(",");
+    this.setState({
+      arrayImages: myArrayImages,
+    });
+  };
 
   componentDidMount() {
-    this.configImage(this.props.cardItem.image)
+    this.configImage(this.props.cardItem.image);
     setInterval(() => {
-      if (this.state.slideIndex === this.state.arrayImages.length - 1) this.setState({ slideIndex: 0 });
+      if (this.state.slideIndex === this.state.arrayImages.length - 1)
+        this.setState({ slideIndex: 0 });
       else this.setState({ slideIndex: this.state.slideIndex + 1 });
     }, 5000);
   }
@@ -66,14 +63,17 @@ class ProductCard extends React.Component {
                   <i className="fa fa-angle-left"></i>
                 </button>
                 <div className="col-10 p-0">
-                  <img src={this.state.arrayImages[this.state.slideIndex]} className="h-100"/>
+                  <img
+                    src={this.state.arrayImages[this.state.slideIndex]}
+                    className="image_slide"
+                  />
                 </div>
                 <button className="col-1 text-center" onClick={this.nextSlide}>
                   <i className="fa-solid fa-angle-right"></i>
                 </button>
               </div>
-              <div className="my-3">
-              <h4 className="text-center">{this.props.cardItem.name}</h4>
+              <div className="product_name">
+                <h5 className="text-center mb-0">{this.props.cardItem.name}</h5>
 
                 {/* <h4 className="text-center">{this.props.cardItem.name}</h4> */}
               </div>
@@ -84,7 +84,7 @@ class ProductCard extends React.Component {
 
                 {/* <h4 className="text-center">{this.props.cardItem.name}</h4> 
               </div> */}
-              <button className="row add-btn" onClick={this.handleAdd}>
+              {/* <button className="row add-btn" onClick={this.handleAdd}>
                 <div className="col-9 h-100 text-start">
                   <p>
                   <span>{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.props.cardItem.price)}</span>                   
@@ -93,11 +93,15 @@ class ProductCard extends React.Component {
                 <div className="col-3 h-100 add-icon">
                   <i className="fa-solid fa-cart-plus"></i>
                 </div>
-              </button>
-              <div className="text-end">
+              </button> */}
+              <div className="btn_group">
                 <button className="button-detail">
                   Chi tiết
                   <i className="ms-1 fa-solid fa-angles-right"></i>
+                </button>
+                <button className="btn_add" onClick={this.handleAdd}>
+                  <i className="fa-solid fa-cart-plus"></i>
+                  <span>{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.props.cardItem.price)}</span>
                 </button>
               </div>
             </div>

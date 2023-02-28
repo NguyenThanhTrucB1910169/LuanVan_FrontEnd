@@ -5,5 +5,13 @@
 }
 
 .font-cart{
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.back_cart{
+    background-color: #fff;
+}
+
+.back_cart:hover{
+   color: #14abe9!important;
 }

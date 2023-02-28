@@ -40,9 +40,11 @@ class Home extends React.Component {
     }, 5000);
     const now = new Date();
     let getTime = localStorage.getItem("isactive")
-    let time = JSON.parse(getTime).expiry
-    if(now.getTime() > time) {
-      localStorage.setItem("isactive", null);
+    if(!getTime) {
+      let time = JSON.parse(getTime).expiry
+      if(now.getTime() > time) {
+        localStorage.setItem("isactive", null);
+      }
     }
     // window.addEventListener('click', () => {
       // if(this.state.blur) this.setState({ blur: false });

@@ -1,3 +1,5 @@
+
+
 .product-card {
   background-color: darkgray;
   padding: 0 !important;
@@ -16,7 +18,7 @@
   border: 1px solid;
   width: 100%;
   left: 0;
-  height: 545px;
+  height: 106%;
 }
 
 .product_hover {
@@ -30,6 +32,7 @@
   height: 380px;
   top: 0;
   left: 16px;
+  /* font-family: 'Montserrat', sans-serif; */
 }
 
 .carditem {
@@ -37,10 +40,10 @@
   width: 100%;
   background-color: #fff;
   border-radius: 10px;
-  padding: 20px 10px;
+  padding: 5px 10px 15px;
   box-sizing: border-box;
   position: relative;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   overflow: hidden;
 }
 
@@ -97,9 +100,9 @@
   transform-origin: bottom left;
 }
 
-.img-slide {
-  margin-top: 5px;
-  height: 70%;
+.image_slide {
+  height: 95%;
+  width: 100%;
 }
 
 .img-slide button {
@@ -110,10 +113,60 @@
 }
 
 .img-slide button i {
-  font-size: 28px
+  font-size: 28px;
 }
 
 .add-icon {
   font-size: 25px;
   margin-top: 12px;
+}
+
+
+.btn_group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.btn_add {
+  align-items: center;
+  background-color: #fff;
+  border: 0 solid #fff;
+  border-radius: 18px;
+  display: inline-flex;
+  padding: 6px 16px;
+  transition: all 0.3s ease;
+}
+
+.btn_add:hover {
+  background-color: #c6f3f1;
+  padding: 6px 20px
+}
+
+.btn_add:hover span {
+  transform: translateX(4px);
+  opacity: 1;
+  position: relative;
+}
+.btn_add span {
+  /* color: #fff; */
+  transform: translateX(320px);
+  transition: all 0.3s ease;
+  opacity: 0;
+  position: absolute;
+}
+.btn_add i {
+ font-size: 20px;
+}
+
+.btn_add:hover i{
+  font-size: 17px;
+}
+
+.img-slide{
+  height: 76%;
+}
+
+.product_name{
+  margin-top: 5px
 }

@@ -6,6 +6,8 @@ import './product.css';
 import Footer from "../home/footer";
 import ProductCard from "./productCard";
 import CartHeader from "../cart/cartHeader";
+import { toast } from "react-toastify";
+import Toast from '../home/toast'
 class Product extends React.Component {
   // constructor(props) {
   //   super(props);
@@ -26,6 +28,11 @@ class Product extends React.Component {
     // console.log(id)
     // this.props
     this.props.handleAddToCart(id, 1)
+    if(this.props.messageAdded){
+      toast.success(<Toast message="Đã thêm vào giỏ hàng"/>, {
+        className: 'success',
+      })
+    }
   }
 
 
@@ -37,7 +44,7 @@ class Product extends React.Component {
         <Fragment>
         <CartHeader />
         <div className="contain">
-        <h1>sản phẩm</h1>
+        <h1>tất cả sản phẩm</h1>
         <div className="row mx-3">
         {
           this.props.listProduct.map((product, index) => 
@@ -53,7 +60,6 @@ class Product extends React.Component {
         </div>
    
         <Footer />
-    
       </Fragment>
     );
   }
@@ -64,7 +70,8 @@ class Product extends React.Component {
 const mapStateToProps = (state) => {
   // console.log(state.getAllProducts)
   return {
-    listProduct: state.getAllProducts.products
+    listProduct: state.getAllProducts.products,
+    messageAdded: state.cart.message
   }
 };
 

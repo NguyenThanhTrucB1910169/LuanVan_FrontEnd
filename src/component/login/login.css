@@ -1,5 +1,6 @@
 .login-container {
   height: 100vh;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* .social {
@@ -29,6 +30,8 @@
   left: 27px;
   font-size: 23px;
   color: #000;
+  border: none;
+    background-color: transparent;
 }
 
 .screen {
@@ -110,8 +113,6 @@
 
 
 .login h2{
-  font-family: 'Sevillana', cursive;
-
 }
 
 .login-field {
@@ -172,4 +173,16 @@
   font-size: 24px;
   margin-left: auto;
   color: #000;
+}
+
+.login_error {
+  color: red;
+  padding-top: 5px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
 }

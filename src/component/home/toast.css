@@ -1,6 +1,6 @@
 .success{
     border-radius:5px!important;
-    background-color: #c9eed8!important;
+    background-color: #fff!important;
     box-shadow: 7px 0 11px 1px #838383!important;
     margin: 0!important;
       color: #000!important;
@@ -18,7 +18,7 @@
 
   .fail{
     border-radius:5px!important;
-    background-color: #c7585821!important;
+    background-color: #fff!important;
     box-shadow: 7px 0 11px 1px #838383!important;
     margin: 0!important;
       color: #000!important;
@@ -30,6 +30,25 @@
   }
   
   .fail button > svg{
+    width: 32px;
+    height: 26px;
+  }
+
+
+  .warning{
+    border-radius: 5px!important;
+    background-color: rgb(250 250 209)!important;
+    box-shadow: 2px 0px 7px 0px #838383!important;
+    margin: 0!important;
+    color: #000!important;
+    border-left: 4px solid rgb(197 197 48);
+  }
+  
+  .warning button{
+    margin-top: 8px;
+  }
+  
+  .warning button > svg{
     width: 32px;
     height: 26px;
   }
