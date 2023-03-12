@@ -1,0 +1,114 @@
+.intro_contain{
+    position: relative;
+    font-family: 'Raleway', sans-serif;
+}
+
+.slogan{
+    position: absolute;
+    font-family: 'Pinyon Script', cursive;
+    color: #fff;
+    font-size: 150px;
+    left: 60px;
+    top: 30px;
+}
+
+.slogan span{
+    display: block;
+    position: relative;
+    left: 315px;
+}
+
+.intro_sec{
+    position: relative;
+}
+
+.intro_sec .doc{
+    position: absolute;
+    width: 30%;
+    top: 55px;
+    left: 130px;
+}
+
+.intro_sec .doc h1{
+    padding-bottom: 10px;
+}
+
+.intro_first{
+    margin: 8rem 0;
+}
+
+.intro_first p{
+    margin: auto 0;
+    padding: 0 4rem 0 10rem;
+}
+
+.intro_contain .intro_name{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 80px;
+    font-size: 45px;
+}
+
+.intro_third{
+    position: relative;
+}
+
+
+.intro_img_1{
+   
+    position: absolute;
+    right: 393px;
+    top: 32px;
+    width: 19%;
+    border-radius: 10px;
+    transform: rotate(27deg);
+
+}
+
+.intro_img_2{
+    position: absolute;
+    right: 70px;
+    top: 95px;
+    width: 20%;
+    border-radius: 10px;
+    transform: rotate(-30deg);
+}
+
+.intro_img_3{
+    position: absolute;
+    right: 512px;
+    top: 340px;
+    width: 35%;
+    border-radius: 35px;
+}
+
+.intro_img_4{
+    position: absolute;
+    right: 35px;
+    top: 420px;
+    width: 32%;
+    border-radius: 35px;
+}
+
+.content_third h6{
+    text-transform: capitalize;
+    text-align: center;
+    padding: 5px 0 10px;
+    font-size: 2.5rem;
+}
+
+.content_third{
+    padding: 4rem 0 0 4rem;
+}
+
+.intro_img_5{
+    position: absolute;
+    top: 220px;
+    left: 35px;
+}
+
+.intro_third{
+    margin-top: 4rem;
+    height: 100vh;
+}
