@@ -1,0 +1,100 @@
+/* .contact img{
+    filter: brightness(60%);
+} */
+
+.contact{
+    /* background-image: url('../../images/cont-1.webp') */
+    height: fit-content;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.cont_overlay{
+    height: 20rem;
+}
+
+.overlay_ct{
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.overlay_ct::before, .overlay_ct::after{
+    background-repeat: no-repeat;
+    background-size: cover;
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.overlay_ct::before{
+    background-image: url("../../images/cont-3.webp");
+    background-position: right;
+    opacity: .9;
+    z-index: 1;
+}
+
+.overlay_ct::after{
+    background-image: url(https://42700.fs1.hubspotusercontent-na1.net/hubfs/42700/bevel-bottom-overlay.png);
+    background-position: bottom;
+    z-index: 2;
+}
+
+.cont_content{
+    justify-content: space-around;
+}
+
+.cont_hour ul{
+    list-style-type: none;
+}
+
+.cont_link{
+    /* padding-left: 1rem */
+    /* width: 20%; */
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+}
+
+.cont_link ul{
+    list-style-type: none;
+}
+
+.cont_link span,
+.cont_hour span
+{
+    margin: 20px;
+}
+
+.cont_hour li,
+.cont_link li{
+    margin: 1.5rem auto;
+}
+
+.cont_assist img{
+    height: 80%;
+}
+
+.mf{
+    margin-left: 4.5rem;
+}
+
+.cont_mt{
+    margin-top: 4rem;
+}
+
+.cont_assist h2{
+    font-family: 'Raleway', sans-serif;
+    font-size: 40px;
+    margin-top: 5rem;
+}
+
+.cont_assist h3{
+    margin: 10px 0;
+}
