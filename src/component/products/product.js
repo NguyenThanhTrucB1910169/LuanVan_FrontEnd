@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 import {connect} from "react-redux";
-import {fetchProducts} from "../../store/actions/productsAction"
+import {fetchProducts, saveDetail} from "../../store/actions/productsAction"
 import {addToCart} from "../../store/actions/cartAction"
 import './product.css';
 import Footer from "../home/footer";
 import ProductCard from "./productCard";
-import CartHeader from "../cart/cartHeader";
+import SubHeader from "../layouts/subHeader";
 import { toast } from "react-toastify";
 import Toast from '../home/toast'
 class Product extends React.Component {
@@ -35,14 +35,13 @@ class Product extends React.Component {
     }
   }
 
-
   render() {
     // console.log(typeof this.props.listProduct[0].image)
     // console.log(this.props.listProduct[0].image)
     // console.log(this.state.arrayImages)
     return (
         <Fragment>
-        <CartHeader />
+        <SubHeader />
         <div className="contain">
         <h1>tất cả sản phẩm</h1>
         <div className="row mx-3">
@@ -50,7 +49,8 @@ class Product extends React.Component {
           this.props.listProduct.map((product, index) => 
             (
               <div className="col-3" key={index}>
-                <ProductCard cardItem={product} onSendProduct={this.addToCart}/>
+    
+                <ProductCard cardItem={product} onSendProduct={this.addToCart} getDetailPd={(pd) => this.props.saveDetailInfo(pd)}/>
               </div>
             )
           )
@@ -78,7 +78,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchProductsRedux: () => dispatch(fetchProducts()),
-    handleAddToCart: (id, qt) => dispatch(addToCart(id, qt))
+    handleAddToCart: (id, qt) => dispatch(addToCart(id, qt)),
+    saveDetailInfo: (pd) => dispatch(saveDetail(pd))
   }
 }
 

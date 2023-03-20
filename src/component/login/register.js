@@ -18,30 +18,151 @@ class Register extends React.Component {
       confirmpassword: "",
       email: "",
       gender: "",
+      isValid: true,
+      errors: {
+
+      },
     };
   }
   handleSubmit = async (e) => {
     e.preventDefault();
-    await this.props.createNewAccount(this.state);
-    if (this.props.result) {
-      toast.success(
-          <Toast message="Tạo tài khoản thành công." />
-        , {
-        onClose: () => {
-          this.setState({
-            username: "",
-            password: "",
-            confirmpassword: "",
-            email: "",
-            gender: "",
-          });
-          // this.props.history.push("/");
-        },
-        className: 'success'
-      });
-
-      // console.log(e.target)
+    if(this.state.isValid){
+      await this.props.createNewAccount(this.state);
+      if (this.props.result) {
+        toast.success(<Toast message="Tạo tài khoản thành công." />, {
+          onClose: () => {
+            this.setState({
+              username: "",
+              password: "",
+              confirmpassword: "",
+              email: "",
+              gender: "",
+            });
+            // this.props.history.push("/");
+          },
+          className: "success",
+        });
+  
+        // console.log(e.target)
+      }
     }
+  };
+  validateForm = (name) => {
+    let errors = {};
+    switch (name) {
+      case "username":
+        if (!this.state.username) {
+          this.setState(
+            {
+              isValid: false,
+              errors: { ...this.state.errors, username: "Nhập tên tài khoản" },
+            },
+            () => {}
+          );
+        } else
+          this.setState(
+            {
+              isValid: true,
+              errors: { ...this.state.errors, username: "" },
+            },
+            () => {}
+          );
+        return errors;
+      case "confirmpassword":
+        if (!this.state.confirmpassword) {
+          this.setState(
+            {
+              isValid: false,
+              errors: {
+                ...this.state.errors,
+                confirmpassword: "Nhập lại mật khẩu",
+              },
+            },
+            () => {}
+          );
+        } else if (this.state.confirmpassword !== this.state.password) {
+          this.setState({
+            isValid: false,
+            errors: {
+              ...this.state.errors,
+              confirmpassword: "Không trùng khớp",
+            },
+          });
+        }
+        else this.setState({
+          isValid: true,
+          errors: {
+            ...this.state.errors,
+            confirmpassword: ""
+          }
+        })
+        return errors;
+      case "password":
+        if (!this.state.password) {
+          this.setState(
+            {
+              passValid: false,
+              errors: { ...this.state.errors, password: "Nhập mật khẩu" },
+            },
+            () => {}
+          );
+        }
+        if (this.state.password.length < 8) {
+          this.setState({
+            isValid: false,
+            errors: {
+              ...this.state.errors,
+              password: "Mật khẩu ít nhất 8 ký tự",
+            },
+          });
+        } else
+          this.setState(
+            {
+              isValid: true,
+              errors: { ...this.state.errors, password: "" },
+            },
+            () => {}
+          );
+        return errors;
+      case "email":
+        if (!this.state.email) {
+          this.setState({
+            errors: { ...this.state.errors, email: "Nhập email" },
+          });
+        } else if (!/\S+@\S+\.\S+/.test(this.state.email)) {
+          this.setState(
+            { errors: { ...this.state.errors, email: "Email không hợp lệ" } },
+            () => {
+              console.log(this.state.errors);
+            }
+          );
+        } else
+          this.setState({
+            isValid: true,
+            errors: { ...this.state.errors, email: "" },
+          });
+        return errors;
+      case "gender":
+        if (!this.state.gender) {
+          this.setState({
+            isValid: false,
+            errors: { ...this.state.errors, gender: "Chọn giới tính" },
+          });
+        } else
+          this.setState({
+            isValid: true,
+            errors: { ...this.state.errors, gender: "" },
+          });
+        return errors;
+      default:
+        return errors;
+    }
+  };
+
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value }, () => {
+      this.validateForm(event.target.name);
+    });
   };
 
   render() {
@@ -49,84 +170,87 @@ class Register extends React.Component {
       <Fragment>
         <div
           className="signup-img"
-          style={{ backgroundImage: 'url("./sign-7.avif")' }}
-        ></div>
+          // style={{ backgroundImage: 'url("./sign-7.avif")' }}
+        >
+          <img src="./sign-8.avif" alt="" />
+        </div>
         {/* <div className="signup-container"> */}
         <div className="row g-0 justify-content-between signup">
-          <div className="col-xl-7 h-100">
+          <div className="col-xl-7 h-100 cus_font">
             <div className="card-body p-md-5 text-black">
               <form
                 action=""
                 encType="multipart/form-data"
                 // onSubmit={this.handleSubmit}
               >
-                <h1 className="mb-2 text-uppercase text-center font-title">
-                  đăng ký
-                </h1>
-              
-                <div className="mb-4">
+                <h1 className="mb-3 text-uppercase text-center">đăng ký</h1>
+                <div className="mb_1">
                   <label className="d-block">
                     Tên tài khoản
                     <input
                       type="text"
                       className="form-control form-control-lg border-bt"
-                      onChange={(e) =>
-                        this.setState({ username: e.target.value })
-                      }
+                      name="username"
+                      onChange={this.handleChange}
                       value={this.state.username}
                     />
                   </label>
+                  {this.state.errors.username && <div className="reg_error">{this.state.errors.username}</div>}
                 </div>
-                <div className="mb-4">
+                <div className="mb_1">
                   <label className="d-block">
                     Email
                     <input
                       type="text"
                       className="form-control form-control-lg border-bt"
-                      onChange={(e) => this.setState({ email: e.target.value })}
+                      name="email"
+                      onChange={this.handleChange}
                       value={this.state.email}
                     />
                   </label>
+                  {this.state.errors.email && <div className="reg_error">{this.state.errors.email}</div>}
                 </div>
 
-                <div className="row">
-                  <div className="col-md-6 mb-4">
+                <div className="row mb_1">
+                  <div className="col-md-6">
                     <div className="">
                       <label className="form-label">
                         Mật khẩu
                         <input
                           type="password"
                           className="form-control form-control-lg border-bt"
-                          onChange={(e) =>
-                            this.setState({ password: e.target.value })
-                          }
+                          name="password"
+                          onChange={this.handleChange}
                           value={this.state.password}
                         />
                       </label>
+                     {this.state.errors.password && <div className="reg_error">{this.state.errors.password}</div>}
                     </div>
                   </div>
-                  <div className="col-md-6 mb-4">
+                  <div className="col-md-6">
                     <div className="">
                       <label className="form-label">
                         Xác nhận mật khẩu
                         <input
                           type="password"
                           className="form-control form-control-lg border-bt"
-                          onChange={(e) =>
-                            this.setState({ confirmpassword: e.target.value })
-                          }
+                          name="confirmpassword"
+                          onChange={this.handleChange}
                           value={this.state.confirmpassword}
                         />
                       </label>
+                      {this.state.errors.confirmpassword && <div className="reg_error">{this.state.errors.confirmpassword}</div>}
+                      
                     </div>
                   </div>
                 </div>
-                <div className="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                <div className="d-md-flex justify-content-start align-items-center py-2">
                   <h6 className="mb-0 me-4">Giới Tính: </h6>
 
                   <div
                     className="form-check form-check-inline mb-0 me-4"
-                    onChange={(e) => this.setState({ gender: e.target.value })}
+                    name="gender"
+                    onChange={this.handleChange}
                     value={this.state.gender}
                   >
                     <label className="form-check-label me-5">
@@ -156,11 +280,13 @@ class Register extends React.Component {
                         value="Others"
                       />
                     </label>
+                   {this.state.errors.gender && <div className="reg_error">{this.state.errors.gender}</div>}
+                   {/* <div className="reg_error">Chọn giới tính</div> */}
                   </div>
                 </div>
                 <div className="d-flex justify-content-end pt-3">
                   <button type="button" className="button-reset">
-                    <i class="fa-solid fa-rotate-right me-2"></i>
+                    <i className="fa-solid fa-rotate-right me-2"></i>
                     Đặt lại
                   </button>
                   <div>
@@ -174,16 +300,20 @@ class Register extends React.Component {
                     <ToastContainer />
                   </div>
                 </div>
-                <p className="text-capitalize mt-4 mb-0">bạn đã có tài khoản
+                <p className="text-capitalize mt-4 mb-0">
+                  bạn đã có tài khoản
                   {/* <a href=""></a> */}
-                  <Link to="/login" className="btn-direct ps-2">Đăng nhập</Link>
+                  <Link to="/login" className="btn-direct ps-2">
+                    Đăng nhập
+                  </Link>
                 </p>
               </form>
             </div>
           </div>
           <div className="col-xl-5 d-none d-xl-block">
             <img
-              src="./signgif.gif"
+              // src="./signgif.gif"
+              src="./rg.gif"
               alt="logo"
               className="img-fluid img-signup"
             />

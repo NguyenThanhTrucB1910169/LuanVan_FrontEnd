@@ -15,6 +15,8 @@ import LoginSignUp from "./component/manage/loginSignup";
 import { ToastContainer } from "react-toastify";
 import UpdateForm from "./component/layouts/updateForm";
 import Order from "./component/order/order";
+import IntroPage from "./component/pages/introPage";
+import ContactPage from "./component/pages/contactPage";
 function App() {
   
   return (
@@ -34,6 +36,8 @@ function App() {
       {/* <Route path="/order/payment" component={OrderPayment}></Route> */}
       {/* <Route path="/order/confirm" component={OrderConfirm}></Route> */}
       <Route path="/updateinfo" component={UpdateForm}></Route>
+      <Route path="/intro" component={IntroPage}></Route>
+      <Route path="/contact" component={ContactPage}></Route>
     </Switch>
     </BrowserRouter>
   )

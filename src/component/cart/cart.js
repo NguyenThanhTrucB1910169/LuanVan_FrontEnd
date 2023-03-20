@@ -4,7 +4,7 @@ import CartSummary from "./cartSummary";
 import { Fragment } from "react";
 import Footer from "../home/footer";
 import "./cart.css";
-import CartHeader from "./cartHeader";
+import SubHeader from "../layouts/subHeader";
 import { connect } from "react-redux";
 import {
   getCartItem,
@@ -62,7 +62,7 @@ class Cart extends React.Component {
     // console.log(this.props.listProductInCart)
     return (
       <Fragment>
-        <CartHeader amount={this.props.listProductInCart.length}/>
+        <SubHeader amount={this.props.listProductInCart.length}/>
         <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
           <div className="container py-5 h-100">
             <div className="row justify-content-around">

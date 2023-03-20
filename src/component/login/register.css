@@ -10,14 +10,14 @@
 .img-signup {
     border-radius: 10px;
     height: 70%!important;
-    margin: 2rem 0;
+    margin: 5rem 0;
 }
 
 .signup {
   /* margin: 2rem 10rem !important; */
   
-  left: 12rem;
-  top: 2.5rem!important;
+  left: 21rem;
+  top: 11rem!important;
   background-color: #fff;
   /* box-shadow: 0 6px 60px rgb(0 0 0 / 20%); */
   /* box-shadow: 10px 0 7px -2px rgb(0 0 0 / 20%); */
@@ -83,15 +83,21 @@
 }
 
 .signup-img {
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
   /* background-image: url(./sign-4.jpg); */
-    padding: 2.5rem 0;
+    /* padding: 2.5rem 0; */
     opacity: 0.;
     z-index: -1;
     position: relative;
-    height: 43rem;
-    filter: brightness(0.6);
+    height: 100vh;
+    filter: brightness(0.7);
+    margin-bottom: 10rem;
+}
+
+.signup-img img{
+  height: 50%;
+  width: 100%;
 }
 
 .check-gerder {
@@ -131,9 +137,15 @@
   border: none!important;
   border-bottom: 2px solid!important;
   border-radius: 0!important;
+  min-height: 35px!important;
+  height: 35px!important;
 }
 
 /* .border-bt:focuss */
+
+.mb_1{
+  margin-bottom: 16px;
+}
 
 .border-bt:focus{
   border: none!important;
@@ -143,7 +155,7 @@
 }
 
 .font-title {
-  font-family: 'Sevillana', cursive;
+  /* font-family: 'Sevillana', cursive; */
 }
 
 /* .success{
@@ -167,5 +179,15 @@
 .btn-direct{
   color: #000;
   font-weight: 600;
-  font-family: 'Sevillana', cursive;
+  /* font-family: 'Sevillana', cursive; */
+}
+
+.cus_font{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.reg_error{
+  color: red;
+  padding-top: 5px;
+  font-size: 15px;
 }

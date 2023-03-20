@@ -18,10 +18,10 @@ class Header extends React.Component {
     };
   }
 
-
   renderElement = () => {
     if (this.props.isLogin !== undefined) {
-      if (this.props.isLogin) return <IsLogin handleClick={this.handleLogout} />;
+      if (this.props.isLogin)
+        return <IsLogin handleClick={this.handleLogout} />;
       else {
         return <UnLogin />;
       }
@@ -35,15 +35,15 @@ class Header extends React.Component {
 
   autoLogout = () => {
     const now = new Date();
-    if(this.isActive){
-      if(now.getTime() > this.isActive.expiry){
+    if (this.isActive) {
+      if (now.getTime() > this.isActive.expiry) {
         this.props.logoutHandler();
       }
     }
-  }
+  };
 
   componentDidMount() {
-    this.autoLogout()
+    this.autoLogout();
     window.addEventListener("scroll", this.handleScroll);
   }
 
@@ -82,9 +82,9 @@ class Header extends React.Component {
           }`}
         >
           <div className="header_top">
-            <div className=" me-0 ms-4">
-              <div className="row align-items-center justify-content-between">
-                <div className="col-lg-5 col-md-6">
+            <div className="ms-4">
+              <div className="row_header">
+                <div className="col_header_a">
                   <div className="social_icone">
                     <ul>
                       <li>
@@ -116,12 +116,29 @@ class Header extends React.Component {
                 </div>
                 <div
                   className={
-                    this.state.show ? "col-lg-4" : "col-lg-4" + " col-md-6"
+                    this.state.show ? "col_header_b" : "col_header_b" 
                   }
                 >
-                  <div className="top_right text-right">
+                  <div className="top_right float-end">
                     <ul>
-                      <li>
+
+                      
+                      <li className="language">
+                        <a href="/" className="text-decoration-none fs-6">
+                          VietNamese{" "}
+                          <i className="fa-solid fa-chevron-down"></i>
+                        </a>
+                        <ul className="dropdown_language">
+                          <li>
+                            <a href="/">English</a>
+                          </li>
+                          <li>
+                            <a href="/">VietNamese</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li className="top_links">{this.renderElement()}</li>
+                    <li>
                         <div className="search_btn">
                           <a href="/">
                             <i className="fa-solid fa-magnifying-glass"></i>
@@ -139,25 +156,7 @@ class Header extends React.Component {
                           </div>
                         </div>
                       </li>
-                      <li className="language">
-                        <a href="/" className="text-decoration-none fs-6">
-                          VietNamese{" "}
-                          <i className="fa-solid fa-chevron-down"></i>
-                        </a>
-                        <ul className="dropdown_language">
-                          <li>
-                            <a href="/">English</a>
-                          </li>
-                          <li>
-                            <a href="/">VietNamese</a>
-                          </li>
-                        </ul>
-                      </li>
-
-                      <li className="top_links">
-                                             {this.renderElement()}
-                      </li>
-                    </ul>
+                      </ul>
                   </div>
                 </div>
               </div>
@@ -171,7 +170,7 @@ class Header extends React.Component {
                     {/* <a href="index.html">
                     <img src="images/logo/logo-ash.png" alt="" />
                   </a> */}
-                    <h1>Jazzy</h1>
+                    <h1>Sparkle & Shine</h1>
                   </div>
                 </div>
                 <div className="">
@@ -210,8 +209,11 @@ class Header extends React.Component {
                               </ul>
                             </li>
                             <li>
-                              <Link to="/products" className="text-decoration-none fs-2">
-                                Sản Phẩm 
+                              <Link
+                                to="/products"
+                                className="text-decoration-none fs-2"
+                              >
+                                Sản Phẩm
                                 {/* <i className="ion-chevron-down"></i> */}
                               </Link>
                               {/* <a href="/" className="text-decoration-none fs-2">
@@ -249,18 +251,18 @@ class Header extends React.Component {
                                   </ul>
                                 </li>
                                 <li> */}
-                                  {/* <a href="/">Other</a> */}
-                                  {/* <ul>
+                              {/* <a href="/">Other</a> */}
+                              {/* <ul>
                                     <li>
                                       <a href="/">Bạch Kim</a>
                                     </li>
                                     <li>
                                       <a href="/">Bạc</a>
                                     </li> */}
-                                    {/* <li>
+                              {/* <li>
                                   <a href="/">Coins</a>
                                 </li> */}
-                                    {/* <li>
+                              {/* <li>
                                       <a href="/">Pha Lê</a>
                                     </li>
                                   </ul>
@@ -269,14 +271,18 @@ class Header extends React.Component {
                             </li>
 
                             <li>
-                              <a href="/" className="text-decoration-none fs-2">
+                              <Link
+                                to="/intro"
+                                className="text-decoration-none fs-2"
+                              >
                                 Giới Thiệu
-                              </a>
+                              </Link>
                             </li>
                             <li>
-                              <a href="/" className="text-decoration-none fs-2">
-                                Liên Hệ
-                              </a>
+                            <Link to="/contact" className="text-decoration-none fs-2">
+                              Liên Hệ
+                            </Link>
+                             
                             </li>
                           </ul>
                         </nav>
@@ -371,7 +377,7 @@ const mapStateToProps = (state) => {
   return {
     cart: state.cart.cartItem,
     isLogin: state.login.isAuth,
-    user: state.login
+    user: state.login,
   };
 };
 
@@ -407,16 +413,15 @@ const IsLogin = (props) => {
 const UnLogin = () => {
   return (
     <Fragment>
-    <Link to="/login" className="btn_links d-inline-block">
-      {" "}
-      Đăng Nhập
-    </Link>
-    <Link to="/register" className="btn_links sign_up d-inline-block">
-      {" "}
-      Đăng Ký
-    </Link>
+      <Link to="/login" className="btn_links d-inline-block">
+        {" "}
+        Đăng Nhập
+      </Link>
+      <Link to="/register" className="btn_links sign_up d-inline-block">
+        {" "}
+        Đăng Ký
+      </Link>
     </Fragment>
-    
   );
 };
 

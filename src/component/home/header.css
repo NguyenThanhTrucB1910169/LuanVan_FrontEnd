@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap");
 
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap");
 
-html, body {
+html,
+body {
   overscroll-behavior-y: none;
 }
 
@@ -27,7 +28,7 @@ header {
   /* margin-bottom: 30px; */
   /* background-image: url('./'); */
   background-color: #fafafa;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 
   /* color: #000!important; */
 }
@@ -42,10 +43,6 @@ header {
 
 .header_black .top_right > ul > li::before {
   background: #000;
-}
-
-.header_black .top_right > ul > li:hover > a {
-  /* color: #edd56d; */
 }
 
 .header_black .top_right > ul > li > div > a {
@@ -87,7 +84,7 @@ header {
   border-radius: 50%;
 }
 
-.social_icone ul li a i{
+.social_icone ul li a i {
   color: #fff;
 }
 
@@ -266,7 +263,7 @@ header {
   /* font-family: 'Dancing Script', cursive; */
   /* font-family: 'Playfair Display', serif; */
   /* font-family: 'Moon Dance', cursive; */
-  font-family: 'Pinyon Script', cursive;
+  font-family: "Pinyon Script", cursive;
   font-size: 90px;
   color: #000;
   margin-bottom: 0;
@@ -345,7 +342,9 @@ header {
   padding: 0 67px 0 10px;
   background: inherit;
   font-size: 12px;
-  color: #fff;
+  font-weight: 600;
+  color: #000;
+  font-family: "Montserrat", sans-serif;
 }
 .dropdown_search form button {
   position: absolute;
@@ -362,12 +361,20 @@ header {
 }
 
 .dropdown_search form button i {
-  color: #fff;
+  color: #000;
 }
 
 .header_black .dropdown_search form {
-  background: #242424;
-  border: 1px solid #2d2d2d;
+  background: #fafafa;
+  border: none;
+  border-bottom: 3px solid #00c1d3;
+}
+
+.header_black .dropdown_search:focus-visible,
+.dropdown_search form:focus-visible,
+.dropdown_search input:focus-visible {
+  outline: none;
+  /* border: none; */
 }
 
 .cart_link {
@@ -397,7 +404,7 @@ header {
   line-height: 15px;
   border-radius: 3px;
   display: block;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .cart_link > a:hover {
   color: #a8741a;
@@ -784,11 +791,11 @@ header {
 .header_black .main_menu nav > ul > li > a {
   color: #000;
   /* font-family: "Dancing Script", cursive; */
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   text-transform: capitalize;
   /* font-size: 18px; */
-  font-size: 16px!important;
+  font-size: 16px !important;
 }
 
 .header_black .main_menu nav > ul > li ul.sub_menu {
@@ -845,8 +852,6 @@ header {
   font-weight: 500;
 }
 
-
-
 .stick .nav-head {
   background-color: #060b26;
   height: 80px;
@@ -861,10 +866,10 @@ header {
   background: none;
   color: #000;
   text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
-.menu-bars:hover{
+.menu-bars:hover {
   color: #000;
 }
 
@@ -885,7 +890,7 @@ header {
   left: 0;
   /* transition: 350ms; */
   z-index: 10;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
 }
 
 .nav-text {
@@ -917,8 +922,8 @@ header {
   width: 100%;
   padding: 10px 30px 0 7px;
   display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .navbar-toggle {
@@ -933,15 +938,14 @@ header {
   padding: 0 10px;
 }
 
-.navbar-toggle i{
+.navbar-toggle i {
   font-size: 24px;
 }
 
 .navbar-toggle:hover {
   background: #f3f1e9 !important;
-    border-radius: 10px;
+  border-radius: 10px;
 }
-
 
 .bar-icon {
   /* z-index: 5; */
@@ -953,22 +957,22 @@ header {
   /* -webkit-transition: all 0.7s ease; */
   /* transition: all 0.7s ease; */
   /* position: fixed; */
-    /* top: 20px; */
-    /* z-index: 999; */
-    /* display: block; */
-    /* width: 32px; */
-    /* height: 32px; */
-    /* margin-left: 15px; */
-    /* background: transparent; */
-    /* border: none; */
+  /* top: 20px; */
+  /* z-index: 999; */
+  /* display: block; */
+  /* width: 32px; */
+  /* height: 32px; */
+  /* margin-left: 15px; */
+  /* background: transparent; */
+  /* border: none; */
 }
 
-.bar-icon i{
+.bar-icon i {
   font-size: 35px;
   color: #000;
 }
 
-.stick{
+.stick {
   position: fixed;
   z-index: 10;
   width: 100%;
@@ -981,11 +985,11 @@ header {
   display: none;
 }
 
-.stick .header_top{
-  height: 100%
+.stick .header_top {
+  height: 100%;
 }
 
-.bar-open{
+.bar-open {
   color: rgba(205, 203, 197, 0.8);
   position: absolute;
   left: 255px;
@@ -995,10 +999,10 @@ header {
   border: none;
 }
 
-.bar-open i{
+.bar-open i {
   font-size: 31px;
-    color: #000;
-    line-height: 38px;
+  color: #000;
+  line-height: 38px;
 }
 
 /* .animated {
@@ -1008,31 +1012,31 @@ header {
   animation-fill-mode: both;
 } */
 
-.logout{
+.logout {
   background-color: transparent;
   border: none;
   color: #fff;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 12px;
 }
 
-.logout:hover{
+.logout:hover {
   color: #a8741a;
 }
 
-.nav-menu-items .nav_social{
+.nav-menu-items .nav_social {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 15px;
 }
 
-.nav_social ul li a{
+.nav_social ul li a {
   color: #000;
   font-size: 27px;
 }
 
-.nav_social ul{
+.nav_social ul {
   display: flex;
   list-style-type: none;
   color: #000;
@@ -1041,34 +1045,34 @@ header {
   width: 60%;
 }
 
-.nav_logout{
+.nav_logout {
   font-size: 27px;
-    text-align: center;
-    line-height: 39px;
+  text-align: center;
+  line-height: 39px;
 }
 
-.nav_logout button{
+.nav_logout button {
   border: none;
-    background-color: #fff;
+  background-color: #fff;
 }
 
-.top_links .btn_links{
+.top_links .btn_links {
   border: none;
-    background-color: #fff;
-    font-family: 'Raleway', sans-serif;
-    font-size: 17px;
-    text-decoration: none;
+  background-color: #fff;
+  font-family: "Raleway", sans-serif;
+  font-size: 17px;
+  text-decoration: none;
 }
 
-.top_links .btn_links:hover{
-  color: #edd56d
+.top_links .btn_links:hover {
+  color: #edd56d;
 }
 
-.sign_up{
+.sign_up {
   margin-left: 27px;
 }
 
-.sign_up::before{
+.sign_up::before {
   position: absolute;
   content: "";
   width: 1px;
@@ -1079,4 +1083,61 @@ header {
   right: 77px;
   background: #000;
   transform: translateY(-50%);
+}
+
+.col_header_b {
+  flex: 0 0 auto;
+  width: 46%;
+}
+
+.col_header_a{
+  padding-top: 10px;
+}
+
+.row_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 767px) {
+  .row_header {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+
+  .col_header_b {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  .header_black .header_top{
+    height: fit-content;
+  }
+  .home-intro .intro-1 {
+    padding: 80px 0;
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+  .col_header_b {
+    flex: 0 0 auto;
+    width: 61%;
+  }
+}
+
+@media only screen and (max-width: 1399px) and (min-width: 1024px) {
+  .col_header_b {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .col_header_b {
+    flex: 0 0 auto;
+    width: 33%;
+  }
 }

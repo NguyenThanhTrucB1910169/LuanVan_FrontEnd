@@ -3,11 +3,44 @@
 
 footer {
   font-family: 'Raleway', sans-serif;
-
 }
 
 .footer-social {
-    border: 1px solid;
+    border: 1px solid #00c1af;
     border-radius: 50%;
     padding: 9px 13px;
+    color: #00c1af;
+}
+
+.footer-social:hover{
+  color: #000;
+  border: 1px solid #000;
+
+}
+
+.footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.foo_link a{
+  text-decoration: none;
+  color: #000;
+  text-transform: uppercase;
+  margin-right: 2rem;
+  font-style: normal;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.foo_link a:hover{
+  color: #00c1af;
+}
+
+.foo_link{
+  margin-bottom: 2rem;
+}
+
+.foo_text{
+  color: #000;
 }

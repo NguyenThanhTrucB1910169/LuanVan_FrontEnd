@@ -42,7 +42,17 @@ const createProduct = (req) => {
   }
 }
 
+const saveDetail = (pd) => {
+  return (dispatch) => {
+    dispatch({
+      type: Types.DETAIL_PRODUCT,
+      payload: pd
+    })
+  }
+}
+
 export {
   fetchProducts,
   createProduct,
+  saveDetail
 }

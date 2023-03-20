@@ -80,6 +80,7 @@
   position: relative;
   font-size: 15px;
   padding-top: 6px;
+  text-decoration: none;
 }
 
 .button-detail:after {
@@ -93,6 +94,10 @@
   background-color: #9bd8e0;
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
+}
+
+.button-detail:hover{
+  color: #000;
 }
 
 .button-detail:hover:after {

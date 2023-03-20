@@ -83,7 +83,7 @@ class Home extends React.Component {
             <h1 className="text-center">Trang sức cao cấp</h1>
             <hr className="hr" />
             <p className="text-center fs-5">
-              Các tác phẩm trang sức cao cấp của JAZZY thể hiện sự đa dạng trong
+              Các tác phẩm trang sức cao cấp của S&S thể hiện sự đa dạng trong
               phong cách, sự sáng tạo và tỉ mĩ trong từng thiết kế thông qua kỹ
               thuật chế tác đặc biệt.
             </p>
@@ -103,7 +103,7 @@ class Home extends React.Component {
             </div>
           </div>
           {/* <hr className="hr margin-t" /> */}
-          <div className="row intro-flex margin-t justify-content-around">
+          <div className="intro_row">
             {/* <div className="col-3 intro-flex-item">
               <img src="./flex-5.avif" alt="" />
               <h2 className="text-capitalize text-center mt-4">nhẫn</h2>
@@ -153,7 +153,7 @@ class Home extends React.Component {
             </div>
             </div>
             <div className="col-5 home-flex p-0">
-            <img src="./flex-new-2.avif" alt="" className="h-100"/>
+            <img src="./flex-new-2.avif" alt="" className="h-100 w-100"/>
             <div className="overlay">
               <div className="content">
               <button className="button-explore ms-3 fw-bold text-center">
@@ -171,10 +171,9 @@ class Home extends React.Component {
                 Dịch vụ 
               </h3>
               <p className="">
-                Từ việc chọn một món quà ngày lễ đến cung cấp các cuộc hẹn tại
-                cửa hàng, chúng tôi luôn sẵn sàng phục vụ bạn với đội ngũ tư vấn
-                chuyên nghiệp và nhiệt tình. Jazzyy Jewelry cung cấp dịch vụ bảo
-                dưỡng trang sức bạc trọn đời.
+                S&S luôn sẵn sàng phục vụ với đội ngũ tư vấn
+                chuyên nghiệp, nhiệt tình và cung cấp dịch vụ bảo
+                dưỡng trang sức trọn đời.
               </p>
               <button className="button-intro text-center fw-bold">
                 Liên hệ ngay

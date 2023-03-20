@@ -16,6 +16,8 @@ export const products = (state = initialState, action) => {
             state.message = action.message
             // console.log(state.message);
             return { ...state};
+        case Types.DETAIL_PRODUCT:
+            return { ...state, detail: action.payload};
         default:
             return state;
     } 

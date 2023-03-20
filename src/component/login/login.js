@@ -158,10 +158,17 @@ render() {
                   />
                    {this.state.errors.password && <div className="login_error">{this.state.errors.password}</div>}
                 </div>
-                <button className="button login-submit" onClick={this.handleLogin}>
-                  <span className="button-text">Đăng Nhập</span>
-                  <i className="button-icon fas fa-chevron-right"></i>
+                <button className="login_submit" onClick={this.handleLogin}>
+                  <span className="">Đăng Nhập</span>
+                  <i className="fa-solid fa-angles-right"></i>
                 </button>
+                <p className="text-capitalize mt-4 mb-0 text_rg">Chưa có tài khoản !
+                  {/* <a href=""></a> */}
+                  <Link to="/register" className="signup_link">
+                  <span>Đăng ký ngay</span>
+                  <i className="fa-solid fa-user-plus"></i>
+                  </Link>
+                </p>
                 {/* <ToastContainer /> */}
               </form>
               {/* <h5 className="text-center text-lowercase">Hoặc</h5>
@@ -172,10 +179,11 @@ render() {
             
             </div>
             <div className="screen-background">
-              <span className="screen-background-shape screen-background-shape4"></span>
-              <span className="screen-background-shape screen-background-shape3"></span>
-              <span className="screen-background-shape screen-background-shape2"></span>
-              <span className="screen-background-shape screen-background-shape1"></span>
+              <span className="screen-background-shape1"></span>
+              <span className="screen-background-shape2"></span>
+              {/* <span className="screen-background-shape screen-background-shape2"></span> */}
+              {/* <span className="screen-background-shape screen-background-shape1"></span> */}
+              {/* <span className="screen-background-shape screen-background-shape5"></span> */}
             </div>
           </div>
         </div>

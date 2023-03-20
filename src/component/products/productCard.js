@@ -1,7 +1,7 @@
 import React from "react";
 import { Fragment } from "react";
 import "./productCard.css";
-
+import { Link, withRouter } from "react-router-dom";
 class ProductCard extends React.Component {
   constructor(props) {
     super(props);
@@ -38,6 +38,11 @@ class ProductCard extends React.Component {
       arrayImages: myArrayImages,
     });
   };
+
+  getDetail = () => {
+    this.props.getDetailPd(this.props.cardItem)
+    this.props.history.push('/product/detail')
+  }
 
   componentDidMount() {
     this.configImage(this.props.cardItem.image);
@@ -95,10 +100,15 @@ class ProductCard extends React.Component {
                 </div>
               </button> */}
               <div className="btn_group">
-                <button className="button-detail">
-                  Chi tiết
+              <button 
+              onClick={this.getDetail}
+              className="button-detail">
+                Chi tiết
                   <i className="ms-1 fa-solid fa-angles-right"></i>
-                </button>
+              </button>
+                {/* <button className="">
+                  
+                </button> */}
                 <button className="btn_add" onClick={this.handleAdd}>
                   <i className="fa-solid fa-cart-plus"></i>
                   <span>{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.props.cardItem.price)}</span>
@@ -112,4 +122,4 @@ class ProductCard extends React.Component {
   }
 }
 
-export default ProductCard;
+export default withRouter(ProductCard);

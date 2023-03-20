@@ -28,20 +28,20 @@
   position: absolute;
   top: 34px;
   left: 27px;
-  font-size: 23px;
+  font-size: 28px;
   color: #000;
   border: none;
     background-color: transparent;
 }
 
 .screen {
-  background: linear-gradient(90deg, #cac9c5, #83817e);
+  background: #cde8e9;
   position: absolute;
   top: 50px;
-  left: 600px;
+  left: 23%;
   height: 660px;
   border-radius: 50px;
-  width: 360px;
+  width: 60%;
   box-shadow: 0px 0px 24px #a48888;
   border-radius: 50px;
 }
@@ -63,56 +63,39 @@
   clip-path: inset(0 0 0 0);
 }
 
-.screen-background-shape {
-  transform: rotate(45deg);
-  position: absolute;
-}
-
 .screen-background-shape1 {
-  height: 632px;
-  width: 363px;
+  position: absolute;
+  height: 315px;
+  width: 400px;
   background: #fff;
-  top: 27px;
-  right: 162px;
-  border-radius: 72px;
+  top: -140px;
+  left: -170px;
+  border-radius: 50%;
+  transform: rotate(0);
 }
 
 .screen-background-shape2 {
-  height: 220px;
-  width: 220px;
-  background: #6e6d6b;
-  top: -172px;
-  right: 26px;
-  border-radius: 32px;
-}
-
-.screen-background-shape3 {
-  height: 465px;
-  width: 190px;
-  background: linear-gradient(270deg, #cac9c5, #83817e);
-  top: 66px;
-  right: 10px;
-  border-radius: 32px;
-}
-
-.screen-background-shape4 {
-  height: 301px;
-  width: 200px;
-  background: #cac9c5;
-  top: 504px;
-  right: 77px;
-  border-radius: 60px;
+  position: absolute;
+  height: 316px;
+  width: 480px;
+  background: #fff;
+  top: 429px;
+  right: -91px;
+  border-radius: 50%;
+  transform: rotate(-3deg);
 }
 
 .login {
-  width: 100%;
+  width: 80%;
   height: 500px;
-  padding-left: 50px;
+  padding-left: 170px;
   padding-top: 113px;
 }
 
 
 .login h2{
+  padding-left: 85px;
+  font-size: 40px;
 }
 
 .login-field {
@@ -122,7 +105,8 @@
 
 .login-icon {
   position: absolute;
-  top: 30px;
+  top: 38px;
+  left: 14px;
   color: #000;
 }
 
@@ -130,18 +114,19 @@
   border: none;
   border-bottom: 2px solid #d1d1d4;
   background: none;
-  padding: 10px;
-  padding-left: 24px;
+  padding: 10px 15px;
+  border-radius: 23px;
+  padding-left: 45px;
   font-weight: 700;
   width: 75%;
-  transition: 0.2s;
+  height: 55px;
 }
 
 .login-input:active,
 .login-input:focus,
 .login-input:hover {
   outline: none;
-  border-bottom-color: #6a679e;
+  border-bottom: 3px solid #2d9692;
 }
 
 .login-submit {
@@ -160,11 +145,30 @@
   box-shadow: 0px 2px 2px #cac9c5;
   cursor: pointer;
   transition: 0.2s;
+  /* moz-transition: all .4s ease-in-out; */
+  /* -o-transition: all .4s ease-in-out; */
+  /* -webkit-transition: all .4s ease-in-out; */
+  background-image: #fff;
+  transition: all .4s ease-in-out;
+  /* background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673); */
+  /* box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75); */
+}
+
+.login-submit:hover{
+  /* background-position: 100% 0; */
+  background-image: linear-gradient(to right, #fff, #a9e0e2, #7ddade, #56dbdf);
+
+    /* moz-transition: all .4s ease-in-out; */
+    /* -o-transition: all .4s ease-in-out; */
+    /* -webkit-transition: all .4s ease-in-out; */
+    transition: all .4s ease-in-out;
+    color: #000;
 }
 
 .login-submit:active,
-.login-submit:focus,
-.login-submit:hover {
+.login-submit:focus
+/* .login-submit:hover  */
+{
   outline: none;
   color: #cc704b;
 }
@@ -185,4 +189,69 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.text_rg{
+  position: absolute;
+  right: 7%;
+  top: 74%;
+  font-size: 20px;
+}
+
+
+.signup_link,
+.login_submit {
+  align-items: center;
+  background-color: #00aba5;
+  border: none;
+  border-radius: 20px;
+  display: inline-flex;
+  padding: 10px 20px;
+  margin-left: 128px;
+  margin-top: 30px;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.signup_link:hover{
+  background-color: #cde8e9;
+  color: #000;
+  margin-top: 15px;
+  /* padding: 10px 20px */
+}
+
+.signup_link:hover i,
+.login_submit:hover i {
+  transform: translateX(4px);
+  opacity: 1;
+  position: relative;
+  font-size: 20px;
+  padding-left: 5px;
+}
+.signup_link i,
+.login_submit i {
+  transform: translateX(300px);
+  transition: all 0.3s ease;
+  opacity: 0;
+  position: absolute;
+}
+
+.signup_link span,
+.login_submit span {
+ font-size: 20px;
+}
+
+.signup_link{
+  color: #000;
+  display: block;
+  margin: 0;
+  margin-left: 15px;
+  background-color: #fff;
+  text-decoration: none;
+  color: #000;
+  margin-top: 15px;
+}
+
+.signup_link span{
+  font-weight: bolder;
 }

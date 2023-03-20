@@ -121,11 +121,6 @@ img {
 .slide {
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-
-  z-index: 2;
-  padding: 8em 1em 0;
   background-size:cover;
   background-position: 50% 50%;
   transition: background-image 0.5s ease-in-out;
@@ -139,7 +134,7 @@ img {
 
 .intro-img img {
   width: 100%;
-  height: 60vh;
+  height: 100%;
 }
 
 .intro-img {
@@ -148,13 +143,16 @@ img {
 
 .home-intro .box-1 {
   position: absolute;
-  top: 13rem;
-  right: 7rem;
+  width: 50%;
+    right: 0;
+    padding: 0 10px 0 30px;
+    top: 30%;
+    text-align: center;
 }
 
 .home-intro .box-2 {
   position: absolute;
-  top: 145px;
+  top: 30%;
   max-width: 35rem;
   padding-left: 3rem;
   text-align: center;
@@ -193,8 +191,8 @@ img {
   text-transform: uppercase;
   font-size: 13px;
   border: none;
-  position: absolute;
-  right: 12rem;
+  position: relative;
+  right: 0;
 }
 
 .button-explore {
@@ -268,10 +266,10 @@ img {
   text-align: center;
   margin: 15px auto;
 }
-
+/* 
 .margin-t {
   margin: 6rem auto 0!important;
-}
+} */
 
 
 .home-content {
@@ -311,4 +309,77 @@ img {
   background: none;
   color: #fff;
   font-size: 23px;
+}
+
+.home-intro .intro_row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 100px 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .home-intro .intro-1 {
+    padding: 80px 0;
+    width: fit-content;
+    margin: 0 auto;
+  }
+.home-intro .box-1 {
+  position: initial;
+  padding: 20px 27px 40px;
+  text-align: center;
+  width: 100%;
+}
+
+.button-intro {
+  background-color: #fff;
+  font-weight: 600;
+ 
+}
+.home-intro .intro_row{
+  flex-direction: column;
+
+}
+.home-flex{
+  margin-bottom: 30px;
+  height: 100%;
+  width: 100%!important;
+}
+.home-intro .box-2{
+  position: unset;
+  margin: 30px 0;
+  padding: 0 20px;
+  text-align: center;
+  max-width: 100%;
+}
+
+.home-intro .box-2 button{
+  background-color: #fff;
+}
+
+}
+
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+ 
+  .content .button-explore{
+    font-size: 21px;
+  }
+  .home-intro .box-2{
+    max-width: 46%;
+    top: 14%;
+    padding-left: 0;
+  }
+}
+
+@media only screen and (max-width: 1399px) and (min-width: 1024px) {
+.home-intro .box-2{
+    max-width: 31rem;
+    padding-left: 10px;
+}
+}
+
+@media only screen and (min-width: 1400px) {
+  .intro-img img {
+    height: 60vh;
+  }
 }
