@@ -307,7 +307,7 @@ header {
   top: 0;
   right: 10px;
   border: 0;
-  background: inherit;
+  background: #fff;
   color: #000;
   font-size: 20px;
   height: 100%;
@@ -340,7 +340,7 @@ header {
   height: 50px;
   line-height: 50px;
   padding: 0 67px 0 10px;
-  background: inherit;
+  background: #fff;
   font-size: 12px;
   font-weight: 600;
   color: #000;
@@ -364,7 +364,7 @@ header {
   color: #000;
 }
 
-.header_black .dropdown_search form {
+.dropdown_search form {
   background: #fafafa;
   border: none;
   border-bottom: 3px solid #00c1d3;

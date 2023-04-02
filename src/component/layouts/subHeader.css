@@ -106,7 +106,7 @@
   top: 0;
   right: 10px;
   border: 0;
-  background: inherit;
+  background: #fff;
   color: #000;
   font-size: 20px;
   height: 100%;
@@ -140,4 +140,8 @@
 .nav_cart{
   padding-right: 0!important;
   padding-left: 4.5rem!important
+}
+
+.cart-header .dropdown_search{
+  right: -30px;
 }

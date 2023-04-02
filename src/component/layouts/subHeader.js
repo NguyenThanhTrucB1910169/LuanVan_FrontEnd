@@ -64,24 +64,7 @@ class SubHeader extends React.Component {
                 <div className="col-lg-3 col-md-6 mt-3 nav_cart">
                   <div className="top_right text-right">
                     <ul className="p-0">
-                      <li>
-                        <div className="search_btn">
-                          <a href="/">
-                            <i className="fa-solid fa-magnifying-glass"></i>
-                          </a>
-                          <div className="dropdown_search">
-                            <form action="/">
-                              <input
-                                type="text"
-                                placeholder="Search Product ...."
-                              />
-                              <button type="submit">
-                                <i className="fa-solid fa-magnifying-glass"></i>
-                              </button>
-                            </form>
-                          </div>
-                        </div>
-                      </li>
+                     
                       <li>
                       <div className="middel_right">
                     <div className="cart_link ms-0 mb-0">
@@ -113,6 +96,24 @@ class SubHeader extends React.Component {
                             <a href="/">Đăng Xuất</a>
                           </li>
                         </ul>
+                      </li>
+                       <li>
+                       <div className="search_btn">
+                          <a href="/">
+                            <i className="fa-solid fa-magnifying-glass"></i>
+                          </a>
+                          <div className="dropdown_search">
+                            <form action="/">
+                              <input
+                                type="text"
+                                placeholder="Search Product ...."
+                              />
+                              <button type="submit">
+                                <i className="fa-solid fa-magnifying-glass"></i>
+                              </button>
+                            </form>
+                          </div>
+                        </div>
                       </li>
                     </ul>
                   </div>

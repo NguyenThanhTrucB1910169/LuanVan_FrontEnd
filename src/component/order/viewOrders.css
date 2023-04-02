@@ -1,18 +1,33 @@
 .frame_detail{
     position: absolute;
     width: 120px;
-    height: 40px;
+    height: 65px;
     display: block;
     background-color: #f1f1f1;
     display: none;
-    right: -20px;
-    top: 118%;
+    right: -22px;
+    top: 65%;
     z-index: 3;
     text-align: center;
     padding-top: 7px;
     border-radius: 6px;
     font-size: 15px;
+}
+
+.frame_detail button{
+    border: none;
+    margin-top: 6px;
+}
+
+.frame_detail a{
     cursor: pointer;
+}
+
+.his_order h1{
+    margin: 0 0 50px;
+    text-align: center;
+    font-size: 2.5rem;
+    text-transform: uppercase;
 }
 
 .frame_detail a{
@@ -21,12 +36,18 @@
     text-decoration: none;
 }
 
+.list_order .order_card:last-child{
+    border: none!important;
+}
+
 .order_card{
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 3.5rem 0;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid;
+    text-align: center;
 }
 
 .frame_detail::before{
@@ -40,7 +61,7 @@
     border-right: 15px solid #f1f1f1;
     transform: rotate(90deg);
     right: 50px;
-    bottom: 67%;
+    bottom: 82%;
 
 }
 
@@ -49,11 +70,12 @@
     display: block;
 }
 
-/* .detail_order:hover + .detail_order::after
-.frame_detail ~ .detail_order::after,
-.detail_order:hover::after {
-    display: block;
-} */
+.list_title{
+    text-align: center;
+    padding: 20px 0;
+    border-radius: 10px;
+    background-color: #c3c3c34a;
+}
 
 .detail_order{
     background-color: #fff;

@@ -51,7 +51,6 @@ const getDetailProduct = (id) => {
 return (dispatch) => {
     try {
         axios.get(`http://localhost:3005/api/order/${id}`, {withCredentials: true}).then((val) => {
-            console.log(val.data)
             dispatch({
                 type: Types.DETAIL_ORDER_SUCCESS,
                 payload: val.data
