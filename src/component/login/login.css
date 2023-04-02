@@ -217,6 +217,7 @@ input:-webkit-autofill:active{
   background-color: #cde8e9;
   color: #000;
   margin-top: 15px;
+  font-weight: 300;
   /* padding: 10px 20px */
 }
 

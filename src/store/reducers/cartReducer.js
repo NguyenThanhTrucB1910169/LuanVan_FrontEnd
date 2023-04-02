@@ -58,7 +58,9 @@ export const cartReducer = (state = initState, action) => {
       return {...state, message: action.payload}
     case Types.REMOVE_ITEM_SUCCESS: 
       state.cartItem = action.payload;
-      return {...state}
+      return {...state, message: true}
+      case Types.REMOVE_ITEM_FAILED: 
+      return {...state, message: action.payload}
     default:
       return state;
   }

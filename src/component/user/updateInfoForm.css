@@ -1,0 +1,35 @@
+.update_form {
+    font-family: "Montserrat", sans-serif;
+}
+
+.update_title {
+  font-size: 30px;
+  text-align: center;
+  margin: 0;
+  font-weight: 600;
+  padding: 30px 0 40px;
+}
+
+.form_detail {
+  width: 45%;
+  margin: 0 auto;
+}
+
+.update_input {
+  height: 50px;
+  border-radius: 25px;
+  padding: 0 30px;
+  /* display: block; */
+  width: 100%;
+  border: none;
+  background: #e6e6e6;
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666;
+  margin: 15px 8px;
+}
+
+.input_error {
+  color: red;
+}

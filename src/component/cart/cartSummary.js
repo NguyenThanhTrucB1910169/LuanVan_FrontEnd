@@ -8,6 +8,7 @@ class CartSummary extends React.Component {
     this.state = {
       listProducts: [],
       total: 0,
+      amount: 0
     };
   }
 
@@ -25,15 +26,24 @@ class CartSummary extends React.Component {
   };
 
   componentDidMount = () => {
-    let price = 0;
+    let price = 0, amount = 0;
     this.props.product.map((product) => {
-      price += product.price * product.quantity     
+      price += product.price * product.quantity
+      amount += product.quantity
     }
     );
     this.setState({
       total: price,
+      amount: amount
     })
   };
+
+  handleSummary = () => {
+    if(this.props.checkout){
+      this.props.pay(2)
+      this.props.order(true)
+    } else this.props.history.push('/order')
+  }
 
   render() {
     return (
@@ -43,15 +53,19 @@ class CartSummary extends React.Component {
         </div>
         <div className="card-body">
           <ul className="list-group list-group-flush">
+          <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+              Tổng Số Lượng
+                  <span>{this.state.amount}</span>
+            </li>
             <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-              Tổng Sản Phẩm
+              Tổng Giá 
                   <span>{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.state.total)}</span>
             </li>
             <li className="list-group-item d-flex justify-content-between align-items-center px-0">
               Phí vận chuyển
               <span>Miễn Phí</span>
             </li>
-            <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+            <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3 sum_total">
               <div>
                 <strong>Tổng Đơn</strong>
                 <strong>
@@ -64,8 +78,8 @@ class CartSummary extends React.Component {
             </li>
           </ul>
           <div className="text-center">
-          <button className="btn_order" onClick={() => this.props.history.push('/order')}>
-            Đặt hàng
+          <button className="btn_order" onClick={this.handleSummary}>
+            {this.props.checkout ? "Thanh Toán" : "Đặt Hàng"}
           </button>
           </div>
           

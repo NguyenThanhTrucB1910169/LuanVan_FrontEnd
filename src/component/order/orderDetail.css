@@ -1,0 +1,40 @@
+.border_sum{
+    border-top: 1px dashed #000;
+}
+
+.detail_card{
+    max-width: 60%;
+    margin: 0 0 30px 30px;
+    height: 105px;
+    border: none;
+    position: relative;
+}
+
+.detail_card::after{
+    content: "";
+    width: 80%;
+    height: 1px;
+    top: 115%;
+    left: 5%;
+    position: absolute;
+    background-color: #00000073;
+}
+
+.detail_card .title_detail{
+    text-align: start;
+    height: 100%;
+    padding-top: 15px!important;
+}
+
+.detail_card .img_detail{
+    height: 100%;
+}
+
+.detail_card .img_detail img{
+    width: 75%;
+    height: 100%;
+}
+
+.detail_card .price_detail{
+    padding: 22px 0 0 72px;
+}

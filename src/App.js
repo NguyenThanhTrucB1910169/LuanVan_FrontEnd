@@ -13,10 +13,12 @@ import ProductDetail from "./component/products/productDetail";
 import AuthRoute from "./component/layouts/authRoute";
 import LoginSignUp from "./component/manage/loginSignup";
 import { ToastContainer } from "react-toastify";
-import UpdateForm from "./component/layouts/updateForm";
+import UpdateInfoForm from "./component/user/updateInfoForm";
 import Order from "./component/order/order";
 import IntroPage from "./component/pages/introPage";
+import ViewOrders from "./component/order/viewOrders";
 import ContactPage from "./component/pages/contactPage";
+import OrderDetail from "./component/order/orderDetail";
 function App() {
   
   return (
@@ -33,9 +35,10 @@ function App() {
       <Route path="/loginadmin" component={LoginSignUp}></Route>
       <AuthRoute path="/cart" component={Cart}/>
       <Route path="/order" component={Order}></Route>
-      {/* <Route path="/order/payment" component={OrderPayment}></Route> */}
+      <Route path="/vieworder" component={ViewOrders}></Route>
+      <Route path="/detailorder" component={OrderDetail}></Route>
       {/* <Route path="/order/confirm" component={OrderConfirm}></Route> */}
-      <Route path="/updateinfo" component={UpdateForm}></Route>
+      <Route path="/updateinfo" component={UpdateInfoForm}></Route>
       <Route path="/intro" component={IntroPage}></Route>
       <Route path="/contact" component={ContactPage}></Route>
     </Switch>

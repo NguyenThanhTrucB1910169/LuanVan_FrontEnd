@@ -84,9 +84,9 @@ const logoutHandler = () => {
 const updateInfo = (req) => {
   return async(dispatch) => {
     try {
-      // console.log(req)
       await axios.put('http://localhost:3005/api/updateinfo', req, {withCredentials: true})
       .then((val) => {
+        console.log(val)
         if(val.data){
            dispatch({
           type: Types.UPDATE_INFO_SUCCESS,

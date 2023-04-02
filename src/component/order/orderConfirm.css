@@ -1,0 +1,113 @@
+.order_confirm{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: "Montserrat", sans-serif!important;
+    margin-top: 30px;
+}
+
+.confirm_sum{
+    margin: 60px 30px;
+}
+
+.confirm_info{
+    margin: 40px 10px;
+}
+
+.order_info{
+    border: none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 10px 30px;
+    margin: 10px auto 6rem;
+    border-radius: 20px;
+    width: 80%;
+}
+.review_title,
+.order_info h1{
+     text-align: center;
+     margin-bottom: 25px;
+     position: relative;
+}
+
+.order_review .review_title i{
+    font-size: 18px;
+    border: 1px solid;
+    padding: 8px 12px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 126px;
+}
+
+.confirm_sum .font_sum{
+    border: none;
+    line-height: 60px;
+}
+
+.confirm_sum .sum-head{
+    background-color: #fff!important;
+    color: #000!important;
+}
+
+.confirm_sum .sum-head h5{
+    font-size: 30px
+}
+
+/* .confirm_sum .sum_total{
+    line
+} */
+.confirm_sum .sum_total,
+.confirm_sum .btn_order{
+    line-height: 30px
+}
+
+.order_info h1 i{
+    font-size: 16px;
+    border: 1px solid;
+    padding: 6px 11px;
+    border-radius: 50%;
+    position: absolute;
+    top: 13px;
+    left: 12px;
+}
+
+.order_info::after{
+    content: "";
+    display: block;
+    height: 30rem;
+    width: 1px;
+    background-color: #90909087;
+    position: absolute;
+    top: 30%;
+    left: 65%;
+}
+
+.order_review{
+    font-family: "Montserrat", sans-serif!important;
+}
+
+.order_review .review_pd{
+    height: 35rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-left: 15px;
+}
+
+.order_review .review_pd::-webkit-scrollbar{
+    width: 5px;
+  }
+
+.order_review .review_name{
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.order_review .review_price{
+    font-size: 20px;
+}
+
+.confirm_sum{
+    margin-top: 4rem;
+    margin-right: 5rem;
+
+}

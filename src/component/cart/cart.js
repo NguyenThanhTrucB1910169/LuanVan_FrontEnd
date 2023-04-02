@@ -6,6 +6,8 @@ import Footer from "../home/footer";
 import "./cart.css";
 import SubHeader from "../layouts/subHeader";
 import { connect } from "react-redux";
+import Toast from "../home/toast";
+import { toast } from "react-toastify";
 import {
   getCartItem,
   getProductInCart,
@@ -54,12 +56,16 @@ class Cart extends React.Component {
   //   await this.props.updateQuantity(newPd);
   // };
 
-  removeItem = (id) => {
-    this.props.remove(id);
+  removeItem = async(id) => {
+    await this.props.remove(id);
+    if(this.props.isDelete) {
+      toast.success(<Toast message="Đã xóa khỏi giỏ hàng."/>, {
+        className: 'success',
+      })
+    }
   };
 
   render() {
-    // console.log(this.props.listProductInCart)
     return (
       <Fragment>
         <SubHeader amount={this.props.listProductInCart.length}/>
@@ -74,14 +80,14 @@ class Cart extends React.Component {
                   <div>
                     <p className="mb-0">Có {this.props.listProductInCart.length} sản phẩm trong giỏ hàng</p>
                   </div>
-                  <div>
+                  {/* <div>
                     <p className="mb-0">
                       <span className="text-muted">Sort by:</span>{" "}
                       <a href="#!" className="text-body text-decoration-none">
                         price <i className="fas fa-angle-down mt-1"></i>
                       </a>
                     </p>
-                  </div>
+                  </div> */}
                 </div>
                 {this.props.listProductInCart.map((product, index) => (
                   <CartItem
@@ -104,7 +110,7 @@ class Cart extends React.Component {
                 </h5>
               </div>
               <div className="col-lg-3">
-                <CartSummary product={this.props.listProductInCart}/>
+                <CartSummary product={this.props.listProductInCart} checkout={false}/>
               </div>
             </div>
           </div>
@@ -118,6 +124,7 @@ class Cart extends React.Component {
 const mapStateToProps = (state) => {
   return {
     listProductInCart: state.cart.cartItem,
+    isDelete: state.cart.message
   };
 };
 

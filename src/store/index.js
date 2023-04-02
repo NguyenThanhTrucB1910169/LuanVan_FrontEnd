@@ -6,22 +6,17 @@ import thunk from "redux-thunk";
 import { persistReducer, persistStore  } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { composeWithDevTools } from "redux-devtools-extension";
-import {
-  products
-} from "./reducers/productReducer";
-
-import {
-  createUser, loginAccount
-} from "./reducers/usersReducer";
-
+import {products} from "./reducers/productReducer";
+import {createUser, loginAccount} from "./reducers/usersReducer";
 import {cartReducer} from "./reducers/cartReducer";
-
+import {orderReduce} from "./reducers/orderReducer";
 
 const reducer = combineReducers({
   getAllProducts: products,
   newUser: createUser,
   cart: cartReducer,
-  login: loginAccount
+  login: loginAccount,
+  orderInfo: orderReduce
 });
 
 // let initialState = {

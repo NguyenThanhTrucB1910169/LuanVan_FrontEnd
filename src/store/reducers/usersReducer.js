@@ -41,9 +41,11 @@ export const loginAccount = (state={user: {}} , action) => {
                 message: action.payload
             }
         case Types.UPDATE_INFO_SUCCESS: 
+        console.log(action.payload)
+        state.user = action.payload
             return {
                 ...state,
-                user: action.payload,
+                // user: action.payload,
                 update: true,
             }
         case Types.UPDATE_INFO_FAILED: 
