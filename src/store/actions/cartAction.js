@@ -4,7 +4,7 @@ import axios from "axios";
 let addToCart = (idproduct, qt) => {
   return async (dispatch, getState) => {
     await axios
-      .get(`http://localhost:3005/api/cart/${idproduct}/${1}`, {
+      .get(`http://localhost:3005/api/cart/${idproduct}/${qt}`, {
         withCredentials: true,
       })
       .then((val) => {
@@ -22,17 +22,22 @@ const getCartItem = () => {
   return (dispatch, getState) => {
     axios
       .get("http://localhost:3005/api/cartload", { withCredentials: true })
-      .then((response) => {
-        dispatch({
+      .then((res) => {
+        if(res.data.length === 1 && res.data[0].cartId === null){
+          dispatch({
+            type: Types.CART_EMPTY,
+            payload: true, 
+          })
+        }
+        else dispatch({
           type: Types.LOAD_CART_SUCCESS,
-          payload: response.data,
+          payload: res.data,
         });
       })
       .catch((error) => {
         dispatch({
           type: Types.LOAD_CART_FAILED,
           payload: error,
-          message: "dont have item",
         });
       });
   };

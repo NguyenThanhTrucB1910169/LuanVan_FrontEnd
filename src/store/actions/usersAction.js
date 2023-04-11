@@ -32,13 +32,10 @@ const authUsers = (req, res) => {
       await axios
         .post("http://localhost:3005/api/signup/auth", req, {withCredentials: true})
         .then((val) => {
-          if (!val.data.success) {
-            dispatch({
-              type: Types.AUTH_WRONG_INFO,
-              payload: "Info wrong",
-            });
-          } else {
-            const now = new Date();
+          console.log(val.data);
+          const now = new Date();
+          if (val.data.isAuth) {
+            console.log('user')
             let isAccess = {
               key: val.data.key,
               expiry: now.getTime() + 28800000,
@@ -48,6 +45,27 @@ const authUsers = (req, res) => {
             dispatch({
               type: Types.AUTH_USER,
               payload: val.data.user,
+            });
+          }
+          else if(val.data.isAdmin){
+            console.log(val.data.role)
+            console.log('admin')
+            let isAccess = {
+              role: val.data.role,
+              expiry: now.getTime() + 86400000,
+              // 86400000
+            };
+            localStorage.setItem("isactive", JSON.stringify(isAccess));
+            dispatch({
+              type: Types.IS_ADMIN,
+              payload: val.data
+            })
+          }          
+          else {
+            console.log('login failed')
+            dispatch({
+              type: Types.AUTH_WRONG_INFO,
+              payload: "Info wrong",
             });
           }
         });

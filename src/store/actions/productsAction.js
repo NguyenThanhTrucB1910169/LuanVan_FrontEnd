@@ -25,16 +25,18 @@ const fetchProducts = () => {
 const createProduct = (req) => {
   return async (dispatch) => {
     try {
-      console.log(req)
       await axios.post('http://localhost:3005/api/products', req)
       .then ((res) => {
         dispatch({
-          type: Types.CREATE_PRODUCT,
-          message: 'Product successfully',
+          type: Types.CREATE_PRODUCT_SUCCESS,
+          message: true,
         })
       })
       .catch((err) => {
-        console.log(err)
+        dispatch({
+          type: Types.CREATE_PRODUCT_FAILED,
+          message: err,
+        })
       })
     } catch (error) {
       console.log(error);
@@ -51,8 +53,56 @@ const saveDetail = (pd) => {
   }
 }
 
+const deleteProduct = (id) => {
+  return async(dispatch) => {
+    try {
+      await axios.delete('http://localhost:3005/api/deleteproduct',{data: {id: id}, withCredentials: true}).then((res) => {
+        if (res.data) {
+          axios.get('http://localhost:3005/api/products').then((pd) => {
+            dispatch({
+              type: Types.FETCH_PRODUCTS,
+              products: pd.data,
+            });
+          })
+        } else {
+          dispatch({
+            type: Types.DELETE_PRODUCT_FAILED,
+            payload: res.data,
+          });
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+const updateProduct = (pd) => {
+  return async (dispatch) => {
+    try {
+      console.log(pd)
+      axios.put('http://localhost:3005/api/products', pd, {withCredentials: true }).then((response) => {
+        if (response.data){
+          // fetchProducts()
+          dispatch({
+            type: Types.UPDATE_PRODUCT_SUCCESS,
+            payload: response.data
+          })          
+        }
+      })
+    } catch (error) {
+      dispatch({
+        type: Types.UPDATE_PRODUCT_FAILED,
+        payload: error
+      })     
+    }
+  }
+}
+
 export {
   fetchProducts,
   createProduct,
-  saveDetail
+  saveDetail,
+  deleteProduct,
+  updateProduct
 }

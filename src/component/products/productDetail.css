@@ -150,14 +150,15 @@ label.radio input:checked + span {
 
 }
 
-.add_cart .set_quant input{
+.add_cart .set_quant span{
   width: 50px;
   border: none;
   text-align: center;
   text-align: center;
   position: relative;
-  top: -6px;
+  top: -4px;
   font-size: 18px;
+  padding: 0 7px;
   font-weight: 600;
 }
 

@@ -115,15 +115,16 @@ class Header extends React.Component {
                   </button>
                 </div>
                 <div
-                  className={
-                    this.state.show ? "col_header_b" : "col_header_b" 
-                  }
+                  className="col_header_b"
+                  // {
+                  //   this.state.show ? "col_header_b" : "col_header_b" 
+                  // }
                 >
-                  <div className="top_right float-end">
+                  <div className="top_right float-end me-5">
                     <ul>
 
                       
-                      <li className="language">
+                      {/* <li className="language">
                         <a href="/" className="text-decoration-none fs-6">
                           VietNamese{" "}
                           <i className="fa-solid fa-chevron-down"></i>
@@ -136,11 +137,11 @@ class Header extends React.Component {
                             <a href="/">VietNamese</a>
                           </li>
                         </ul>
-                      </li>
+                      </li> */}
                       <li className="top_links">{this.renderElement()}</li>
-                    <li>
+                    {/* <li>
                         <div className="search_btn">
-                          <a href="/">
+                          <a href="#">
                             <i className="fa-solid fa-magnifying-glass"></i>
                           </a>
                           <div className="dropdown_search">
@@ -155,7 +156,7 @@ class Header extends React.Component {
                             </form>
                           </div>
                         </div>
-                      </li>
+                      </li> */}
                       </ul>
                   </div>
                 </div>
@@ -184,10 +185,10 @@ class Header extends React.Component {
                         <nav>
                           <ul>
                             <li className="">
-                              <a href="/" className="text-decoration-none fs-2">
+                              <Link to="/" className="text-decoration-none fs-2">
                                 Trang Chủ <i className="ion-chevron-down"></i>
-                              </a>
-                              <ul className="sub_menu">
+                              </Link>
+                              {/* <ul className="sub_menu">
                                 <li>
                                   <a href="/">Banner</a>
                                 </li>
@@ -206,7 +207,7 @@ class Header extends React.Component {
                                 <li>
                                   <a href="/">Blog</a>
                                 </li>
-                              </ul>
+                              </ul> */}
                             </li>
                             <li>
                               <Link
@@ -319,20 +320,25 @@ class Header extends React.Component {
               <ul className="ps-0 mt-5">
                 <li className="navbar-toggle">
                   <i className="fa-solid fa-house"></i>
-                  <Link to="#" className="menu-bars">
+                  <Link to="/" className="menu-bars">
                     Trang chủ
                   </Link>
                 </li>
-
+                <li className="navbar-toggle">
+                  <i className="fa-solid fa-house"></i>
+                  <Link to="/products" className="menu-bars">
+                    Sản Phẩm
+                  </Link>
+                </li>
                 <li className="navbar-toggle">
                   <i className="fa-solid fa-shop"></i>
-                  <Link to="#" className="menu-bars">
+                  <Link to="/intro" className="menu-bars">
                     Giới thiệu
                   </Link>
                 </li>
                 <li className="navbar-toggle">
                   <i className="fa-solid fa-comment"></i>
-                  <Link to="#" className="menu-bars">
+                  <Link to="/contact" className="menu-bars">
                     Liên hệ
                   </Link>
                 </li>

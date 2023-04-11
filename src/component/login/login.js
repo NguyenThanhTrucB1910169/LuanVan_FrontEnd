@@ -112,6 +112,8 @@ class Login extends React.Component {
           className: 'success',
         })
         this.props.history.push('/')
+      } else if (this.props.isAdmin) {
+        this.props.history.push('/ad/dashboard')
       }
       else {
         toast.error( <Toast message='Tên hoặc mật khẩu không hợp lệ'/>,{
@@ -196,7 +198,9 @@ render() {
 const mapStateToProps = (state) => {
   return {
     user: state.newUser.user,
-    result: state.login.isAuth
+    result: state.login.isAuth,
+    isAdmin: state.login.isAdmin,
+    active: state.login.user
   };
 };
 

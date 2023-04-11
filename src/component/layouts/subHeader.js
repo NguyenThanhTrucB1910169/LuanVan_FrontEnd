@@ -1,9 +1,24 @@
 import React from "react";
 import { Fragment } from "react";
 import "./subHeader.css";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { logoutHandler } from "../../store/actions/usersAction";
+import { connect } from "react-redux";
+import { toast } from "react-toastify";
+import Toast from "../home/toast";
 
 class SubHeader extends React.Component {
+
+  logout = () => {
+    console.log('logged out');
+    this.props.logout().then(() => {
+      toast.success(<Toast message="Đăng xuất thành công"/>, {
+        className: 'success',
+      })
+      this.props.history.push('/')
+    })
+  }
+
   render() {
     return (
       <Fragment>
@@ -16,9 +31,9 @@ class SubHeader extends React.Component {
                     <nav>
                       <ul className="">
                         <li className="">
-                          <a href="/" className="text-decoration-none fs-6">
+                          <Link to="/" className="text-decoration-none fs-6">
                             Trang Chủ <i className="ion-chevron-down"></i>
-                          </a>
+                          </Link>
                           {/* <ul className="sub_menu cart-nav">
                             <li>
                               <a href="/">Banner</a>
@@ -42,7 +57,7 @@ class SubHeader extends React.Component {
                         </li>
                      
 
-                        <li>
+                        {/* <li>
                           <a href="/" className="text-decoration-none fs-6">
                             Giới Thiệu
                           </a>
@@ -51,7 +66,7 @@ class SubHeader extends React.Component {
                           <a href="/" className="text-decoration-none fs-6">
                             Liên Hệ
                           </a>
-                        </li>
+                        </li> */}
                       </ul>
                     </nav>
                   </div>
@@ -62,42 +77,44 @@ class SubHeader extends React.Component {
                   </div>
                 </div>
                 <div className="col-lg-3 col-md-6 mt-3 nav_cart">
-                  <div className="top_right text-right">
+                  <div className="top_right text-center">
                     <ul className="p-0">
                      
-                      <li>
+                      {/* <li>
                       <div className="middel_right">
                     <div className="cart_link ms-0 mb-0">
                     <a href="/cart" className="text-decoration-none">
                         <i className="fa-solid fa-bag-shopping fs-4 me-4"></i>
-                        {/* <span className="me-2">67,598</span> */}
+                        {/* <span className="me-2">67,598</span> 
                         <i className="fa fa-solid fa-chevron-down"></i>
                           {this.props.amount ? ( <span className="quantity">{this.props.amount}</span>) : null}
                     </a>
                       {/* <a href="/" >
                       </a> */}
-                      {/* */}
+                      {/* 
                     </div>
                   </div>
-                      </li>
+                      </li> */}
 
                       <li className="top_links">
-                        <a href="/" className="text-decoration-none fs-6">
+                        <div className="text-decoration-none fs-5">
                           Tài khoản<i className="fa-solid fa-chevron-down"></i>
-                        </a>
+                        </div>
                         <ul className="dropdown_links">
                           <li>
-                            <a href="/">Thông Tin</a>
+                            <Link to="/">Thông Tin</Link>
                           </li>
                           <li>
-                            <a href="/">Giỏ Hàng</a>
+                            <Link to="/cart">Giỏ Hàng</Link>
                           </li>
                           <li>
-                            <a href="/">Đăng Xuất</a>
+                          <button onClick={this.logout} className="btn_logout">
+                            Đăng Xuất
+                          </button>
                           </li>
                         </ul>
                       </li>
-                       <li>
+                       {/* <li>
                        <div className="search_btn">
                           <a href="/">
                             <i className="fa-solid fa-magnifying-glass"></i>
@@ -114,7 +131,7 @@ class SubHeader extends React.Component {
                             </form>
                           </div>
                         </div>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>
@@ -127,4 +144,14 @@ class SubHeader extends React.Component {
   }
 }
 
-export default SubHeader;
+const mapStateToProps = (state) => {
+  return {}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(logoutHandler())
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SubHeader));

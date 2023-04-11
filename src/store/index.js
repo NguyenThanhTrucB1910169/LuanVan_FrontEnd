@@ -10,13 +10,15 @@ import {products} from "./reducers/productReducer";
 import {createUser, loginAccount} from "./reducers/usersReducer";
 import {cartReducer} from "./reducers/cartReducer";
 import {orderReduce} from "./reducers/orderReducer";
+import { adminReducer } from "./reducers/adminReducer";
 
 const reducer = combineReducers({
   getAllProducts: products,
   newUser: createUser,
   cart: cartReducer,
   login: loginAccount,
-  orderInfo: orderReduce
+  orderInfo: orderReduce,
+  admin: adminReducer
 });
 
 // let initialState = {

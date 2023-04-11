@@ -55,7 +55,7 @@ class CartItem extends React.Component {
             <div className="d-flex flex-row align-items-center col-6">
               <div>
                 <img
-                  src={this.state.listImages[1]}
+                  src={this.state.listImages[2]}
                   className="img-fluid rounded-3"
                   alt="Shopping item"
                   style={{ width: "65px" }}
@@ -73,7 +73,7 @@ class CartItem extends React.Component {
               </div>
             </div>
             <div className="d-flex flex-row align-items-center col-6 justify-content-around">
-              <div className="quantity-cart col-4">
+              <div className="quantity-cart col-3">
                 {/* <h5 className="">2</h5> */}
                 <button
                   className="quantity-change"
@@ -116,7 +116,7 @@ class CartItem extends React.Component {
                   +
                 </button>
               </div>
-              <div style={{ width: "110px" }} className="col-6">
+              <div className="col-5">
                 <h5 className="mb-0">
                   {Intl.NumberFormat("vi-VN", {
                     style: "currency",

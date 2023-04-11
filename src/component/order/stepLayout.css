@@ -59,3 +59,11 @@
 .MuiTypography-body1{
     font-family: "Montserrat", sans-serif!important;
 }
+
+.MuiStepLabel-iconContainer{
+    margin-right: 70px;
+}
+
+.MuiTypography-body1{
+    margin-right: 57px!important;
+}

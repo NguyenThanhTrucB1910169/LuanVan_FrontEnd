@@ -14,13 +14,15 @@ class CartSummary extends React.Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.product !== this.props.product) {
-      let price = 0;
+      let price = 0, qty = 0;
       this.props.product.map((product) => {
-        price += product.price * product.quantity     
+        price += product.price * product.quantity
+        qty += product.quantity     
       }
       );
       this.setState({
         total: price,
+        amount: qty
       })
     }
   };
@@ -79,7 +81,7 @@ class CartSummary extends React.Component {
           </ul>
           <div className="text-center">
           <button className="btn_order" onClick={this.handleSummary}>
-            {this.props.checkout ? "Thanh Toán" : "Đặt Hàng"}
+            {this.props.checkout ? "Xác Nhận" : "Đặt Hàng"}
           </button>
           </div>
           

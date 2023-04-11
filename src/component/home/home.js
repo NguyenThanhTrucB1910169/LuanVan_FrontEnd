@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import "./home.css";
 import Header from "./header";
 import Footer from "./footer";
+import { Link } from "react-router-dom";
 // import { Slide } from 'react-slideshow-image';
 // import 'react-slideshow-image/dist/styles.css'
 // import '../../public/'
@@ -145,10 +146,10 @@ class Home extends React.Component {
             <img src="./flex-new-1.webp" alt="" className="h-100"/>
             <div className="overlay">
               <div className="content">
-              <button className="button-explore ms-3 fw-bold text-center">
+              <Link to="/products" className="button-explore ms-3 fw-bold text-center">
                 Khám phá
                 <i className="fa-solid fa-angle-right ms-2"></i>
-              </button>
+              </Link>
               </div>
             </div>
             </div>
@@ -156,10 +157,10 @@ class Home extends React.Component {
             <img src="./flex-new-2.avif" alt="" className="h-100 w-100"/>
             <div className="overlay">
               <div className="content">
-              <button className="button-explore ms-3 fw-bold text-center">
+              <Link to="/products" className="button-explore ms-3 fw-bold text-center">
                 Khám phá
                 <i className="fa-solid fa-angle-right ms-2"></i>
-              </button>
+              </Link>
               </div>
             </div>
             </div>
@@ -175,10 +176,10 @@ class Home extends React.Component {
                 chuyên nghiệp, nhiệt tình và cung cấp dịch vụ bảo
                 dưỡng trang sức trọn đời.
               </p>
-              <button className="button-intro text-center fw-bold">
+              <Link to='/contact' className="button-intro text-center fw-bold">
                 Liên hệ ngay
                 <i className="fa-solid fa-angle-right ms-2"></i>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

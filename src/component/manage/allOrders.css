@@ -1,0 +1,21 @@
+.detail_frame table{
+    margin: 20px auto;
+    width: 90%;
+    text-align: center;
+}
+
+.btn_ad_detail{
+    border: none;
+    background: #fff;
+    font-size: 22px;
+    margin-right: 15px;
+}
+
+.detail_frame .ad_detail_title{
+    margin: 20px 10px;
+    justify-content: space-between;
+}
+
+.ad_detail_title .phone{
+    text-align: end;
+}

@@ -23,7 +23,7 @@ export const loginAccount = (state={user: {}} , action) => {
         case Types.AUTH_USER:
             state.user = action.payload
             // console.log(action.payload)
-            return {...state, isAuth: true,};
+            return {...state, isAuth: true, isAdmin: false};
         case Types.AUTH_WRONG_INFO:
             // state.message = action.payload
             return {...state, isAuth: false, message: action.payload};
@@ -32,12 +32,12 @@ export const loginAccount = (state={user: {}} , action) => {
                 ...state,
                 user: null,
                 isAuth: false,
+                isAdmin: false,
             }
         case Types.LOGOUT_FAILED:
             return {
                 ...state,
                 user: null,
-                isAuth: true,
                 message: action.payload
             }
         case Types.UPDATE_INFO_SUCCESS: 
@@ -53,6 +53,13 @@ export const loginAccount = (state={user: {}} , action) => {
                 ...state,
                 message: action.payload,
                 update: false,
+            }
+        case Types.IS_ADMIN: 
+        // console.log(action.payload)
+            return {
+                ...state,
+                isAdmin: true,
+                isAuth: false
             }
         default:
             return state;

@@ -78,7 +78,7 @@ class Cart extends React.Component {
 
                 <div className="d-flex justify-content-between align-items-center mb-4">
                   <div>
-                    <p className="mb-0">Có {this.props.listProductInCart.length} sản phẩm trong giỏ hàng</p>
+                    <p className="mb-0">Có {this.props.isEmpty? '0' : this.props.listProductInCart.length} sản phẩm trong giỏ hàng</p>
                   </div>
                   {/* <div>
                     <p className="mb-0">
@@ -89,7 +89,7 @@ class Cart extends React.Component {
                     </p>
                   </div> */}
                 </div>
-                {this.props.listProductInCart.map((product, index) => (
+                {!this.props.isEmpty ? this.props.listProductInCart.map((product, index) => (
                   <CartItem
                     eachProduct={product}
                     key={index}
@@ -98,7 +98,12 @@ class Cart extends React.Component {
                     update = {this.updateQt}
                     
                   />
-                ))}
+                )) : (
+                  <div className="text-center">
+                  <img src="./empty-cart.gif" alt="" className="empty_cart_icon"/>
+                  <h5 className="mt-4">Giỏ Hàng Trống</h5>
+                  </div>
+                )}
                 {/* <CartItem /> */}
                 <h5 className="mb-3 mt-5">
                   <button
@@ -124,7 +129,8 @@ class Cart extends React.Component {
 const mapStateToProps = (state) => {
   return {
     listProductInCart: state.cart.cartItem,
-    isDelete: state.cart.message
+    isDelete: state.cart.message,
+    isEmpty: state.cart.empty
   };
 };
 

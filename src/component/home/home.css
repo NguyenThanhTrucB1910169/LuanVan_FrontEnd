@@ -183,7 +183,7 @@ img {
 }
 
 .button-intro {
-  background: #f8f8f8;
+  background: transparent;
   box-shadow: none;
   color: #000;
   display: inline-block;
@@ -193,6 +193,7 @@ img {
   border: none;
   position: relative;
   right: 0;
+  text-decoration: none;
 }
 
 .button-explore {
@@ -205,6 +206,7 @@ img {
   font-size: 13px;
   border: none;
   position: relative;
+  text-decoration: none;
 }
 
 .button-explore:after {

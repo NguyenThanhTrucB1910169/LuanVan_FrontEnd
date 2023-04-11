@@ -15,3 +15,7 @@
 .back_cart:hover{
    color: #14abe9!important;
 }
+
+.empty_cart_icon{
+    width: 20%;
+}

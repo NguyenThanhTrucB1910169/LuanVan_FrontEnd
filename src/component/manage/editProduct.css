@@ -1,0 +1,24 @@
+.edit_id{
+    line-height: 53px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.edit_id span {
+    margin-left: 10px
+}
+
+.btn_ad_return{
+    text-decoration: none;
+    color: #000;
+    line-height: 42px;
+    font-size: 18px;
+}
+
+.btn_ad_return:hover{
+    color: #14cfdc;
+}
+
+.btn_ad_return i{
+    margin-right: 13px;
+}

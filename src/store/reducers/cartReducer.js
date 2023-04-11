@@ -50,7 +50,9 @@ export const cartReducer = (state = initState, action) => {
       state.cartItem = action.payload;
       // console.log(state)
       // console.log(state.cartItem);
-      return {...state}
+      return {...state, empty: false};
+    case Types.CART_EMPTY: 
+      return { ...state, empty: action.payload}
     case Types.UPDATE_CART_SUCCESS: 
       state.cartItem = action.payload;
       return {...state}

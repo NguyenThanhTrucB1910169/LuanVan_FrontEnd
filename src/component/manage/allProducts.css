@@ -1,0 +1,57 @@
+.ad_itempd{
+    margin: 20px 0;
+    line-height: 32px;
+    padding: 20px 0;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+}
+
+.ad_pdhead{
+    background-color: #95a5a6;
+    padding: 10px 0;
+    font-size: 19px;
+    margin: 0 2px;
+}
+
+.icon_display{
+    font-size: 25px;
+    position: absolute;
+    width: fit-content;
+    top: -30px;
+    padding: 10px;
+    left: 81%;
+}
+
+/* .icon_display::after{
+    position: absolute;
+    content: '';
+    width: 40px;
+    background-color: red;
+    height: 5px;
+} */
+
+.icon_display:hover + .edit_frame,
+.edit_frame:hover{
+    display: block;
+}
+
+.edit_frame{
+    position: absolute;
+    right: 8px;
+    display: none;
+    top: 0;
+    line-height: 36px;
+    transition: all 0.5s ease-in-out;
+}
+
+.edit_frame i{
+    margin-right: 8px;
+}
+
+.edit_frame div{
+    cursor: pointer;
+}
+
+.edit_frame a{
+    text-decoration: none;
+    color: #000;
+}
