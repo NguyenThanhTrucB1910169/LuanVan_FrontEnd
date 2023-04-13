@@ -83,10 +83,6 @@
 }
 
 .signup-img {
-  /* background-repeat: no-repeat; */
-  /* background-size: cover; */
-  /* background-image: url(./sign-4.jpg); */
-    /* padding: 2.5rem 0; */
     opacity: 0.;
     z-index: -1;
     position: relative;
@@ -105,23 +101,17 @@
   height: 1.35rem !important;
 }
 
-/* .buttons {
-  margin: 10%;
-  text-align: center;
-} */
 
 .btn-submit {   
-  color: #fff;
+  color: #000;
   cursor: pointer;
   border: none;
-  padding: 5px 29px;
+  padding: 8px 30px;
   background-size: 300% 100%;
   border-radius: 27px;
   font-size: 18px;
-  transition: all .4s ease-in-out;
-  /* background-image: linear-gradient(to right, #31cabb, #11b7a7, #15ac9d, #34e3d1); */
-  
-  background-image: linear-gradient(to right, #e4a848, #e79c24, #d59124, #a96c0a);
+  transition: all .4s ease-in-out;  
+  background-image: linear-gradient(to right, #afebed, #73eaf1, #c9ebec, #96e5e7);
 }
 
 .btn-submit:hover {
@@ -190,4 +180,15 @@
   color: red;
   padding-top: 5px;
   font-size: 15px;
+}
+
+.check-gerder:checked{
+  background-image: none!important;
+  background-color: #d1fdfc!important;
+  border-color: #008a86!important;
+}
+
+.label_gender{
+  margin-top: 2px;
+  margin-left: 4px;
 }

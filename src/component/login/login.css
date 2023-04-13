@@ -256,3 +256,10 @@ input:-webkit-autofill:active{
 .signup_link span{
   font-weight: bolder;
 }
+
+.showpass_login{
+  position: absolute;
+  top: 33px;
+  font-size: 19px;
+  left: 69%;
+}

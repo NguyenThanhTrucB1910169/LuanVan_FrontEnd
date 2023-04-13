@@ -30,12 +30,19 @@ class ProductDetail extends React.Component {
   }
 
   addToCart = () => {
-    console.log(this.props.detailProduct.id, this.state.qty);
+    // console.log(this.props.detailProduct.id, this.state.qty);
     this.props.handleAddToCart(this.props.detailProduct.id, this.state.qty).then(() => {
-      toast.success(<Toast message="Đã thêm vào giỏ hàng"/>, {
-        className: 'success',
-      })
-      this.setState({qty: 0})
+      if(this.props.isAdd) {
+        toast.success(<Toast message="Đã thêm vào giỏ hàng"/>, {
+          className: 'success',
+        })
+        this.setState({qty: 0})
+      }
+      else {
+        toast.error(<Toast message="Đăng nhập để tiếp tục"/>, {
+          className: 'fail',
+        })
+      }
     })
   };
 
@@ -206,6 +213,7 @@ class ProductDetail extends React.Component {
 const mapStateToProps = (state) => {
   return {
     detailProduct: state.getAllProducts.detail,
+    isAdd: state.cart.message
   };
 };
 

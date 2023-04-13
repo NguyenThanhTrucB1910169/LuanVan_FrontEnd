@@ -32,6 +32,10 @@ class Product extends React.Component {
       toast.success(<Toast message="Đã thêm vào giỏ hàng"/>, {
         className: 'success',
       })
+    } else {
+      toast.warning(<Toast message="Đăng nhập để tiếp tục" />, {
+        className: 'warning'
+      })
     }
   }
 

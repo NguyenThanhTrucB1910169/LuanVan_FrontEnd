@@ -3,7 +3,8 @@ import axios from "axios";
 
 let addToCart = (idproduct, qt) => {
   return async (dispatch, getState) => {
-    await axios
+    if(getState().login.isAuth) {
+      await axios
       .get(`http://localhost:3005/api/cart/${idproduct}/${qt}`, {
         withCredentials: true,
       })
@@ -11,11 +12,20 @@ let addToCart = (idproduct, qt) => {
         if (val.data === "success") {
           dispatch({
             type: Types.ADD_TO_CART_SUCCESS,
-            payload: val.data,
           });
+        } else {
+          dispatch({
+            type: Types.ADD_TO_CART_FAILED,
+          })
         }
       });
-  };
+    }
+    else {
+      dispatch({
+        type: Types.ADD_TO_CART_FAILED,
+      })
+    }
+  }
 };
 
 const getCartItem = () => {
@@ -23,13 +33,16 @@ const getCartItem = () => {
     axios
       .get("http://localhost:3005/api/cartload", { withCredentials: true })
       .then((res) => {
+        console.log(res);
         if(res.data.length === 1 && res.data[0].cartId === null){
           dispatch({
             type: Types.CART_EMPTY,
             payload: true, 
           })
         }
-        else dispatch({
+        else 
+        // console.log(res)
+        dispatch({
           type: Types.LOAD_CART_SUCCESS,
           payload: res.data,
         });
@@ -73,7 +86,13 @@ const removeItem = (id) => {
         withCredentials: true,
       })
       .then((response) => {
-        // console.log(response);
+        console.log(response.data);
+        if(response.data.length === 1 && response.data[0].cartId === null){
+          dispatch({
+            type: Types.CART_EMPTY,
+            payload: true, 
+          })
+        } else
         dispatch({
           type: Types.REMOVE_ITEM_SUCCESS,
           payload: response.data,

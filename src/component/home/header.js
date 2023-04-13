@@ -401,7 +401,7 @@ const IsLogin = (props) => {
       </a>
       <ul className="dropdown_links">
         <li>
-          <a href="/">Thông Tin</a>
+          <Link to="/profile">Thông Tin</Link>
         </li>
         <li>
           <Link to="/cart">Giỏ Hàng</Link>

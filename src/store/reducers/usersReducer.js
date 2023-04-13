@@ -9,10 +9,10 @@ export const createUser = (state={} , action) => {
     switch (action.type){
         case Types.CREATE_USER:
             // state.message = action.message
-            return {...state, message: action.message};
+            return {...state, message: true};
         case Types.CREATE_USER_FAILED: 
             // state.message = action.message
-            return {...state};
+            return {...state, message: false};
         default:
             return state;
     } 
@@ -33,6 +33,8 @@ export const loginAccount = (state={user: {}} , action) => {
                 user: null,
                 isAuth: false,
                 isAdmin: false,
+                update: false,
+                message: null,
             }
         case Types.LOGOUT_FAILED:
             return {

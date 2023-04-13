@@ -104,8 +104,8 @@ class AllOrders extends React.Component {
                         </thead>
                         <tbody>
                           {value.map((pd, index) => (
-                            <tr>
-                              <td scope="row" key={index}>
+                            <tr key={index}>
+                              <td scope="row">
                                 {pd.productId}
                               </td>
                               <td>{pd.name}</td>

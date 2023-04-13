@@ -11,6 +11,9 @@ class OrderConfirm extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+
+        }
     }
 
     handleNext = (page) => {
@@ -36,9 +39,15 @@ class OrderConfirm extends React.Component {
                         <p>Địa chỉ: {this.props.info.address}</p>
                         <p>Số điện thoại: {this.props.info.phone}</p>
                     </div>
+                    <div className="order_note">
+                        <label htmlFor="note" className="label_note">
+                        <i className="fa-regular fa-comment"></i>Ghi chú</label>
+                        <textarea name="note" id="" cols='25' rows="5" className="text_note" placeholder="write here" onChange={(e) => this.props.notes(e.target.value)}></textarea>
+                    </div>
                     <div className="order_review">
                         <CartReview cart={this.props.cartInfo}/>
                     </div>
+                    
                 </div>
                 <div className="col-3 confirm_sum">
                     <CartSummary product={this.props.cartInfo.cartItem} checkout={true} pay={this.handleNext} order={(isactive) => this.props.submit(isactive)}/>

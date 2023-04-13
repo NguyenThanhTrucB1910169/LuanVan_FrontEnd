@@ -1,5 +1,4 @@
 .update_form {
-    font-family: "Montserrat", sans-serif;
 }
 
 .update_title {
@@ -7,29 +6,108 @@
   text-align: center;
   margin: 0;
   font-weight: 600;
-  padding: 30px 0 40px;
+  padding: 0 0 20px;
 }
 
 .form_detail {
-  width: 45%;
-  margin: 0 auto;
+  /* width: 60%; */
+  margin: 2rem auto 6rem;
+  padding: 3rem;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  border-radius: 30px;
+  /* margin: 30px auto; */
 }
 
 .update_input {
-  height: 50px;
-  border-radius: 25px;
+  height: 45px;
+  border-radius: 10px;
   padding: 0 30px;
   /* display: block; */
   width: 100%;
   border: none;
   background: #e6e6e6;
-  font-family: Montserrat-Bold;
   font-size: 15px;
   line-height: 1.5;
   color: #666;
   margin: 15px 8px;
 }
 
+.update_textarea{
+  border-radius: 10px;
+  padding: 0 30px;
+  width: 100%;
+  border: none;
+  background: #e6e6e6;
+  font-size: 20px;
+  color: #666;
+  margin: 15px 8px;
+}
+
 .input_error {
   color: red;
+}
+
+.img_avatar{
+  width: 21%;
+  height: 140px;
+  border-radius: 50%;
+}
+
+.update_avatar{
+  margin: 10px;
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  color: #05a6a6;
+}
+
+.btn_updateinfo{
+  border: none;
+  background-color: #b2f4ed;
+  color: #000;
+  padding: 20px 40px;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-size: 18px;
+  width: fit-content;
+}
+
+.btn_updateinfo:hover{
+  background-color: #28cfbe;
+  color: #fff;
+}
+
+.show_pass{
+  position: absolute;
+  top: 50px;
+  right: 15px;
+}
+
+.btn_inupdate{
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  padding-top: 23px;
+  font-size: 21px;
+  color: #000;
+  text-decoration: none;
+}
+
+.btn_inupdate i{
+  margin-right: 5px;
+}
+
+.btn_inupdate:hover{
+  color: #28cfbe
+}
+
+.return_order{
+  color: #000;
+  font-size: 27px;
+  margin-left: 24px;
+  margin: 30px 0 0 24px;
+}
+
+.return_order:hover{
+  color: #28cfbe
 }

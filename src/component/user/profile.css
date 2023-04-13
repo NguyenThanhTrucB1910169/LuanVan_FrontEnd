@@ -1,0 +1,63 @@
+.user_profile{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.icon_showpass{
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    margin-left: 9px;
+}
+
+.detail_profile{
+    line-height: 20px;
+}
+
+.profile_card{
+    text-align: center;
+    font-size: 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border: none;
+    border-radius: 7px;
+    background-color: #c9f7f6;
+}
+
+.profile_card img{
+    width: 55%;
+    margin: 30px auto 41px;
+    background-color: #fcfeff;
+    border-radius: 15px;
+}
+
+.profile_body{
+    padding: 0 10px 0 45px;
+}
+
+.profile_title i{
+    margin-right: 15px;
+}
+
+.profile_title{
+    margin-bottom: 30px;
+    font-size: 22px
+}
+
+.profile_content{
+    margin-bottom: 30px;
+}
+
+.mb_pf{
+    margin-bottom: 5rem
+}
+
+.edit_pf{
+    border: none;
+    background-color: transparent;
+    text-decoration: none;
+    color: #000
+}
+
+.edit_pf:hover{
+    color: #05b0ad;
+}

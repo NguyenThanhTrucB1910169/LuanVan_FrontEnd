@@ -1,10 +1,10 @@
 .success{
-    border-radius:5px!important;
-    background-color: #fff!important;
-    box-shadow: 7px 0 11px 1px #838383!important;
-    margin: 0!important;
-      color: #000!important;
-      border-left: 4px solid green;
+  border-radius: 10px!important;
+  background-color: #d7ffe1!important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px!important;
+  margin: 0!important;
+  color: #000!important;
+  font-family: "Montserrat", sans-serif!important;
   }
   
   .success button{
@@ -17,12 +17,12 @@
   }
 
   .fail{
-    border-radius:5px!important;
-    background-color: #fff!important;
-    box-shadow: 7px 0 11px 1px #838383!important;
+    border-radius: 10px!important;
+    background-color: #ffd7d7!important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px!important;
     margin: 0!important;
-      color: #000!important;
-      border-left: 4px solid red;
+    color: #000!important;
+    font-family: "Montserrat", sans-serif!important;
   }
   
   .fail button{
@@ -36,12 +36,12 @@
 
 
   .warning{
-    border-radius: 5px!important;
-    background-color: #fff(250 250 209)!important;
-    box-shadow: 2px 0px 7px 0px #838383!important;
+    border-radius: 10px!important;
+    background-color: #fffec6!important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px!important;
     margin: 0!important;
     color: #000!important;
-    border-left: 4px solid rgb(197 197 48);
+    font-family: "Montserrat", sans-serif!important;
   }
   
   .warning button{

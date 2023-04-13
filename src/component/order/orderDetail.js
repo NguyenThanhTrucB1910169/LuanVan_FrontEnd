@@ -53,7 +53,15 @@ class OrderDetail extends React.Component {
                 ? `#0${this.props.detailsOrder[0].id}`
                 : `#${this.props.detailsOrder[0].id}`}
             </h3>
-            <p>Ngày đặt: {dateFormatted}</p>
+            <p>Ngày đặt: {dateFormatted}. Tình trạng: {this.props.detailsOrder[0].status === 0
+                          ? (
+                            <span>Đã đặt, đang chờ xử lý...</span>
+                          )
+                          : this.props.detailsOrder[0].status === 1
+                          ? "Đang giao"
+                          : this.props.detailsOrder[0].status === 2
+                          ? "Đã Nhận"
+                          : ""}</p>
           </div>
           <div className="row justify-content-between">
             <div className="col-6 detail_pd">
@@ -106,6 +114,13 @@ class OrderDetail extends React.Component {
                   </div>
                 </div>
               </div>
+              {/* <div className="note_detail"> */}
+                      {this.props.detailsOrder[0].note ? (
+                        <div className="note_detail">
+                          <i className="fa-solid fa-asterisk"></i><span className="fw-bold text-decoration-underline"> Ghi Chú:</span> {this.props.detailsOrder[0].note}
+                        </div>
+                      ) : null}
+              {/* </div> */}
             </div>
             <div className="col-5 detail_user">
               <h1 className="mb-4 text-capitalize text-center">Thông tin người đặt</h1>

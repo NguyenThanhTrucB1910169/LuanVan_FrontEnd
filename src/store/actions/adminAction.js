@@ -3,7 +3,7 @@ import * as Types from '../constants/actionType'
 
 const getAllUsers = () => {
     return async(dispatch) => {
-        await axios.get('http://localhost:3005/api/ad/alluser', {withCredentials: true}).then((val) => {
+        await axios.get('http://localhost:3005/api/getallusers', {withCredentials: true}).then((val) => {
            if(val.data){
             dispatch({
                 type: Types.GET_ALLUSERS_SUCCESS,
@@ -56,8 +56,9 @@ const getAllOrders = () => {
   }
 }
 
+
 export {
     getAllUsers,
     getIdProducts,
-    getAllOrders
+    getAllOrders,
 }

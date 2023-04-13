@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import Toast from "../home/toast";
-// import {Al}
 
 class Register extends React.Component {
   constructor(props) {
@@ -19,14 +18,13 @@ class Register extends React.Component {
       email: "",
       gender: "",
       isValid: true,
-      errors: {
-
-      },
+      errors: {},
     };
   }
+
   handleSubmit = async (e) => {
     e.preventDefault();
-    if(this.state.isValid){
+    if(this.isEmpty()){
       await this.props.createNewAccount(this.state);
       if (this.props.result) {
         toast.success(<Toast message="Tạo tài khoản thành công." />, {
@@ -38,15 +36,40 @@ class Register extends React.Component {
               email: "",
               gender: "",
             });
-            // this.props.history.push("/");
           },
           className: "success",
         });
-  
-        // console.log(e.target)
       }
     }
+    else {
+      toast.warning(<Toast message="Thông tin không hợp lệ" />, { className: 'warning'})
+    }
   };
+
+  handleReset = () => {
+    this.setState({
+      username: "",
+      password: "",
+      confirmpassword: "",
+      email: "",
+      gender: "",
+      errors: {},
+    });
+  };
+
+  isEmpty = () => {
+    if (
+      this.state.username !== "" &&
+      this.state.password !== "" &&
+      this.state.email !== "" &&
+      this.state.gender !== "" &&
+      this.state.confirmpassword !== "" &&
+      this.state.isValid === true
+    ) {
+      return true;
+    } else return false;
+  };
+
   validateForm = (name) => {
     let errors = {};
     switch (name) {
@@ -88,14 +111,14 @@ class Register extends React.Component {
               confirmpassword: "Không trùng khớp",
             },
           });
-        }
-        else this.setState({
-          isValid: true,
-          errors: {
-            ...this.state.errors,
-            confirmpassword: ""
-          }
-        })
+        } else
+          this.setState({
+            isValid: true,
+            errors: {
+              ...this.state.errors,
+              confirmpassword: "",
+            },
+          });
         return errors;
       case "password":
         if (!this.state.password) {
@@ -195,7 +218,11 @@ class Register extends React.Component {
                       value={this.state.username}
                     />
                   </label>
-                  {this.state.errors.username && <div className="reg_error">{this.state.errors.username}</div>}
+                  {this.state.errors.username && (
+                    <div className="reg_error">
+                      {this.state.errors.username}
+                    </div>
+                  )}
                 </div>
                 <div className="mb_1">
                   <label className="d-block">
@@ -208,7 +235,9 @@ class Register extends React.Component {
                       value={this.state.email}
                     />
                   </label>
-                  {this.state.errors.email && <div className="reg_error">{this.state.errors.email}</div>}
+                  {this.state.errors.email && (
+                    <div className="reg_error">{this.state.errors.email}</div>
+                  )}
                 </div>
 
                 <div className="row mb_1">
@@ -224,7 +253,11 @@ class Register extends React.Component {
                           value={this.state.password}
                         />
                       </label>
-                     {this.state.errors.password && <div className="reg_error">{this.state.errors.password}</div>}
+                      {this.state.errors.password && (
+                        <div className="reg_error">
+                          {this.state.errors.password}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="col-md-6">
@@ -239,53 +272,58 @@ class Register extends React.Component {
                           value={this.state.confirmpassword}
                         />
                       </label>
-                      {this.state.errors.confirmpassword && <div className="reg_error">{this.state.errors.confirmpassword}</div>}
-                      
+                      {this.state.errors.confirmpassword && (
+                        <div className="reg_error">
+                          {this.state.errors.confirmpassword}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
                 <div className="d-md-flex justify-content-start align-items-center py-2">
                   <h6 className="mb-0 me-4">Giới Tính: </h6>
-
                   <div
                     className="form-check form-check-inline mb-0 me-4"
                     name="gender"
-                    onChange={this.handleChange}
-                    value={this.state.gender}
+                    // onChange={this.handleChange}
+                    // value={this.state.gender}
                   >
                     <label className="form-check-label me-5">
-                      Nữ
+                      <span className="label_gender">Nữ</span>
                       <input
                         className="form-check-input check-gerder"
                         type="radio"
-                        name="inlineRadioOptions"
-                        value="Female"
+                        name="gender"
+                        checked={this.state.gender === "1" ? true : false}
+                        onChange={this.handleChange}
+                        value="1"
                       />
                     </label>
                     <label className="form-check-label me-5">
-                      Nam
+                      <span className="label_gender">Nam</span>
                       <input
                         className="form-check-input check-gerder"
                         type="radio"
-                        name="inlineRadioOptions"
-                        value="Male"
+                        name="gender"
+                        checked={this.state.gender === "0" ? true : false}
+                        onChange={this.handleChange}
+                        value="0"
                       />
                     </label>
-                    <label className="form-check-label">
-                      Khác
-                      <input
-                        className="form-check-input check-gerder"
-                        type="radio"
-                        name="inlineRadioOptions"
-                        value="Others"
-                      />
-                    </label>
-                   {this.state.errors.gender && <div className="reg_error">{this.state.errors.gender}</div>}
-                   {/* <div className="reg_error">Chọn giới tính</div> */}
+                    {this.state.errors.gender && (
+                      <div className="reg_error">
+                        {this.state.errors.gender}
+                      </div>
+                    )}
+                    {/* <div className="reg_error">Chọn giới tính</div> */}
                   </div>
                 </div>
                 <div className="d-flex justify-content-end pt-3">
-                  <button type="button" className="button-reset">
+                  <button
+                    type="button"
+                    className="button-reset"
+                    onClick={this.handleReset}
+                  >
                     <i className="fa-solid fa-rotate-right me-2"></i>
                     Đặt lại
                   </button>
@@ -297,7 +335,6 @@ class Register extends React.Component {
                     >
                       Đăng Ký
                     </button>
-                    <ToastContainer />
                   </div>
                 </div>
                 <p className="text-capitalize mt-4 mb-0">

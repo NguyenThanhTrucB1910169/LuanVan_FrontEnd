@@ -26,7 +26,7 @@ class Cart extends React.Component {
     };
   }
 
-  componentDidMount = async (e) => {
+  componentWillMount = async (e) => {
     // e.preventDefault();
     // let getToken = localStorage.getItem("isactive")
     // let token = JSON.parse(getToken).user
@@ -68,7 +68,7 @@ class Cart extends React.Component {
   render() {
     return (
       <Fragment>
-        <SubHeader amount={this.props.listProductInCart.length}/>
+        <SubHeader />
         <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
           <div className="container py-5 h-100">
             <div className="row justify-content-around">
@@ -78,7 +78,7 @@ class Cart extends React.Component {
 
                 <div className="d-flex justify-content-between align-items-center mb-4">
                   <div>
-                    <p className="mb-0">Có {this.props.isEmpty? '0' : this.props.listProductInCart.length} sản phẩm trong giỏ hàng</p>
+                    <p className="mb-0">Có {this.props.listProductInCart.length} sản phẩm trong giỏ hàng</p>
                   </div>
                   {/* <div>
                     <p className="mb-0">
@@ -89,7 +89,9 @@ class Cart extends React.Component {
                     </p>
                   </div> */}
                 </div>
-                {!this.props.isEmpty ? this.props.listProductInCart.map((product, index) => (
+                {
+                 this.props.listProductInCart.length !== 0? 
+                this.props.listProductInCart.map((product, index) => (
                   <CartItem
                     eachProduct={product}
                     key={index}
@@ -115,7 +117,7 @@ class Cart extends React.Component {
                 </h5>
               </div>
               <div className="col-lg-3">
-                <CartSummary product={this.props.listProductInCart} checkout={false}/>
+                <CartSummary product={this.props.listProductInCart.length !== 0 ? this.props.listProductInCart : []} checkout={false}/>
               </div>
             </div>
           </div>

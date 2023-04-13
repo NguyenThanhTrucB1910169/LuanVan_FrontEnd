@@ -82,3 +82,8 @@
     left: 112%;
     background-color: #000;
 }
+
+.note_detail{
+    font-size: 19px;
+    margin: 20px 43px; 
+}

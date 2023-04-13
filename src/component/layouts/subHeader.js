@@ -19,6 +19,21 @@ class SubHeader extends React.Component {
     })
   }
 
+  renderElement = () => {
+    if (this.props.isLogin !== undefined) {
+      if (this.props.isLogin)
+        return <IsLogin handleClick={this.logout} />;
+      else {
+        return <UnLogin />;
+      }
+    } else {
+      if (this.isActive) {
+        return <IsLogin handleClick={this.logout} />;
+      }
+      return <UnLogin />;
+    }
+  };
+
   render() {
     return (
       <Fragment>
@@ -97,7 +112,8 @@ class SubHeader extends React.Component {
                       </li> */}
 
                       <li className="top_links">
-                        <div className="text-decoration-none fs-5">
+{this.renderElement()}
+                        {/* <div className="text-decoration-none fs-5">
                           Tài khoản<i className="fa-solid fa-chevron-down"></i>
                         </div>
                         <ul className="dropdown_links">
@@ -112,7 +128,7 @@ class SubHeader extends React.Component {
                             Đăng Xuất
                           </button>
                           </li>
-                        </ul>
+                        </ul> */}
                       </li>
                        {/* <li>
                        <div className="search_btn">
@@ -145,7 +161,9 @@ class SubHeader extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    isLogin: state.login.isAuth,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -153,5 +171,43 @@ const mapDispatchToProps = (dispatch) => {
     logout: () => dispatch(logoutHandler())
   }
 }
+
+const IsLogin = (props) => {
+  return (
+    <div>
+      <a href="/" className="text-decoration-none fs-6">
+        Tài khoản<i className="fa-solid fa-chevron-down"></i>
+      </a>
+      <ul className="dropdown_links">
+        <li>
+          <Link to="/profile">Thông Tin</Link>
+        </li>
+        <li>
+          <Link to="/cart">Giỏ Hàng</Link>
+        </li>
+        <li>
+          <button className="logout" onClick={props.handleClick}>
+            Đăng Xuất
+          </button>
+        </li>
+      </ul>
+    </div>
+  );
+};
+
+const UnLogin = () => {
+  return (
+    <Fragment>
+      <Link to="/login" className="btn_links d-inline-block">
+        {" "}
+        Đăng Nhập
+      </Link>
+      <Link to="/register" className="btn_links sign_up d-inline-block">
+        {" "}
+        Đăng Ký
+      </Link>
+    </Fragment>
+  );
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SubHeader));

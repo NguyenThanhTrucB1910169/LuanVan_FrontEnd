@@ -15,7 +15,8 @@ class Login extends React.Component {
         password: '',
         errors: {},
         userValid: false,
-        passValid: false
+        passValid: false,
+        showpass: false
     }
   }
 
@@ -148,16 +149,20 @@ render() {
                   />
                    {this.state.errors.username && <div className="login_error">{this.state.errors.username}</div>}
                 </div>
-                <div className="login-field">
+                <div className="login-field position-relative">
                   <i className="login-icon fa-solid fa-key"></i>
                   <input
-                    type="password"
+                    type={this.state.showpass ? 'text' : "password"}
                     className="login-input"
                     placeholder="Mật khẩu"
                     name="password"
                     value={this.state.password}
                     onChange={this.handleChange}
                   />
+                  <span onClick={() => this.setState({showpass: !this.state.showpass})} className="showpass_login">
+                    {this.state.showpass ? <i className="fa-solid fa-eye-slash"></i> : <i className="fa-regular fa-eye"></i>}
+                  </span>
+                  
                    {this.state.errors.password && <div className="login_error">{this.state.errors.password}</div>}
                 </div>
                 <button className="login_submit" onClick={this.handleLogin}>

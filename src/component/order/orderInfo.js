@@ -52,7 +52,7 @@ class OrderInfo extends React.Component {
               </li>
               <li>
                 <i className="fa-solid fa-genderless"></i>
-                <span>{this.props.infoUser.user.gender ? "Nam" : "Nữ"}</span>
+                <span>{this.props.infoUser.user.gender ? "Nữ" : "Nam"}</span>
               </li>
               <li>
                 <i className="fa-regular fa-envelope"></i>
@@ -68,7 +68,10 @@ class OrderInfo extends React.Component {
               </li>
             </ul>
             <div className="grp_btn">
-              <Link to="/updateinfo" className="btn_change" >
+              <Link  to={{
+                    pathname: "/updateinfo",
+                    state: { profile: false, edit: true },
+                  }} className="btn_change" >
                 <i className="fa-solid fa-pen"></i>
                 Thay đổi
               </Link>
@@ -86,7 +89,11 @@ class OrderInfo extends React.Component {
           <div className="empty_info">
             <img src="./empty.gif" alt="" />
             <p>Thông tin giao hàng chưa hoàn thành. Vui lòng&nbsp;  
-            <Link to="/updateinfo" className="btn_update">cập nhật</Link>
+            <Link  
+                  to={{
+                    pathname: "/updateinfo",
+                    state: { profile: false },
+                  }} className="btn_update">cập nhật</Link>
             &nbsp;để tiếp tục !</p>
           </div>
         )}

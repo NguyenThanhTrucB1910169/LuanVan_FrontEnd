@@ -51,7 +51,7 @@ class SideBar extends React.Component {
                   </div>
                   </div>
                   <Link
-                    to="#"
+                    to="/ad/allusers"
                     className="item_nav_ad py-2"
                   >
                     <i className="fas fa-users fa-fw me-3"></i>

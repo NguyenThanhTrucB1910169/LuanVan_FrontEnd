@@ -111,3 +111,33 @@
     margin-right: 5rem;
 
 }
+
+.order_note{
+    /* text-align: center; */
+}
+
+.label_note i{
+    margin-right: 5px;
+}
+
+.text_note{
+    width: 70%;
+    margin-left: 3rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    display: block;
+}
+
+.text_note:focus-visible{
+    border: none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    outline: none;
+}
+
+.label_note{
+    margin: 0 30px 20px;
+    font-size: 22px;
+    color: rgb(81, 81, 252);
+}

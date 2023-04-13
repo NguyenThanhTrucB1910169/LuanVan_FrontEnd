@@ -1,0 +1,23 @@
+.order_complete_img{
+    width: 25%;
+    text-align: center;
+    margin: 10px auto;
+}
+
+.btn_group_complete {
+    margin: 30px auto;
+}
+
+.btn_group_complete a{
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+}
+
+.btn_group_complete a:hover{
+    color: #19eddf;
+}
+
+.success_order{
+    color: #32c459;
+}
