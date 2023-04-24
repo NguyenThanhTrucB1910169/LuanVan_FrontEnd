@@ -11,7 +11,6 @@ class CartItem extends React.Component {
   }
 
   configImage = (images) => {
-    // console.log(images);
     if (images) {
       var myArrayImages = images.split(",");
       this.setState({
@@ -23,27 +22,24 @@ class CartItem extends React.Component {
   handleDecrease = (cart_id) => {
     console.log(cart_id);
     let new_qt = this.props.eachProduct.quantity + 1;
-    this.props.update({id: cart_id, qt: new_qt})
-  }
+    this.props.update({ id: cart_id, qt: new_qt });
+  };
 
   handleIncrease = (cart_id) => {
     console.log(cart_id);
-    this.setState({qt: this.props.quantity})
-    // let new_qt = this.props.eachProduct.quantity - 1;
-    // this.props.update({id: cart_id, qt: new_qt})
+    this.setState({ qt: this.props.quantity });
   };
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.quantity !== this.state.quantity) {
-      this.props.update(
-        {qt: this.state.quantity,
-        pd: this.props.eachProduct.productId}
-      );
+      this.props.update({
+        qt: this.state.quantity,
+        pd: this.props.eachProduct.productId,
+      });
     }
   };
 
   componentDidMount = () => {
-    // console.log(this.props.eachProduct.productImage.split(','))
     this.configImage(this.props.eachProduct.image);
   };
 
@@ -74,44 +70,28 @@ class CartItem extends React.Component {
             </div>
             <div className="d-flex flex-row align-items-center col-6 justify-content-around">
               <div className="quantity-cart col-3">
-                {/* <h5 className="">2</h5> */}
                 <button
                   className="quantity-change"
-                  onClick={ 
-                    // this.handleDecrease(this.props.eachProduct.productId)
-                    () => {
-                    if (this.state.quantity === 1)
-                      console.log("cant decrease");
+                  onClick={() => {
+                    if (this.state.quantity === 1) console.log("cant decrease");
                     else
                       this.setState({
                         quantity: this.state.quantity - 1,
                       });
-                  }
-                  }
+                  }}
                 >
                   -
                 </button>
-                <div
-                  className="fw-bold text-black mb-0 d-inline-block"
-                  // min="0"
-                  // name="quantity"
-                  // value=
-                  // type="number"
-                  // onChange={(e) => {
-                  //   this.setState({ quantity: parseInt(e.target.value) });
-                  // }}
-                >{this.props.eachProduct.quantity}</div>
+                <div className="fw-bold text-black mb-0 d-inline-block">
+                  {this.props.eachProduct.quantity}
+                </div>
                 <button
                   className="quantity-change"
-                  onClick=
-                    {
-                  
-                    () => {
-                      this.setState({
-                        quantity: this.state.quantity + 1,
-                      });
-                    }
-                    }
+                  onClick={() => {
+                    this.setState({
+                      quantity: this.state.quantity + 1,
+                    });
+                  }}
                 >
                   +
                 </button>

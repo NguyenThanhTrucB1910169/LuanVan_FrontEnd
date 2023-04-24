@@ -1,69 +1,68 @@
-
-
-/* .step_label{
-    color: #198754;
-} */
-
 .step_label_active > span:first-child {
-    padding: 8px;
-    border-radius: 50%;
-    color: #fff;
+  padding: 8px;
+  border-radius: 50%;
+  color: #fff;
 }
 
 .step_label_disabled > span:first-child {
-    padding: 7px;
-    border-radius: 50%;
-    border: 3px solid #7b7b7b57;
+  padding: 7px;
+  border-radius: 50%;
+  border: 3px solid #7b7b7b57;
 }
 
-.step_box{
-    color: #000;
+.step_box {
+  color: #000;
 }
 
-.MuiStepConnector-completed {
-    /* background-image: linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%); */
+.MuiStepConnector-completed span {
+  border-top-width: 3px;
+  margin-top: 0px;
+  border-color: #70e0d9;
 }
 
-.MuiStepConnector-completed span{
-    border-top-width: 3px;
-    margin-top: 0px;
-    border-color: #70e0d9;
+.MuiStepConnector-alternativeLabel {
+  top: 24px !important;
+  left: calc(-50% + 27px) !important;
+  right: calc(50% + 27px) !important;
+  width: 180px;
 }
 
-.MuiStepConnector-alternativeLabel{
-    top: 24px!important;
-    left: calc(-50% + 27px)!important;
-    right: calc(50% + 27px)!important;
-    width: 180px;
+.MuiStepConnector-alternativeLabel span {
+  border-top-width: 4px;
+  border-radius: 5px;
 }
 
-.MuiStepConnector-alternativeLabel span{
-    border-top-width: 4px;
-    border-radius: 5px;
+.MuiStep-completed > span > span:first-child {
+  background-color: #14ccc1;
 }
-
-.MuiStep-completed > span > span:first-child{
-    background-color: #14ccc1;
-}
-
 
 .MuiPaper-root {
-    width: 1000px;
-    margin: 0 auto;
+  width: 1000px;
+  margin: 0 auto;
 }
 
-.step_label_active{
-    /* margin-top: ; */
+.MuiTypography-body1 {
+  font-family: "Montserrat", sans-serif !important;
 }
 
-.MuiTypography-body1{
-    font-family: "Montserrat", sans-serif!important;
+.MuiStepLabel-iconContainer {
+  margin-right: 70px;
 }
 
-.MuiStepLabel-iconContainer{
-    margin-right: 70px;
+.MuiTypography-body1 {
+  margin-right: 57px !important;
 }
 
-.MuiTypography-body1{
-    margin-right: 57px!important;
+.btn_exit {
+  color: #000;
+  text-decoration: none;
+  font-size: 21px;
+}
+
+.btn_exit i{
+    margin-right: 8px
+}
+
+.btn_exit:hover{
+    color: #14ccc1;
 }

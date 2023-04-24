@@ -2,11 +2,10 @@ import React from "react";
 import { Typography, Stepper, StepLabel, Step } from "@material-ui/core";
 import './stepLayout.css'
 import LocalShippingIcon from "@material-ui/icons/LocalShipping";
-import LibraryAddCheckIcon from "@material-ui/icons/LibraryAddCheck";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
-import PaymentIcon from '@material-ui/icons/Payment';
 import DoneIcon from '@material-ui/icons/Done';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { Link } from "react-router-dom";
 class StepLayout extends React.Component {
     steps = [
         {
@@ -32,8 +31,12 @@ class StepLayout extends React.Component {
       ];
     render() {
         return(
+          <div className="row">
+            <div className="col-1 text-center pt-4">
+            <Link to='/cart' className="btn_exit"><i className="fa-solid fa-circle-xmark"></i>Thoát</Link>
+            </div>
+            <div className="col-11">
             <Stepper alternativeLabel activeStep={this.props.activeStep}>
-            {console.log(this.props.activeStep)}
             {this.steps.map((item, index) => (
               <Step
                 key={index}
@@ -55,6 +58,8 @@ class StepLayout extends React.Component {
               </Step>
             ))}
           </Stepper>
+            </div>
+          </div>
         )
     }
 }

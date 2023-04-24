@@ -1,17 +1,12 @@
 import React, { Fragment } from "react";
 import OrderInfo from "./orderInfo";
-import OrderPayment from "./orderPayment";
 import OrderConfirm from "./orderConfirm";
 import { connect } from "react-redux";
 import { updateInfo } from "../../store/actions/usersAction";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
 import CompleteOrder from "./completeOrder";
 import { createOrder } from "../../store/actions/orderAction";
 
-const stripe = loadStripe(
-  "pk_test_51MWNRIDCE9QNRtxGVMQMl7RnfahEMvcytYHA9tGUUkAMshWYiQoasXdzYxz8DM4QbkUVGe86PnkAqZJGGnfqsKTs00WpdF3MUF"
-);
+
 class Order extends React.Component {
   constructor(props) {
     super(props);
@@ -93,7 +88,7 @@ const mapStateToProps = (state) => {
   return {
     infoUser: state.login,
     cartItem: state.cart,
-    isOrder: state.orderInfo.message,
+    isOrder: state.orderInfo.placed,
   };
 };
 

@@ -14,9 +14,9 @@ class IntroPage extends React.Component {
           </h1>
           <img src="./intro-2.avif" alt="" />
           <p className="intro_name">Sơ lược về Sparkle & Shine Jewels</p>
-          <div className="intro_first row">
-            <img src="./intro-4.jpg" className="col-6 p-0" alt="" />
-            <p className="col-6">
+          <div className="d-flex flex-sm-column intro_first flex-xl-row flex-xxl-row">
+            <img src="./intro-4.jpg" className="col-sm-12 col-xl-6 p-0" alt="" />
+            <p className="col-sm-12 col-xl-6">
               Chào mừng đến với cửa hàng trang sức của chúng tôi - "Sparkle &
               Shine Jewels". Chúng tôi chuyên cung cấp các sản phẩm trang sức đa
               dạng và đẹp mắt, từ nhẫn, dây chuyền, vòng tay đến hoa tai và các
@@ -32,9 +32,9 @@ class IntroPage extends React.Component {
           </div>
 
           <div className="intro_sec">
-            <div className="doc">
+            <div className="d-sm-flex col-sm-12 d-lg-block doc">
               <h1 className="text-capitalize">trang sức ngọc trai</h1>
-              <p>
+              <p className="">
                 Truyền thống không phải lúc nào cũng phải trông truyền thống.
                 Cho dù bạn muốn trang sức ngọc trai cổ điển hay mới mẻ, S&S
                 đều làm được điều đó một cách tốt nhất. Hãy xem các thiết kế
@@ -58,7 +58,7 @@ class IntroPage extends React.Component {
                </p>
               
             </div>
-            <div className="col-6">
+            <div className="d-sm-none d-lg-block col-6">
               <img src="./intro-5.gif" className="intro_img_5" alt="" />
               <img src="./intro-9.webp" className="intro_img_4" alt="" />
               <img src="./intro-6.webp" className="intro_img_1" alt="" />

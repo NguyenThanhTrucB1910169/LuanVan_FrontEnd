@@ -37,6 +37,7 @@ export const loginAccount = (state={user: {}} , action) => {
                 message: null,
             }
         case Types.LOGOUT_FAILED:
+            console.log(action.payload)
             return {
                 ...state,
                 user: null,

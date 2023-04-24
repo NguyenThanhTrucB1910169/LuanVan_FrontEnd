@@ -3,12 +3,14 @@ import axios from "axios";
 
 let addToCart = (idproduct, qt) => {
   return async (dispatch, getState) => {
+    console.log(getState().login.isAuth)
     if(getState().login.isAuth) {
       await axios
       .get(`http://localhost:3005/api/cart/${idproduct}/${qt}`, {
         withCredentials: true,
       })
       .then((val) => {
+        console.log(val.data)
         if (val.data === "success") {
           dispatch({
             type: Types.ADD_TO_CART_SUCCESS,
@@ -33,7 +35,7 @@ const getCartItem = () => {
     axios
       .get("http://localhost:3005/api/cartload", { withCredentials: true })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if(res.data.length === 1 && res.data[0].cartId === null){
           dispatch({
             type: Types.CART_EMPTY,

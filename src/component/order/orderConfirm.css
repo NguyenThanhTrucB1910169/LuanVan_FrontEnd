@@ -141,3 +141,10 @@
     font-size: 22px;
     color: rgb(81, 81, 252);
 }
+
+.btn_back_order{
+    border: none;
+    background-color: #fff;
+    font-size: 24px;
+    margin-left: 10px;
+}

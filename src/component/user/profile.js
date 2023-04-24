@@ -16,7 +16,8 @@ class Profile extends React.Component {
     return (
       <Fragment>
         <SubHeader />
-        <div className="py-5 h-100 mb_pf">
+        {this.props.info !== null ? (
+           <div className="py-5 h-100 mb_pf">
           <div className="user_profile">
             <div className="row g-0">
               <div className="col-md-3 card profile_card">
@@ -116,6 +117,8 @@ class Profile extends React.Component {
             </div>
           </div>
         </div>
+        ) : null}
+       
         <Footer />
       </Fragment>
     );

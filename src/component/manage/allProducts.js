@@ -38,8 +38,8 @@ class AllProducts extends React.Component {
             <h1 className="text-uppercase text-center">tất cả sản phẩm</h1>
             <div className="row ad_pdhead">
               <div className="col-2">Mã SP</div>
-              <div className="col-3">Tên Sản Phẩm</div>
-              <div className="col-3">Mô Tả</div>
+              <div className="col-sm-4 col-lg-3">Tên Sản Phẩm</div>
+              <div className="col-sm-4 col-lg-3 text-center">Mô Tả</div>
             </div>
             <div>
               {this.props.allProducts.map((product, index) => (
@@ -48,12 +48,12 @@ class AllProducts extends React.Component {
                             <img src={this.state.images[index]} alt="" />
                         </div> */}
                   <div className="col-2">{product.id}</div>
-                  <div className="col-3">{product.name}</div>
-                  <div className="col-3">
+                  <div className="col-sm-4 col-lg-3">{product.name}</div>
+                  <div className="d-sm-none d-sm-block col-3">
                     <div>Chất Liệu: {product.material}</div>
                     <div>Loại: {product.type}</div>
                   </div>
-                  <div className="col-2">
+                  <div className="col-sm-4 col-lg-2">
                     <div>
                       {Intl.NumberFormat("vi-VN", {
                         style: "currency",
@@ -62,11 +62,11 @@ class AllProducts extends React.Component {
                     </div>
                     <div>Số Lượng: {product.count}</div>
                   </div>
-                  <div className="col-2 position-relative">
+                  <div className="col-sm-1 col-lg-2 position-relative">
                     <i className="fa-solid fa-sort-down icon_display"></i>
                     <div className="edit_frame">
                       <div onClick={() => this.deleteProduct(product.id)}>
-                        <i className="fa-solid fa-trash"></i>Xóa
+                        <i className="fa-solid fa-trash d-sm-none d-lg-block"></i>Xóa
                       </div>
                       <div>
                         <Link
@@ -75,7 +75,7 @@ class AllProducts extends React.Component {
                             state: {pd: product},
                           }}
                         >
-                        <i className="fa-solid fa-pen"></i>Thay Đổi
+                        <i className="fa-solid fa-pen d-sm-none d-lg-block"></i>Thay Đổi
                         </Link>
                       </div>
                     </div>

@@ -1,6 +1,6 @@
 .login-container {
   height: 100vh;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* .social {
@@ -9,10 +9,10 @@
 } */
 .social {
   border-radius: 20px;
-    border: none;
-    background-color: #f8e9e9;
-    margin-left: 70px;
-    margin-top: 10px;
+  border: none;
+  background-color: #f8e9e9;
+  margin-left: 70px;
+  margin-top: 10px;
 }
 .social:hover {
   background-color: rgba(204, 112, 75, 0.5);
@@ -31,7 +31,7 @@
   font-size: 28px;
   color: #000;
   border: none;
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .screen {
@@ -39,9 +39,7 @@
   position: absolute;
   top: 50px;
   left: 23%;
-  height: 660px;
   border-radius: 50px;
-  width: 60%;
   box-shadow: 0px 0px 24px #a48888;
   border-radius: 50px;
 }
@@ -88,12 +86,9 @@
 .login {
   width: 80%;
   height: 500px;
-  padding-left: 170px;
-  padding-top: 113px;
 }
 
-
-.login h2{
+.login h2 {
   padding-left: 85px;
   font-size: 40px;
 }
@@ -149,26 +144,25 @@
   /* -o-transition: all .4s ease-in-out; */
   /* -webkit-transition: all .4s ease-in-out; */
   background-image: #fff;
-  transition: all .4s ease-in-out;
+  transition: all 0.4s ease-in-out;
   /* background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673); */
   /* box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75); */
 }
 
-.login-submit:hover{
+.login-submit:hover {
   /* background-position: 100% 0; */
   background-image: linear-gradient(to right, #fff, #a9e0e2, #7ddade, #56dbdf);
 
-    /* moz-transition: all .4s ease-in-out; */
-    /* -o-transition: all .4s ease-in-out; */
-    /* -webkit-transition: all .4s ease-in-out; */
-    transition: all .4s ease-in-out;
-    color: #000;
+  /* moz-transition: all .4s ease-in-out; */
+  /* -o-transition: all .4s ease-in-out; */
+  /* -webkit-transition: all .4s ease-in-out; */
+  transition: all 0.4s ease-in-out;
+  color: #000;
 }
 
 .login-submit:active,
 .login-submit:focus
-/* .login-submit:hover  */
-{
+/* .login-submit:hover  */ {
   outline: none;
   color: #cc704b;
 }
@@ -185,19 +179,18 @@
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
-.text_rg{
+.text_rg {
   position: absolute;
   right: 7%;
   top: 74%;
   font-size: 20px;
 }
-
 
 .signup_link,
 .login_submit {
@@ -213,7 +206,7 @@ input:-webkit-autofill:active{
   color: #fff;
 }
 
-.signup_link:hover{
+.signup_link:hover {
   background-color: #cde8e9;
   color: #000;
   margin-top: 15px;
@@ -239,10 +232,10 @@ input:-webkit-autofill:active{
 
 .signup_link span,
 .login_submit span {
- font-size: 20px;
+  font-size: 20px;
 }
 
-.signup_link{
+.signup_link {
   color: #000;
   display: block;
   margin: 0;
@@ -253,13 +246,46 @@ input:-webkit-autofill:active{
   margin-top: 15px;
 }
 
-.signup_link span{
+.signup_link span {
   font-weight: bolder;
 }
 
-.showpass_login{
+.showpass_login {
   position: absolute;
   top: 33px;
   font-size: 19px;
   left: 69%;
+}
+
+@media only screen and (min-width: 576px) {
+  .login {
+    width: 100%;
+    height: 500px;
+    padding-left: 0;
+    padding-top: 0;
+  }
+  .screen {
+    width: 100%;
+    height: 550px;
+  }
+  .signup{
+    left: 3rem;
+    width: 85%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .screen {
+    width: 60%;
+    height: 660px;
+  }
+  .login{
+    width: 80%;
+    padding-left: 170px;
+    padding-top: 113px;
+  }
+  .signup{
+    left: 21rem;
+    width: 55%;
+  }
 }

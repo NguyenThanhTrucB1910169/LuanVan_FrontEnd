@@ -82,3 +82,11 @@
     border: none;
     text-align: center;
 }
+
+.listorder_empty{
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 20px;
+    color: #518dff;
+    font-weight: 600;
+}

@@ -36,8 +36,8 @@ class Footer extends React.Component {
               </div>
 
           <div className="text-center p-4">
-            © 2023 Copyright: &nbsp;
-            <a className="fw-bold text-decoration-none foo_text" href="/">
+            &reg; 2023 &nbsp;
+            <a className="fw-bold text-decoration-none foo_text" href="#">
               sparkleshine.com
             </a>
           </div>

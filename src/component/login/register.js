@@ -42,7 +42,7 @@ class Register extends React.Component {
       }
     }
     else {
-      toast.warning(<Toast message="Thông tin không hợp lệ" />, { className: 'warning'})
+      toast.error(<Toast message="Thông tin không hợp lệ" />, { className: 'fail'})
     }
   };
 
@@ -199,8 +199,8 @@ class Register extends React.Component {
         </div>
         {/* <div className="signup-container"> */}
         <div className="row g-0 justify-content-between signup">
-          <div className="col-xl-7 h-100 cus_font">
-            <div className="card-body p-md-5 text-black">
+          <div className="col-sm-12 col-xl-7 h-100 cus_font">
+            <div className="card-body p-sm-3 p-md-5 text-black">
               <form
                 action=""
                 encType="multipart/form-data"
@@ -241,9 +241,9 @@ class Register extends React.Component {
                 </div>
 
                 <div className="row mb_1">
-                  <div className="col-md-6">
+                  <div className="col-sm-12 col-md-6">
                     <div className="">
-                      <label className="form-label">
+                      <label className="w-100 form-label">
                         Mật khẩu
                         <input
                           type="password"
@@ -260,9 +260,9 @@ class Register extends React.Component {
                       )}
                     </div>
                   </div>
-                  <div className="col-md-6">
+                  <div className="col-sm-12 col-md-6">
                     <div className="">
-                      <label className="form-label">
+                      <label className="w-100 form-label">
                         Xác nhận mật khẩu
                         <input
                           type="password"
@@ -280,7 +280,7 @@ class Register extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className="d-md-flex justify-content-start align-items-center py-2">
+                <div className="d-flex flex-sm-column flex-md-row justify-content-start align-items-start py-2">
                   <h6 className="mb-0 me-4">Giới Tính: </h6>
                   <div
                     className="form-check form-check-inline mb-0 me-4"
@@ -347,7 +347,7 @@ class Register extends React.Component {
               </form>
             </div>
           </div>
-          <div className="col-xl-5 d-none d-xl-block">
+          <div className="col-sm-auto col-xl-5 d-none d-xl-block">
             <img
               // src="./signgif.gif"
               src="./rg.gif"

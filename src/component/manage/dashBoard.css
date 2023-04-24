@@ -1,0 +1,52 @@
+.ad_card {
+  border: none;
+  padding: 20px 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 4px;
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+}
+
+.ad_card:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transform: scale(1.05);
+}
+
+.ad_dashicon i {
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #afe0f8;
+  color: #1589c2;
+}
+
+.ad_dashtitle {
+  font-size: 73px;
+  text-transform: capitalize;
+  font-weight: 400;
+  letter-spacing: -3px;
+  transition: 700ms ease;
+  font-variation-settings: "wght" 311;
+  margin-bottom: 0.8rem;
+  color: #000;
+  font-family: "Pinyon Script", cursive;
+  outline: none;
+  text-align: center;
+}
+
+.ad_dashtitle:hover {
+  font-variation-settings: "wght" 582;
+  letter-spacing: 1px;
+}
+
+/* @media only screen and (min-width: 576px) {
+.dash_nav .item_nav_ad{
+  margin: 0;
+}
+}
+
+@media only screen and (min-width: 992px) {
+.dash_nav .item_nav_ad{
+  margin: 10px 20px;;
+}
+} */

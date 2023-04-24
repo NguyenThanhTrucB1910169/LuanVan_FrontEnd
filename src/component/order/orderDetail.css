@@ -1,89 +1,89 @@
-.view_detail{
-    font-family: "Montserrat", sans-serif;
-    margin: 30px 0 70px;
+.view_detail {
+  font-family: "Montserrat", sans-serif;
+  margin: 30px 0 70px;
 }
 
-.border_sum{
-    border-top: 1px dashed #000;
-    margin-top: 25px;
+.border_sum {
+  border-top: 1px dashed #000;
+  margin-top: 25px;
 }
 
-.detail_card{
-    margin: 0 0 30px 0;
-    height: 75PX;
-    border: none;
-    position: relative;
+.detail_card {
+  margin: 0 0 30px 0;
+  height: 75px;
+  border: none;
+  position: relative;
 }
 
-.detail_title{
-    font-size: 45px;
-    text-transform: uppercase;
+.detail_title {
+  font-size: 45px;
+  text-transform: uppercase;
 }
 
-.detail_card::after{
-    content: "";
-    width: 77%;
-    height: 1px;
-    top: 115%;
-    left: 8%;
-    position: absolute;
-    background-color: #00000073;
+.detail_card::after {
+  content: "";
+  width: 77%;
+  height: 1px;
+  top: 115%;
+  left: 8%;
+  position: absolute;
+  background-color: #00000073;
 }
 
-.detail_card .title_detail{
-    text-align: start;
-    height: 100%;
-    padding-top: 5px!important;
+.detail_card .title_detail {
+  text-align: start;
+  height: 100%;
+  padding-top: 5px !important;
 }
 
-.detail_card .img_detail{
-    height: 100%;
+.detail_card .img_detail {
+  height: 100%;
 }
 
-.detail_card .img_detail img{
-    width: 65%;
-    height: 100%;
-    border-radius: 20px;
+.detail_card .img_detail img {
+  width: 65%;
+  height: 100%;
+  border-radius: 20px;
 }
 
-.detail_card .price_detail{
-    padding: 22px 0 0 72px;
+.detail_card .price_detail {
+  padding: 22px 0 0 72px;
 }
 
-.detail_back a{
-    color: #000;
-    font-size: 21px;
+.detail_back a {
+  color: #000;
+  font-size: 21px;
 }
 
-.detail_info{
-    margin: 30px 12rem;
+.detail_info {
+  margin: 30px 12rem;
 }
 
-.sum_detail{
-    padding: 0 2rem 10px 68px;
-    font-size: 18px;
+.sum_detail {
+  padding: 0 2rem 10px 68px;
+  font-size: 18px;
 }
 
-.detail_user h4{
-    margin-bottom: 1.5rem;
-    font-size: 20px;
+.detail_user h4 {
+  margin-bottom: 1.5rem;
+  font-size: 20px;
 }
 
-.detail_pd{
-    position: relative;
+.detail_pd {
+  position: relative;
 }
 
-.detail_pd::after{
-    content: "";
-    position: absolute;
-    width: .5px;
-    height: 50%;
-    top: 14%;
-    left: 112%;
-    background-color: #000;
+.detail_pd::after {
+  content: "";
+  position: absolute;
+  width: 0.5px;
+  height: 50%;
+  top: 14%;
+  left: 112%;
+  background-color: #000;
 }
 
-.note_detail{
-    font-size: 19px;
-    margin: 20px 43px; 
+.note_detail {
+  font-size: 19px;
+  margin: 20px 43px;
 }

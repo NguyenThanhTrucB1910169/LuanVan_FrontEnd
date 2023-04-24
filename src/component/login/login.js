@@ -130,8 +130,8 @@ render() {
     // console.log(this.props.user)
     return (
       <Fragment>
-        <div className="login-container">
-          <div className="screen">
+        <div className="d-flex flex-sm-column login-container">
+          <div className="m-sm-0 screen col-sm-12">
             <div className="screen-content">
               {/* <Link to="/register" className="">
                 
@@ -139,11 +139,11 @@ render() {
               <button className="back-icon" onClick={this.previousPage}>
                 <i className="fa-solid fa-chevron-left"></i>
               </button>
-              <form className="login">
+              <form className="col-lg-6 login">
                 <h2 className="text-uppercase pb-4">đăng nhập</h2>
                 <div className="login-field">
                 <i className="login-icon fa-solid fa-user"></i>
-                  <input type="text" className="login-input" name="username" placeholder="Tên tài khoản" 
+                  <input type="text" className="w-sm-100 w-xl-75 login-input" name="username" placeholder="Tên tài khoản" 
                     value={this.state.username}
                     onChange={this.handleChange}
                   />
@@ -185,12 +185,9 @@ render() {
           </button> */}
             
             </div>
-            <div className="screen-background">
+            <div className="d-sm-none d-lg-block screen-background">
               <span className="screen-background-shape1"></span>
               <span className="screen-background-shape2"></span>
-              {/* <span className="screen-background-shape screen-background-shape2"></span> */}
-              {/* <span className="screen-background-shape screen-background-shape1"></span> */}
-              {/* <span className="screen-background-shape screen-background-shape5"></span> */}
             </div>
           </div>
         </div>

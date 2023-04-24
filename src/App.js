@@ -4,7 +4,6 @@ import Product from "./component/products/product";
 import Home from "./component/home/home";
 import Register from "./component/login/register";
 import Cart from "./component/cart/cart";
-import OrderSteps from "./component/order/orderConfirm";
 import CreateProduct from "./component/manage/newProduct";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";

@@ -53,7 +53,11 @@ class Header extends React.Component {
 
   handleLogout = async () => {
     await this.props.logoutHandler();
-    toast.success(<Toast message="Đăng xuất thành công" />);
+    if (this.props.isLogin === false) {
+      toast.success(<Toast message="Đăng xuất thành công" />, {
+        className: "success",
+      });
+    }
   };
 
   handleScroll = () => {
@@ -73,9 +77,8 @@ class Header extends React.Component {
   };
   render() {
     this.isActive = JSON.parse(localStorage.getItem("isactive"));
-    // console.log(this.props.user)
     return (
-      <header className="header_black">
+      <header className="header_main">
         <nav
           className={`${this.state.show ? "d-block stick" : "d-block"} ${
             this.state.slide ? " d-none" : "d-block"
@@ -88,19 +91,13 @@ class Header extends React.Component {
                   <div className="social_icone">
                     <ul>
                       <li>
-                        <a href="/">
-                          <i className="fa-brands fa-facebook-f"></i>
-                        </a>
+                        <i className="fa-brands fa-facebook-f"></i>
                       </li>
                       <li>
-                        <a href="/" className="ms-2">
-                          <i className="fa-brands fa-twitter fs-5"></i>
-                        </a>
+                        <i className="fa-brands fa-twitter fs-5"></i>
                       </li>
                       <li>
-                        <a href="/" className="ms-2">
-                          <i className="fa-brands fa-instagram fs-5"></i>
-                        </a>
+                        <i className="fa-brands fa-instagram fs-5"></i>
                       </li>
                     </ul>
                   </div>
@@ -114,51 +111,8 @@ class Header extends React.Component {
                     <i className="fa-solid fa-bars"></i>
                   </button>
                 </div>
-                <div
-                  className="col_header_b"
-                  // {
-                  //   this.state.show ? "col_header_b" : "col_header_b" 
-                  // }
-                >
-                  <div className="top_right float-end me-5">
-                    <ul>
-
-                      
-                      {/* <li className="language">
-                        <a href="/" className="text-decoration-none fs-6">
-                          VietNamese{" "}
-                          <i className="fa-solid fa-chevron-down"></i>
-                        </a>
-                        <ul className="dropdown_language">
-                          <li>
-                            <a href="/">English</a>
-                          </li>
-                          <li>
-                            <a href="/">VietNamese</a>
-                          </li>
-                        </ul>
-                      </li> */}
-                      <li className="top_links">{this.renderElement()}</li>
-                    {/* <li>
-                        <div className="search_btn">
-                          <a href="#">
-                            <i className="fa-solid fa-magnifying-glass"></i>
-                          </a>
-                          <div className="dropdown_search">
-                            <form action="/">
-                              <input
-                                type="text"
-                                placeholder="Search Product ...."
-                              />
-                              <button type="submit">
-                                <i className="fa-solid fa-magnifying-glass"></i>
-                              </button>
-                            </form>
-                          </div>
-                        </div>
-                      </li> */}
-                      </ul>
-                  </div>
+                <div className="col_header_b float-end me-4 mt-3 top_right">
+                  <div className="top_links">{this.renderElement()}</div>
                 </div>
               </div>
             </div>
@@ -168,150 +122,53 @@ class Header extends React.Component {
               <div className="row align-items-center justify-content-around">
                 <div className="text-center">
                   <div className="logo text-center">
-                    {/* <a href="index.html">
-                    <img src="images/logo/logo-ash.png" alt="" />
-                  </a> */}
                     <h1>Sparkle & Shine</h1>
                   </div>
                 </div>
                 <div className="">
                   <div className="sticky-header">
-                    {/* <div className="container"> */}
                     <div className="row align-items-center">
-                      {/* <div className="col-12"> */}
-                      {/* <div className="main_menu_inner"> */}
                       <div className="logo_sticky"></div>
                       <div className="main_menu">
-                        <nav>
-                          <ul>
-                            <li className="">
-                              <Link to="/" className="text-decoration-none fs-2">
-                                Trang Chủ <i className="ion-chevron-down"></i>
-                              </Link>
-                              {/* <ul className="sub_menu">
-                                <li>
-                                  <a href="/">Banner</a>
-                                </li>
-                                <li>
-                                  <a href="/">Featured</a>
-                                </li>
-                                <li>
-                                  <a href="/">Collection</a>
-                                </li>
-                                <li>
-                                  <a href="/">Best Selling</a>
-                                </li>
-                                <li>
-                                  <a href="/">News</a>
-                                </li>
-                                <li>
-                                  <a href="/">Blog</a>
-                                </li>
-                              </ul> */}
-                            </li>
-                            <li>
-                              <Link
-                                to="/products"
-                                className="text-decoration-none fs-2"
-                              >
-                                Sản Phẩm
-                                {/* <i className="ion-chevron-down"></i> */}
-                              </Link>
-                              {/* <a href="/" className="text-decoration-none fs-2">
-                              </a> */}
-                              {/* <ul className="mega_menu">
-                                <li>
-                                  <ul>
-                                    <li>
-                                      <a href="/">Hoa Tai</a>
-                                    </li>
-                                    <li>
-                                      <a href="/">Mặt Dây Chuyền</a>
-                                    </li>
-                                    <li>
-                                      <a href="/">Nhẫn</a>
-                                    </li>
-                                    <li>
-                                      <a href="/">Chuỗi ngọc</a>
-                                    </li>
-                                  </ul>
-                                </li>
-                                <li>
-                                  <ul>
-                                    <li>
-                                      <a href="/">Lắc Tay</a>
-                                    </li>
-
-                                    <li>
-                                      <a href="/">Vòng tay</a>
-                                    </li>
-
-                                    <li>
-                                      <a href="/">Đá quý</a>
-                                    </li>
-                                  </ul>
-                                </li>
-                                <li> */}
-                              {/* <a href="/">Other</a> */}
-                              {/* <ul>
-                                    <li>
-                                      <a href="/">Bạch Kim</a>
-                                    </li>
-                                    <li>
-                                      <a href="/">Bạc</a>
-                                    </li> */}
-                              {/* <li>
-                                  <a href="/">Coins</a>
-                                </li> */}
-                              {/* <li>
-                                      <a href="/">Pha Lê</a>
-                                    </li>
-                                  </ul>
-                                </li>
-                              </ul> */}
-                            </li>
-
-                            <li>
-                              <Link
-                                to="/intro"
-                                className="text-decoration-none fs-2"
-                              >
-                                Giới Thiệu
-                              </Link>
-                            </li>
-                            <li>
-                            <Link to="/contact" className="text-decoration-none fs-2">
+                        <ul>
+                          <li>
+                            <Link to="/" className="text-decoration-none fs-2">
+                              Trang Chủ
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/products"
+                              className="text-decoration-none fs-2"
+                            >
+                              Sản Phẩm
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/intro"
+                              className="text-decoration-none fs-2"
+                            >
+                              Giới Thiệu
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/contact"
+                              className="text-decoration-none fs-2"
+                            >
                               Liên Hệ
                             </Link>
-                             
-                            </li>
-                          </ul>
-                        </nav>
+                          </li>
+                        </ul>
                       </div>
-                      {/* </div> */}
-                      {/* </div> */}
-                      {/* </div> */}
                     </div>
                   </div>
                 </div>
-
-                {/* <div className="col-lg-3 col-md-7 col-6">
-                  <div className="middel_right">
-                    <div className="cart_link">
-                      <a href="/" className="text-decoration-none">
-                        <i className="fa-solid fa-bag-shopping fs-4 me-4"></i>
-                        <span className="me-2">67,598</span>
-                        <i className="fa fa-solid fa-chevron-down"></i>
-                      </a>
-                      <span className="cart_quantity">{}</span>
-                    </div>
-                  </div>
-                </div> */}
               </div>
             </div>
-            {/* <ToastContainer /> */}
           </div>
-          <div className="nav-stick"></div>
+          {/* <div className="nav-stick"></div> */}
         </nav>
 
         <div className={this.state.show ? "" : "d-none"}>
@@ -346,22 +203,20 @@ class Header extends React.Component {
               <div className="nav_social">
                 <ul>
                   <li>
-                    <a href="/" className="text-decoration-none">
-                      <i className="fa-brands fa-facebook-f"></i>
-                    </a>
+                    <i className="fa-brands fa-facebook-f fs-3"></i>
                   </li>
                   <li>
-                    <a href="/" className="ms-2 text-decoration-none">
-                      <i className="fa-brands fa-twitter"></i>
-                    </a>
+                    <i className="fa-brands fa-twitter fs-3"></i>
                   </li>
                   <li>
-                    <a href="/" className="ms-2 text-decoration-none">
-                      <i className="fa-brands fa-instagram"></i>
-                    </a>
+                    <i className="fa-brands fa-instagram fs-3"></i>
                   </li>
                 </ul>
-                <div className="nav_logout">
+                <div
+                  className={`nav_logout ${
+                    this.props.isLogin ? "d-block" : "d-none"
+                  }`}
+                >
                   <button onClick={this.handleLogout}>
                     <i className="fa-solid fa-right-from-bracket"></i>
                   </button>
@@ -395,10 +250,10 @@ const mapDispatchToProps = (dispatch) => {
 
 const IsLogin = (props) => {
   return (
-    <div>
-      <a href="/" className="text-decoration-none fs-6">
-        Tài khoản<i className="fa-solid fa-chevron-down"></i>
-      </a>
+    <Fragment>
+      <span className="fs-6">
+        Tài khoản<i className="fa-solid fa-chevron-down ms-3"></i>
+      </span>
       <ul className="dropdown_links">
         <li>
           <Link to="/profile">Thông Tin</Link>
@@ -407,12 +262,16 @@ const IsLogin = (props) => {
           <Link to="/cart">Giỏ Hàng</Link>
         </li>
         <li>
+          <Link to="/vieworder">Đơn Hàng</Link>
+        </li>
+        <li>
           <button className="logout" onClick={props.handleClick}>
             Đăng Xuất
           </button>
         </li>
       </ul>
-    </div>
+    </Fragment>
+    // </div>
   );
 };
 
@@ -423,7 +282,10 @@ const UnLogin = () => {
         {" "}
         Đăng Nhập
       </Link>
-      <Link to="/register" className="btn_links sign_up d-inline-block">
+      <Link
+        to="/register"
+        className="btn_links sign_up d-inline-block position-relative"
+      >
         {" "}
         Đăng Ký
       </Link>

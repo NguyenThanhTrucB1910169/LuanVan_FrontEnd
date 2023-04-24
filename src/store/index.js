@@ -1,15 +1,13 @@
-import {combineReducers, applyMiddleware } from "redux";
-import { legacy_createStore as createStore} from 'redux'
+import { combineReducers, applyMiddleware } from "redux";
+import { legacy_createStore as createStore } from "redux";
 import thunk from "redux-thunk";
-// import { applyMiddleware, compose } from "redux";
-// import thunk from "redux-thunk";
-import { persistReducer, persistStore  } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import { composeWithDevTools } from "redux-devtools-extension";
-import {products} from "./reducers/productReducer";
-import {createUser, loginAccount} from "./reducers/usersReducer";
-import {cartReducer} from "./reducers/cartReducer";
-import {orderReduce} from "./reducers/orderReducer";
+import { products } from "./reducers/productReducer";
+import { createUser, loginAccount } from "./reducers/usersReducer";
+import { cartReducer } from "./reducers/cartReducer";
+import { orderReduce } from "./reducers/orderReducer";
 import { adminReducer } from "./reducers/adminReducer";
 
 const reducer = combineReducers({
@@ -18,28 +16,23 @@ const reducer = combineReducers({
   cart: cartReducer,
   login: loginAccount,
   orderInfo: orderReduce,
-  admin: adminReducer
+  admin: adminReducer,
 });
 
-// let initialState = {
-// };
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-}
+};
 
-const persistedReducer = persistReducer(persistConfig, reducer)
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 const middleware = [thunk];
-// console.log(reducer.login)
 
 const store = createStore(
-  // reducer,
-  // // initialState,
   persistedReducer,
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
-const persistor = persistStore(store)
+const persistor = persistStore(store);
 
-export {store, persistor};
+export { store, persistor };

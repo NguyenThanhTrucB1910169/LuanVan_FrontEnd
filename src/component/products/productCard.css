@@ -175,3 +175,16 @@
 .product_name{
   margin-top: 5px
 }
+
+@media only screen and (min-width: 576px) {
+  .image_slide{
+    height: 70%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .image_slide{
+    height: 95%;
+  }
+}
+

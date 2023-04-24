@@ -7,9 +7,9 @@ const initState = {
 export const cartReducer = (state = initState, action) => {
   switch (action.type) {
     case Types.ADD_TO_CART_SUCCESS:
-      return { ...state, message: true };
+      return { ...state, isAdd: true };
     case Types.ADD_TO_CART_FAILED:
-      return { ...state, message: false}
+      return { ...state, isAdd: false}
     case Types.LOAD_CART_SUCCESS:
       state.cartItem = action.payload;
       return { ...state, empty: false };

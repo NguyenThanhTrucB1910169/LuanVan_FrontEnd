@@ -79,9 +79,11 @@ const logoutHandler = () => {
     // console.log("logout");
     try {
       // axios.defaults.withCredentials = true;
+      console.log('logout')
       await axios
         .get("http://localhost:3005/api/logout", { withCredentials: true })
         .then((response) => {
+          console.log(response.data)
           // console.log(response)
           localStorage.setItem("isactive", false);
           dispatch({

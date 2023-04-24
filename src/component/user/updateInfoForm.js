@@ -1,6 +1,4 @@
 import React from "react";
-// import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
 import { toast } from "react-toastify";
 import Toast from "../home/toast";
 import "./updateInfoForm.css";
@@ -53,7 +51,6 @@ class UpdateInfoForm extends React.Component {
     if (this.state.isValid) {
       let info = {};
       if (this.state.isProfile) {
-        // consol
         if (typeof this.state.avatar === "object") {
           await this.uploadImage(this.state.avatar[0]);
           info = {
@@ -64,8 +61,7 @@ class UpdateInfoForm extends React.Component {
             password: this.state.pass,
             avatar: this.state.imgUrl,
           };
-        } else if(this.state.avatar === '')
-        {
+        } else if (this.state.avatar === "") {
           info = {
             address: this.state.address,
             fullname: this.state.fullname,
@@ -75,7 +71,6 @@ class UpdateInfoForm extends React.Component {
             avatar: this.state.imgReview,
           };
         }
-        // console.log(info);
       } else {
         info = {
           address: this.state.address,
@@ -84,9 +79,7 @@ class UpdateInfoForm extends React.Component {
           email: this.state.email,
         };
       }
-
-      // console.log(info);
-      this.props.updateInfo(info);
+      await this.props.updateInfo(info);
       if (this.props.isUpdate) {
         toast.success(<Toast message="Cập nhật thông tin thành công" />, {
           className: "success",
@@ -94,12 +87,12 @@ class UpdateInfoForm extends React.Component {
         this.setState({ isCoun: true });
       } else {
         toast.error(<Toast message="Cập nhật thông tin thất bại" />, {
-          className: "error",
+          className: "fail",
         });
       }
     } else
       toast.error(<Toast message="Cập nhật thông tin" />, {
-        className: "error",
+        className: "fail",
       });
   };
 
@@ -209,7 +202,6 @@ class UpdateInfoForm extends React.Component {
   };
 
   handleImage = (e) => {
-    // console.log(e.target.files)
     this.setState({
       avatar: e.target.files,
       isValid: true,
@@ -217,23 +209,21 @@ class UpdateInfoForm extends React.Component {
   };
 
   render() {
-    // console.log(this.props.location.state.edit)
     return (
       <Fragment>
         <SubHeader />
-
-        <div className="">     
         <div className="">
-        {typeof this.props.location.state.edit !== 'undefined'? (
-          <Link to='/order' className="return_order"><i className="fa-solid fa-left-long"></i></Link>
-        ) : ""}
-
-        </div>   
-        {/* <div className="col-xl-11 col-sm-10"> */}
-          <form
-            action=""
-            className="col-xl-7 col-sm-10 form_detail"
-          >
+          <div className="">
+            {typeof this.props.location.state.edit !== "undefined" ? (
+              <Link to="/order" className="return_order">
+                <i className="fa-solid fa-left-long"></i>
+              </Link>
+            ) : (
+              ""
+            )}
+          </div>
+          {/* <div className="col-xl-11 col-sm-10"> */}
+          <form action="" className="col-xl-7 col-sm-10 form_detail">
             <h1 className="update_title">
               {this.state.isProfile
                 ? "Cập nhật thông tin cá nhân"
@@ -366,31 +356,43 @@ class UpdateInfoForm extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={`col-12 mt-3 row ${this.state.isCoun ? 'justify-content-between' : 'justify-content-center'} text-center`}>
-              {/* <div> */}
+            <div
+              className={`col-12 mt-3 row ${
+                this.state.isCoun
+                  ? "justify-content-between"
+                  : "justify-content-center"
+              } text-center`}
+            >
               {this.state.isCoun && this.state.isProfile ? (
                 <Link to="/profile" className="col-3 btn_inupdate">
                   <i class="fa-solid fa-angles-left"></i>
                   Trở về
                 </Link>
+              ) : !this.state.isCoun && this.state.isProfile ? (
+                <Link to="/profile" className="col-3 btn_inupdate">
+                  <i class="fa-solid fa-angles-left"></i>
+                  Thoát
+                </Link>
+              ) : !this.state.isCoun && !this.state.isProfile ? (
+                <Link to="/cart" className="col-3 btn_inupdate">
+                  <i class="fa-solid fa-angles-left"></i>
+                  Thoát
+                </Link>
               ) : null}
-              {/* </div> */}
-
               <button
                 onClick={this.handleSubmit}
-                className={`btn_updateinfo ${this.state.isCoun ? 'col-6' : 'col-12'} text-center`}
+                className="btn_updateinfo col-12 text-center"
               >
                 Lưu thông tin
               </button>
 
-              { this.state.isCoun && !this.state.isProfile ? (
+              {this.state.isCoun && !this.state.isProfile ? (
                 <Link to="/order" className="col-3 btn_inupdate">
                   Tiếp tục <i class="fa-solid fa-angles-right"></i>
                 </Link>
               ) : null}
             </div>
           </form>
-        {/* </div> */}
         </div>
 
         <Footer />

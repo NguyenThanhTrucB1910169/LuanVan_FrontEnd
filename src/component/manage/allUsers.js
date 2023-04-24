@@ -29,7 +29,7 @@ class AllUsers extends React.Component {
       <Fragment>
         <div className="row">
           <SideBar />
-          <div className="main_side col-6 my-4">
+          <div className="main_side col-sm-8 col-lg-6 my-4 ms-3">
             <h1 className="text-center text-uppercase">danh sách người dùng</h1>
             {this.props.users
               ? this.props.users.map((user, key) => (

@@ -31,19 +31,26 @@ class ProductDetail extends React.Component {
 
   addToCart = () => {
     // console.log(this.props.detailProduct.id, this.state.qty);
-    this.props.handleAddToCart(this.props.detailProduct.id, this.state.qty).then(() => {
-      if(this.props.isAdd) {
-        toast.success(<Toast message="Đã thêm vào giỏ hàng"/>, {
-          className: 'success',
-        })
-        this.setState({qty: 0})
-      }
-      else {
-        toast.error(<Toast message="Đăng nhập để tiếp tục"/>, {
-          className: 'fail',
-        })
-      }
-    })
+    if(this.state.qty === 0){
+      toast.warning(<Toast message="Chọn số lượng"/>, {
+        className: 'warning',
+      })
+    } else {
+      this.props.handleAddToCart(this.props.detailProduct.id, this.state.qty).then(() => {
+        console.log(this.props.isAdd)
+        if(this.props.isAdd) {
+          toast.success(<Toast message="Đã thêm vào giỏ hàng"/>, {
+            className: 'success',
+          })
+          this.setState({qty: 0})
+        }
+        else {
+          toast.error(<Toast message="Đăng nhập để tiếp tục"/>, {
+            className: 'fail',
+          })
+        }
+      })
+    }
   };
 
   render() {
@@ -144,7 +151,7 @@ class ProductDetail extends React.Component {
                       <button
                         onClick={() => {
                           if (this.state.qty === 0)
-                          toast.success(
+                          toast.warning(
                               <Toast message="Không thể giảm" />,
                               {
                                 className: "warning",
@@ -213,7 +220,7 @@ class ProductDetail extends React.Component {
 const mapStateToProps = (state) => {
   return {
     detailProduct: state.getAllProducts.detail,
-    isAdd: state.cart.message
+    isAdd: state.cart.isAdd
   };
 };
 

@@ -9,12 +9,15 @@ export const orderReduce = (state = initState, action) => {
     case Types.ORDER_SUCCESS:
       return { ...state, placed: action.payload };
     case Types.ORDER_FAILED:
-      return { ...state, message: action.payload };
+      return { ...state, error: action.payload, placed: false };
     case Types.GET_ORDERS_SUCCESS:
-      // console.log(action.payload);
-      return { ...state, listOrder: action.payload };
+      return { ...state, listOrder: action.payload};
     case Types.GET_ORDERS_FAILED:
       return { ...state, error: action.payload };
+    case Types.CONFIRM_ORDER_SUCCESS:
+      return { ...state, listOrder: action.payload};
+    case Types.CONFIRM_ORDER_FAILED: 
+      return { ...state, error: action.payload, };
     case Types.DETAIL_ORDER_SUCCESS:
       return { ...state, detail: action.payload };
     case Types.DETAIL_ORDER_FAILED:

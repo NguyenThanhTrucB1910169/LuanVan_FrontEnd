@@ -16,7 +16,7 @@ class ProductCard extends React.Component {
   };
 
   nextSlide = () => {
-    console.log(this.state.arrayImages.length);
+    // console.log(this.state.arrayImages.length);
     if (this.state.slideIndex !== this.state.arrayImages.length - 1) {
       this.setState({ slideIndex: this.state.slideIndex + 1 });
     } else if (this.state.slideIndex === this.state.arrayImages.length - 1) {
@@ -40,27 +40,31 @@ class ProductCard extends React.Component {
   };
 
   getDetail = () => {
-    this.props.getDetailPd(this.props.cardItem)
-    this.props.history.push('/product/detail')
-  }
+    this.props.getDetailPd(this.props.cardItem);
+    this.props.history.push("/product/detail");
+  };
 
-  componentDidMount() {
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.cardItem !== this.props.cardItem) {
+      this.configImage(this.props.cardItem.image);
+    }
+  };
+
+  componentDidMount = () => {
     this.configImage(this.props.cardItem.image);
     setInterval(() => {
       if (this.state.slideIndex === this.state.arrayImages.length - 1)
         this.setState({ slideIndex: 0 });
       else this.setState({ slideIndex: this.state.slideIndex + 1 });
     }, 5000);
-  }
+  };
 
   render() {
     // console.log("list images:", this.props.cardItem)
     return (
       <Fragment>
-        <div
-          className="my-3 product-card"
-          style={{ backgroundImage: `url("${this.state.arrayImages[1]}")` }}
-        >
+        <div className="my-3 product-card">
+          <img src={this.state.arrayImages[1]} alt="" className="h-100 w-100" />
           <div className="product_hover">
             <div className="carditem">
               <div className="row img-slide">
@@ -100,18 +104,21 @@ class ProductCard extends React.Component {
                 </div>
               </button> */}
               <div className="btn_group">
-              <button 
-              onClick={this.getDetail}
-              className="button-detail">
-                Chi tiết
+                <button onClick={this.getDetail} className="button-detail">
+                  Chi tiết
                   <i className="ms-1 fa-solid fa-angles-right"></i>
-              </button>
+                </button>
                 {/* <button className="">
                   
                 </button> */}
                 <button className="btn_add" onClick={this.handleAdd}>
                   <i className="fa-solid fa-cart-plus"></i>
-                  <span>{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.props.cardItem.price)}</span>
+                  <span>
+                    {Intl.NumberFormat("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                    }).format(this.props.cardItem.price)}
+                  </span>
                 </button>
               </div>
             </div>

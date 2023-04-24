@@ -19,3 +19,24 @@
 .ad_detail_title .phone{
     text-align: end;
 }
+
+.ad_order_confirm{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.ad_btn_order{
+    color: #000;
+    background-color: #fff;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 25px;
+    padding: 4px 12px;
+    font-size: 20px;
+}
+
+.ad_btn_order:hover{
+    color: #00c5c5;
+}

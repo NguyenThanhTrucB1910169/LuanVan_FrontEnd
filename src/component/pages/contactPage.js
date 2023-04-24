@@ -12,8 +12,8 @@ class ContactPage extends React.Component {
           <div className="position-relative cont_overlay">
             <div className="overlay_ct"></div>
           </div>
-          <div className="row cont_content pt-5 ms-5">
-            <div className="col-4 cont_link">
+          <div className="d-flex flex-sm-column flex-lg-row cont_content pt-5 ms-5">
+            <div className="col-sm-12 col-lg-4 cont_link">
               <h1 className="">Liên hệ </h1>
               <ul className="p-0">
                 <li>
@@ -43,7 +43,7 @@ class ContactPage extends React.Component {
                 </li>
               </ul>
             </div>
-            <div className="col-4 cont_hour">
+            <div className="col-sm-12 col-lg-4 cont_hour">
               <h1>Giờ hoạt động</h1>
               <ul className="p-0">
                 <li>Thứ 2 - Thứ 6: 8:00AM - 10:00PM</li>
@@ -54,8 +54,8 @@ class ContactPage extends React.Component {
           </div>
           <div className="cont_assist">
           <h2 className="text-center fw-semibold">Dịch Vụ Tại S&S</h2>
-            <div className="mf cont_mt row justify-content-around">
-              <div className="col-5 text-center">
+            <div className="d-flex flex-sm-column flex-lg-row m-sm-0 mf cont_mt justify-content-around">
+              <div className="col-sm-12 col-lg-5 text-center">
                 <img src="./cont-3.webp" alt="" />
                 <h3>Dịch Vụ Sản Phẩm</h3>
                 <p>
@@ -63,7 +63,7 @@ class ContactPage extends React.Component {
                   cỡ trong suốt thời gian sử dụng trang sức S&S của bạn.
                 </p>
               </div>
-              <div className="col-5 text-center">
+              <div className="col-sm-12 col-lg-5 text-center">
                 <img src="./cont-4.webp" alt="" />
                 <h3>Chăm Sóc Sản Phẩm</h3>
                 <p>
