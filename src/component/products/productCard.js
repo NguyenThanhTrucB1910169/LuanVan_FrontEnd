@@ -16,7 +16,6 @@ class ProductCard extends React.Component {
   };
 
   nextSlide = () => {
-    // console.log(this.state.arrayImages.length);
     if (this.state.slideIndex !== this.state.arrayImages.length - 1) {
       this.setState({ slideIndex: this.state.slideIndex + 1 });
     } else if (this.state.slideIndex === this.state.arrayImages.length - 1) {
@@ -60,7 +59,6 @@ class ProductCard extends React.Component {
   };
 
   render() {
-    // console.log("list images:", this.props.cardItem)
     return (
       <Fragment>
         <div className="my-3 product-card">
@@ -83,34 +81,12 @@ class ProductCard extends React.Component {
               </div>
               <div className="product_name">
                 <h5 className="text-center mb-0">{this.props.cardItem.name}</h5>
-
-                {/* <h4 className="text-center">{this.props.cardItem.name}</h4> */}
               </div>
-              {/* <div className="mt-2">
-              <p className="mb-0" style={{fontFamily: "'Bulgari Type','Futura'"}}>Chất liệu: {this.props.cardItem.material}</p>
-              <h6 className="">Loại trang sức: {this.props.cardItem.type}</h6>
-
-
-                {/* <h4 className="text-center">{this.props.cardItem.name}</h4> 
-              </div> */}
-              {/* <button className="row add-btn" onClick={this.handleAdd}>
-                <div className="col-9 h-100 text-start">
-                  <p>
-                  <span>{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(this.props.cardItem.price)}</span>                   
-                  </p>
-                </div>
-                <div className="col-3 h-100 add-icon">
-                  <i className="fa-solid fa-cart-plus"></i>
-                </div>
-              </button> */}
               <div className="btn_group">
                 <button onClick={this.getDetail} className="button-detail">
                   Chi tiết
                   <i className="ms-1 fa-solid fa-angles-right"></i>
                 </button>
-                {/* <button className="">
-                  
-                </button> */}
                 <button className="btn_add" onClick={this.handleAdd}>
                   <i className="fa-solid fa-cart-plus"></i>
                   <span>

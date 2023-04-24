@@ -140,29 +140,19 @@
   box-shadow: 0px 2px 2px #cac9c5;
   cursor: pointer;
   transition: 0.2s;
-  /* moz-transition: all .4s ease-in-out; */
-  /* -o-transition: all .4s ease-in-out; */
-  /* -webkit-transition: all .4s ease-in-out; */
   background-image: #fff;
   transition: all 0.4s ease-in-out;
-  /* background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673); */
-  /* box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75); */
 }
 
 .login-submit:hover {
-  /* background-position: 100% 0; */
   background-image: linear-gradient(to right, #fff, #a9e0e2, #7ddade, #56dbdf);
-
-  /* moz-transition: all .4s ease-in-out; */
-  /* -o-transition: all .4s ease-in-out; */
-  /* -webkit-transition: all .4s ease-in-out; */
   transition: all 0.4s ease-in-out;
   color: #000;
 }
 
 .login-submit:active,
 .login-submit:focus
-/* .login-submit:hover  */ {
+{
   outline: none;
   color: #cc704b;
 }

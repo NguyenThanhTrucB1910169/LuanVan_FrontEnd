@@ -53,7 +53,7 @@ class Cart extends React.Component {
     return (
       <Fragment>
         <SubHeader />
-        <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
+        <section className="h-100 h-custom" style={{ backgroundColor: "#eee", paddingTop: '6rem' }}>
           <div className="container py-5 h-100">
             <div className="row justify-content-around">
               <div className="col-xl-8 card-left">

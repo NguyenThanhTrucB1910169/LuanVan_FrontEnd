@@ -8,18 +8,36 @@ import { toast } from "react-toastify";
 import Toast from "../home/toast";
 
 class SubHeader extends React.Component {
-  logout = async() => {
-    // console.log("logged out");
-    await this.props.logout()
-    if(this.props.isLogin === false) {
-      console.log("logged out")
+  constructor(props) {
+    super(props);
+    this.state = {
+      amout: 0,
+    };
+  }
+  logout = async () => {
+    await this.props.logout();
+    if (this.props.isLogin === false) {
+      console.log("logged out");
       toast.success(<Toast message="Đăng xuất thành công" />, {
         className: "success",
       });
       this.props.history.push("/");
     }
-    // });
   };
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.amout !== this.props.cartCurrent.cartItem.length) {
+      this.setState({ amout: this.props.cartCurrent.cartItem.length });
+    }
+  };
+
+  componentDidMount() {
+    if (this.props.cartCurrent.empty === true) {
+      this.setState({ amout: 0 });
+    } else {
+      this.setState({ amout: this.props.cartCurrent.cartItem.length });
+    }
+  }
 
   renderElement = () => {
     if (this.props.isLogin !== undefined) {
@@ -27,18 +45,19 @@ class SubHeader extends React.Component {
       else {
         return <UnLogin />;
       }
-    } else {
-      if (this.isActive) {
-        return <IsLogin handleClick={this.logout} />;
-      }
-      return <UnLogin />;
     }
+    // else {
+    //   if (this.isActive) {
+    //     return <IsLogin handleClick={this.logout} cart={this.state.amout} />;
+    //   }
+    //   return <UnLogin />;
+    // }
   };
 
   render() {
     return (
       <Fragment>
-        <header className="sub_header me-0 ps-4 pt-3">
+        <header className="sub_header me-0 ps-4 pt-2">
           <div className="row align-items-center justify-content-between w-100">
             <div className="col-lg-2 col-md-1 col-xxl-3 col-xl-3">
               <div className="main_menu">
@@ -58,8 +77,12 @@ class SubHeader extends React.Component {
                 <h1>Sparkle & Shine</h1>
               </div>
             </div>
-            <div className="col-lg-3 col-md-12 mb-md-3 mt-3 sub_top mb-sm-3">
-              <div className="top_links">{this.renderElement()}</div>
+            <div className="col-lg-3 col-md-12 mb-md-3 mt-3 sub_top mb-sm-3 row justify-content-start">
+              <div className="col-5 top_links">{this.renderElement()}</div>
+              <div className="col-2 cart_icon">
+                <i className="fa fa-shopping-cart text-muted"></i>
+                <div className="cart_amount">{this.state.amout}</div>
+              </div>
             </div>
           </div>
         </header>
@@ -71,6 +94,7 @@ class SubHeader extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isLogin: state.login.isAuth,
+    cartCurrent: state.cart,
   };
 };
 
@@ -113,7 +137,10 @@ const UnLogin = () => {
         {" "}
         Đăng Nhập
       </Link>
-      <Link to="/register" className="btn_links sign_up d-inline-block position-relative">
+      <Link
+        to="/register"
+        className="btn_links sign_up d-inline-block position-relative"
+      >
         {" "}
         Đăng Ký
       </Link>

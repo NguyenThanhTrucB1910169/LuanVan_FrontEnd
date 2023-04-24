@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { fetchProducts, saveDetail } from "../../store/actions/productsAction";
-import { addToCart } from "../../store/actions/cartAction";
+import { addToCart, getCartItem } from "../../store/actions/cartAction";
 import "./product.css";
 import Footer from "../home/footer";
 import ProductCard from "./productCard";
@@ -41,7 +41,7 @@ class Product extends React.Component {
     this.props.fetchProductsRedux();
   }
 
-  addToCart = async(id) => {
+  addToCart = async (id) => {
     if (this.props.isLogin) {
       await this.props.handleAddToCart(id, 1);
       // console.log(this.props.messageAdded)
@@ -49,6 +49,7 @@ class Product extends React.Component {
         toast.success(<Toast message="Đã thêm vào giỏ hàng" />, {
           className: "success",
         });
+        await this.props.loadCart();
       }
     } else {
       toast.warning(<Toast message="Đăng nhập để tiếp tục" />, {
@@ -74,27 +75,7 @@ class Product extends React.Component {
   };
 
   filterProducts = (type, data, e) => {
-    // console.log(e.currentTarget.textContent)
-    // if (this.state.isActive !== null) {
-    //   e.currentTarget.classList.remove("active_btn");
-    // } else {
-    //   e.currentTarget.classList.toggle("active_btn");
-    //   this.setState({
-    //     isActive: data,
-    //   });
-    // }
-    // console.log(e.currentTarget)
-    // this.setState({ isActive: data }, () => {
-    //   console.log(this.state.isActive);
-    // });
-    // console.log(data);
     var listPd = [];
-    // console.log(e.currentTarget.classList.length)
-    // if(e.currentTarget.classList.length > 0) {
-    //   console.log(e.currentTarget.classList)
-    // }
-    // console.log(e.currentTarget.classList);
-    // e.currentTarget.classList.contains("active_btn");
     if (type === 1) {
       listPd = [...this.props.listProduct].filter(
         (product) => product.material.toLowerCase() === data.toLowerCase()
@@ -110,9 +91,9 @@ class Product extends React.Component {
 
   allProducts = () => {
     this.setState({
-      searchProduct: this.state.products
-    })
-  }
+      searchProduct: this.state.products,
+    });
+  };
 
   render() {
     return (
@@ -156,31 +137,6 @@ class Product extends React.Component {
                       </button>
                     </li>
                   ))}
-                  {/* <li>
-                    <button onClick={() => this.filterProducts(1, "Bạch Kim")}>
-                      Bạch Kim
-                    </button>
-                  </li>
-                  <li>
-                    <button onClick={() => this.filterProducts(1, "Vàng Hồng")}>
-                      Vàng Hồng
-                    </button>
-                  </li>
-                  <li>
-                    <button onClick={() => this.filterProducts(1, "Ngọc Trai")}>
-                      Ngọc Trai
-                    </button>
-                  </li>
-                  <li>
-                    <button onClick={() => this.filterProducts(1, "Bạc")}>
-                      Bạc
-                    </button>
-                  </li>
-                  <li>
-                    <button onClick={() => this.filterProducts(1, "Đá Quý")}>
-                      Đá Quý
-                    </button>
-                  </li> */}
                 </ul>
               </div>
               <div className="ms-sm-3 col-md-2 col-lg-2 col-xl-2 col-xxl-2 btn_type">
@@ -202,7 +158,9 @@ class Product extends React.Component {
                 </ul>
               </div>
               <div className="ms-sm-4 col-md-2 col-lg-2 col-xl-2 col-xxl-1 p-0">
-                <button className="btn_all" onClick={this.allProducts}>Tất cả</button>
+                <button className="btn_all" onClick={this.allProducts}>
+                  Tất cả
+                </button>
               </div>
             </div>
             <div className="me-md-3 search_btn">
@@ -221,23 +179,25 @@ class Product extends React.Component {
             </div>
           </div>
           <div className="row justify-content-sm-around mx-3 justify-content-lg-start">
-            {this.state.searchProduct.length > 0 && this.state.searchProduct !== null
-              ? this.state.searchProduct.map((product, index) => (
-                  <div className="col-sm-11 col-md-6 col-lg-5 col-xl-4 col-xxl-3" key={index}>
-                    <ProductCard
-                      cardItem={product}
-                      onSendProduct={this.addToCart}
-                      getDetailPd={(pd) => this.props.saveDetailInfo(pd)}
-                    />
-                  </div>
-                ))
-              : 
-              (
-                <div className="text-center">
-                  <img src="./noproduct.gif" alt="" className="img_emptypd"/>
+            {this.state.searchProduct.length > 0 &&
+            this.state.searchProduct !== null ? (
+              this.state.searchProduct.map((product, index) => (
+                <div
+                  className="col-sm-11 col-md-6 col-lg-5 col-xl-4 col-xxl-3"
+                  key={index}
+                >
+                  <ProductCard
+                    cardItem={product}
+                    onSendProduct={this.addToCart}
+                    getDetailPd={(pd) => this.props.saveDetailInfo(pd)}
+                  />
                 </div>
-              )
-              }
+              ))
+            ) : (
+              <div className="text-center">
+                <img src="./noproduct.gif" alt="" className="img_emptypd" />
+              </div>
+            )}
           </div>
         </div>
         <Footer />
@@ -247,7 +207,6 @@ class Product extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state.getAllProducts)
   return {
     listProduct: state.getAllProducts.products,
     messageAdded: state.cart.isAdd,
@@ -260,6 +219,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchProductsRedux: () => dispatch(fetchProducts()),
     handleAddToCart: (id, qt) => dispatch(addToCart(id, qt)),
     saveDetailInfo: (pd) => dispatch(saveDetail(pd)),
+    loadCart: () => dispatch(getCartItem()),
   };
 };
 

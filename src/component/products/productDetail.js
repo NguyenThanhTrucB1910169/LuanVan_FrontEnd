@@ -5,7 +5,7 @@ import SubHeader from "../layouts/subHeader";
 import Footer from "../home/footer";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart } from "../../store/actions/cartAction";
+import { addToCart, getCartItem } from "../../store/actions/cartAction";
 import { toast } from "react-toastify";
 import Toast from "../home/toast";
 class ProductDetail extends React.Component {
@@ -30,26 +30,26 @@ class ProductDetail extends React.Component {
   }
 
   addToCart = () => {
-    // console.log(this.props.detailProduct.id, this.state.qty);
     if(this.state.qty === 0){
       toast.warning(<Toast message="Chọn số lượng"/>, {
         className: 'warning',
       })
     } else {
-      this.props.handleAddToCart(this.props.detailProduct.id, this.state.qty).then(() => {
+      this.props.handleAddToCart(this.props.detailProduct.id, this.state.qty).then(async() => {
         console.log(this.props.isAdd)
         if(this.props.isAdd) {
           toast.success(<Toast message="Đã thêm vào giỏ hàng"/>, {
             className: 'success',
           })
           this.setState({qty: 0})
+          await this.props.loadCart()
         }
         else {
           toast.error(<Toast message="Đăng nhập để tiếp tục"/>, {
             className: 'fail',
           })
         }
-      })
+    })
     }
   };
 
@@ -60,9 +60,7 @@ class ProductDetail extends React.Component {
         <div className="pd-detail">
           <div className="mb-5 contain-detail">
             <div className="row d-flex justify-content-around h-100">
-              {/* <div className="col-md-10"> */}
-              {/* <div className="card"> */}
-              {/* <div className="row"> */}
+            
               <div className="col-md-6 img_list">
                 <div className="images">
                   <div className="text-center p-4 main-image pt-0">
@@ -89,22 +87,18 @@ class ProductDetail extends React.Component {
               </div>
               <div className="col-md-5">
                 <div className="product p-4">
-                  <div className="d-flex justify-content-between align-items-center">
+                  <div>
                     <Link
                       to="/products"
-                      className="d-flex align-items-center btn_back"
+                      className="btn_back"
                     >
                       {" "}
                       <i className="fa fa-long-arrow-left"></i>{" "}
-                      {/* <span className="ml-1">Back</span>{" "} */}
                     </Link>{" "}
-                    <i className="fa fa-shopping-cart text-muted"></i>
                   </div>
                   <div className="mt-5 mb-2">
                     {" "}
-                    {/* <span className="text-uppercase text-muted brand">
-                            Orianz
-                          </span> */}
+                    
                     <h5 className="text-uppercase detail_name">
                       {this.state.pd.name}
                     </h5>
@@ -205,9 +199,7 @@ class ProductDetail extends React.Component {
                   </div>
                 </div>
               </div>
-              {/* </div> */}
-              {/* </div> */}
-              {/* </div> */}
+              
             </div>
           </div>
         </div>
@@ -227,6 +219,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleAddToCart: (id, qt) => dispatch(addToCart(id, qt)),
+    loadCart: () => dispatch(getCartItem())
   };
 };
 
