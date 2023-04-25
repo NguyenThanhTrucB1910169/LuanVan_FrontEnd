@@ -2,7 +2,11 @@ import React from "react";
 import { Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getOrderByUser, detailOrder } from "../../store/actions/orderAction";
+import {
+  getOrderByUser,
+  detailOrder,
+  getOrderDeliver,
+} from "../../store/actions/orderAction";
 import { changeStatusOrder } from "../../store/actions/adminAction";
 import "./viewOrders.css";
 import moment from "moment";
@@ -31,9 +35,12 @@ class ViewOrders extends React.Component {
     }
   };
 
-  updateStatus = (id, currentstatus) => {
+  updateStatus = async (id, currentstatus) => {
     if (currentstatus === 1) {
-      this.props.updateStatusOrder(id, 2);
+      await this.props.updateStatusOrder(id, 2);
+      toast.success(<Toast message="Xác nhận nhận hàng." />, {
+        className: "success",
+      });
     } else if (currentstatus === 2) {
       toast.warning(<Toast message="Đã xác nhận đơn" />, {
         className: "warning",
@@ -57,10 +64,10 @@ class ViewOrders extends React.Component {
     return (
       <Fragment>
         <SubHeader />
-        <div class="container mt-5 mb-5 ">
-          <div class="d-flex justify-content-center row">
-            <div class="col-md-10 col-xl-8">
-              <div class="his_order">
+        <div className="container view_order_contain">
+          <div className="d-flex justify-content-center row">
+            <div className="col-md-10 col-xl-8">
+              <div className="his_order">
                 <h1>Lịch sử đặt hàng</h1>
               </div>
               <div className="row justify-content-between list_title">
@@ -72,7 +79,8 @@ class ViewOrders extends React.Component {
                 <div className="col-1"></div>
               </div>
               <div className="list_order">
-                {this.state.listOrders.length > 0 && this.props.user !== null ? (
+                {this.state.listOrders.length > 0 &&
+                this.props.user !== null ? (
                   this.state.listOrders.map((order, index) => (
                     <div className="order_card" key={order.id}>
                       <div className="col-1">#S{order.id}</div>
@@ -157,6 +165,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     viewAllOrders: () => dispatch(getOrderByUser()),
     updateStatusOrder: (id, status) => dispatch(changeStatusOrder(id, status)),
+    reloadDeliver: () => dispatch(getOrderDeliver()),
   };
 };
 

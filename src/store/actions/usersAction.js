@@ -3,7 +3,6 @@ import axios from "axios";
 
 const createUsers = (req) => {
   return async (dispatch) => {
-    console.log(req);
     try {
       await axios.post("http://localhost:3005/api/signup", req).then((val) => {
         if (val.data === true) {
@@ -27,13 +26,11 @@ const createUsers = (req) => {
 const authUsers = (req, res) => {
   return async (dispatch) => {
     try {
-      // axios.defaults.withCredentials = true;
       await axios
         .post("http://localhost:3005/api/signup/auth", req, {
           withCredentials: true,
         })
         .then((val) => {
-          console.log(val.data);
           const now = new Date();
           if (val.data.isAuth) {
             console.log("user");
@@ -48,12 +45,9 @@ const authUsers = (req, res) => {
               payload: val.data.user,
             });
           } else if (val.data.isAdmin) {
-            console.log(val.data.role);
-            console.log("admin");
             let isAccess = {
               role: val.data.role,
               expiry: now.getTime() + 86400000,
-              // 86400000
             };
             localStorage.setItem("isactive", JSON.stringify(isAccess));
             dispatch({
@@ -61,7 +55,6 @@ const authUsers = (req, res) => {
               payload: val.data,
             });
           } else {
-            console.log("login failed");
             dispatch({
               type: Types.AUTH_WRONG_INFO,
               payload: "Info wrong",
@@ -76,15 +69,10 @@ const authUsers = (req, res) => {
 
 const logoutHandler = () => {
   return async (dispatch) => {
-    // console.log("logout");
     try {
-      // axios.defaults.withCredentials = true;
-      console.log('logout')
       await axios
         .get("http://localhost:3005/api/logout", { withCredentials: true })
         .then((response) => {
-          console.log(response.data)
-          // console.log(response)
           localStorage.setItem("isactive", false);
           dispatch({
             type: Types.LOGOUT_SUCCESS,
@@ -109,7 +97,6 @@ const updateInfo = (req) => {
           withCredentials: true,
         })
         .then((val) => {
-          // console.log(val)
           if (val.data) {
             dispatch({
               type: Types.UPDATE_INFO_SUCCESS,

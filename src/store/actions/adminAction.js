@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as Types from "../constants/actionType";
+import { getOrderDeliver } from "./orderAction";
 
 const getAllUsers = () => {
   return async (dispatch) => {
@@ -65,8 +66,6 @@ const getAllOrders = () => {
 
 const changeStatusOrder = (id, status) => {
   return (dispatch) => {
-    // console.log("update");
-    console.log(id, status);
     try {
       axios
         .put(
@@ -93,6 +92,7 @@ const changeStatusOrder = (id, status) => {
                 type: Types.CONFIRM_ORDER_SUCCESS,
                 payload: response.data.slice(1),
               });
+              dispatch(getOrderDeliver())
             } else {
               dispatch({
                 type: Types.CONFIRM_ORDER_FAILED,

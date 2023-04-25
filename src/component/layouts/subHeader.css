@@ -4,7 +4,7 @@
 .sub_header {
   height: fit-content;
   background-color: #fafafa;
-  position: fixed;
+  /* position: fixed; */
   z-index: 10;
   height: 6rem;
 }
@@ -186,6 +186,30 @@
 .logo h1 {
   font-size: 90px;
   font-family: "Pinyon Script", cursive;
+}
+
+.alert_icon {
+  background-color: #f9f38e;
+  padding: 3px 8px;
+  border-radius: 50%;
+  font-size: 11px;
+  position: absolute;
+  top: -7px;
+  right: -16px;
+}
+
+.order_deli {
+  position: absolute;
+  background-color: #ebe694;
+  color: #000;
+  border-radius: 50%;
+  padding: 3px;
+  height: 17px;
+  width: 20px;
+  line-height: 13px;
+  font-weight: 600;
+  right: 39px;
+  top: 2px;
 }
 
 @media only screen and (min-width: 576px) {

@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import "./subHeader.css";
 import { Link, withRouter } from "react-router-dom";
 import { logoutHandler } from "../../store/actions/usersAction";
+import { getOrderDeliver } from "../../store/actions/orderAction";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import Toast from "../home/toast";
@@ -12,12 +13,13 @@ class SubHeader extends React.Component {
     super(props);
     this.state = {
       amout: 0,
+      order: 0,
     };
   }
+
   logout = async () => {
     await this.props.logout();
     if (this.props.isLogin === false) {
-      console.log("logged out");
       toast.success(<Toast message="Đăng xuất thành công" />, {
         className: "success",
       });
@@ -29,35 +31,52 @@ class SubHeader extends React.Component {
     if (prevState.amout !== this.props.cartCurrent.cartItem.length) {
       this.setState({ amout: this.props.cartCurrent.cartItem.length });
     }
+    if (this.props.countOrder.deliver !== null) {
+      if (prevState.order !== this.props.countOrder.deliver.length) {
+        this.setState({ order: this.props.countOrder.deliver.length });
+      }
+    }
   };
 
-  componentDidMount() {
+  componentDidMount = async () => {
     if (this.props.cartCurrent.empty === true) {
       this.setState({ amout: 0 });
     } else {
       this.setState({ amout: this.props.cartCurrent.cartItem.length });
     }
-  }
-
-  renderElement = () => {
-    if (this.props.isLogin !== undefined) {
-      if (this.props.isLogin) return <IsLogin handleClick={this.logout} />;
-      else {
-        return <UnLogin />;
-      }
+    await this.props.getOrder();
+    if (this.props.countOrder.deliver !== null) {
+      if (this.props.countOrder.deliver.length > 0) {
+        this.setState({ order: this.props.countOrder.deliver.length });
+      } else this.setState({ order: 0 });
     }
-    // else {
-    //   if (this.isActive) {
-    //     return <IsLogin handleClick={this.logout} cart={this.state.amout} />;
-    //   }
-    //   return <UnLogin />;
-    // }
   };
+
+  // renderElement = () => {
+  //   if (this.props.isLogin !== undefined) {
+  //     if (this.props.isLogin) return <IsLogin handleClick={this.logout} />;
+  //     else {
+  //       return <UnLogin />;
+  //     }
+  //   }
+  //   // else {
+  //   //   if (this.isActive) {
+  //   //     return <IsLogin handleClick={this.logout} cart={this.state.amout} />;
+  //   //   }
+  //   //   return <UnLogin />;
+  //   // }
+  // };
 
   render() {
     return (
       <Fragment>
-        <header className="sub_header me-0 ps-4 pt-2">
+        <header
+          className={`${
+            this.props.position !== undefined
+              ? this.props.position
+              : "position-fixed"
+          } sub_header me-0 ps-4 pt-2`}
+        >
           <div className="row align-items-center justify-content-between w-100">
             <div className="col-lg-2 col-md-1 col-xxl-3 col-xl-3">
               <div className="main_menu">
@@ -78,7 +97,59 @@ class SubHeader extends React.Component {
               </div>
             </div>
             <div className="col-lg-3 col-md-12 mb-md-3 mt-3 sub_top mb-sm-3 row justify-content-start">
-              <div className="col-5 top_links">{this.renderElement()}</div>
+              <div className="col-5 me-3 top_links">
+                {this.props.isLogin ? (
+                  <div>
+                    <span className="fs-6 position-relative">
+                      <span className="">Tài khoản</span>
+                      {this.state.order !== 0 ? (
+                        <i className="fa-solid fa-exclamation ms-1 alert_icon"></i>
+                      ) : (
+                        <i className="fa-solid fa-chevron-down ms-1"></i>
+                      )}
+                    </span>
+                    <ul className="dropdown_links">
+                      <li>
+                        <Link to="/profile">Thông Tin</Link>
+                      </li>
+                      <li>
+                        <Link to="/cart">Giỏ Hàng</Link>
+                      </li>
+                      <li>
+                        <Link to="/vieworder" className="position-relative">
+                          Đơn Hàng{" "}
+                          <span
+                            className={`order_deli ${
+                              this.state.order === 0 ? "d-none " : "d-block"
+                            }`}
+                          >
+                            {this.state.order}
+                          </span>
+                        </Link>
+                      </li>
+                      <li>
+                        <button className="logout" onClick={this.logout}>
+                          Đăng Xuất
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                ) : (
+                  <div>
+                    <Link to="/login" className="btn_links d-inline-block">
+                      {" "}
+                      Đăng Nhập
+                    </Link>
+                    <Link
+                      to="/register"
+                      className="btn_links sign_up d-inline-block position-relative"
+                    >
+                      {" "}
+                      Đăng Ký
+                    </Link>
+                  </div>
+                )}
+              </div>
               <div className="col-2 cart_icon">
                 <i className="fa fa-shopping-cart text-muted"></i>
                 <div className="cart_amount">{this.state.amout}</div>
@@ -95,58 +166,60 @@ const mapStateToProps = (state) => {
   return {
     isLogin: state.login.isAuth,
     cartCurrent: state.cart,
+    countOrder: state.orderInfo,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(logoutHandler()),
+    getOrder: () => dispatch(getOrderDeliver()),
   };
 };
 
-const IsLogin = (props) => {
-  return (
-    <Fragment>
-      <span className="fs-6">
-        Tài khoản<i className="fa-solid fa-chevron-down ms-3"></i>
-      </span>
-      <ul className="dropdown_links">
-        <li>
-          <Link to="/profile">Thông Tin</Link>
-        </li>
-        <li>
-          <Link to="/cart">Giỏ Hàng</Link>
-        </li>
-        <li>
-          <Link to="/vieworder">Đơn Hàng</Link>
-        </li>
-        <li>
-          <button className="logout" onClick={props.handleClick}>
-            Đăng Xuất
-          </button>
-        </li>
-      </ul>
-    </Fragment>
-  );
-};
+// const IsLogin = (props) => {
+//   return (
+//     <Fragment>
+//       <span className="fs-6">
+//         Tài khoản<i className="fa-solid fa-chevron-down ms-3"></i>
+//       </span>
+//       <ul className="dropdown_links">
+//         <li>
+//           <Link to="/profile">Thông Tin</Link>
+//         </li>
+//         <li>
+//           <Link to="/cart">Giỏ Hàng</Link>
+//         </li>
+//         <li>
+//           <Link to="/vieworder">Đơn Hàng</Link>
+//         </li>
+//         <li>
+//           <button className="logout" onClick={props.handleClick}>
+//             Đăng Xuất
+//           </button>
+//         </li>
+//       </ul>
+//     </Fragment>
+//   );
+// };
 
-const UnLogin = () => {
-  return (
-    <Fragment>
-      <Link to="/login" className="btn_links d-inline-block">
-        {" "}
-        Đăng Nhập
-      </Link>
-      <Link
-        to="/register"
-        className="btn_links sign_up d-inline-block position-relative"
-      >
-        {" "}
-        Đăng Ký
-      </Link>
-    </Fragment>
-  );
-};
+// const UnLogin = () => {
+//   return (
+//     <Fragment>
+//       <Link to="/login" className="btn_links d-inline-block">
+//         {" "}
+//         Đăng Nhập
+//       </Link>
+//       <Link
+//         to="/register"
+//         className="btn_links sign_up d-inline-block position-relative"
+//       >
+//         {" "}
+//         Đăng Ký
+//       </Link>
+//     </Fragment>
+//   );
+// };
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(SubHeader)

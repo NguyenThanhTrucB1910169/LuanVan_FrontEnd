@@ -211,7 +211,7 @@ class UpdateInfoForm extends React.Component {
   render() {
     return (
       <Fragment>
-        <SubHeader />
+        <SubHeader position="position-relative"/>
         <div className="">
           <div className="">
             {typeof this.props.location.state.edit !== "undefined" ? (

@@ -5,6 +5,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutHandler } from "../../store/actions/usersAction";
+import { getOrderDeliver } from "../../store/actions/orderAction";
 import Toast from "./toast";
 import { toast } from "react-toastify";
 import { Fragment } from "react";
@@ -14,6 +15,10 @@ class Header extends React.Component {
     this.state = {
       slide: false,
       show: false,
+      order:
+        this.props.countOrder.deliver.length !== undefined
+          ? this.props.countOrder.deliver.length
+          : 0,
       // isActive: null,
     };
   }
@@ -45,6 +50,7 @@ class Header extends React.Component {
   componentDidMount() {
     this.autoLogout();
     window.addEventListener("scroll", this.handleScroll);
+    this.props.getOrder();
   }
 
   componentWillUnmount() {
@@ -57,6 +63,14 @@ class Header extends React.Component {
       toast.success(<Toast message="Đăng xuất thành công" />, {
         className: "success",
       });
+    }
+  };
+  componentDidUpdate = (prevProps, prevState) => {
+    if (this.props.countOrder.deliver !== null) {
+      console.log(prevState.order, this.props.countOrder.deliver.length);
+      if (prevState.order !== this.props.countOrder.deliver.length) {
+        this.setState({ order: this.props.countOrder.deliver.length });
+      }
     }
   };
 
@@ -112,7 +126,62 @@ class Header extends React.Component {
                   </button>
                 </div>
                 <div className="col_header_b float-end me-4 mt-3 top_right">
-                  <div className="top_links">{this.renderElement()}</div>
+                  <div className="top_links">
+                    {this.props.isLogin ? (
+                      <div>
+                        <span className="fs-6 position-relative">
+                          <span className="">Tài khoản</span>
+                          {this.state.order !== 0 ? (
+                            <i className="fa-solid fa-exclamation ms-1 alert_icon"></i>
+                          ) : (
+                            <i className="fa-solid fa-chevron-down ms-1"></i>
+                          )}
+                        </span>
+                        <ul className="dropdown_links">
+                          <li>
+                            <Link to="/profile">Thông Tin</Link>
+                          </li>
+                          <li>
+                            <Link to="/cart">Giỏ Hàng</Link>
+                          </li>
+                          <li>
+                            <Link to="/vieworder" className="position-relative">
+                              Đơn Hàng{" "}
+                              <span
+                                className={`order_deli ${
+                                  this.state.order === 0 ? "d-none " : "d-block"
+                                }`}
+                              >
+                                {this.state.order}
+                              </span>
+                            </Link>
+                          </li>
+                          <li>
+                            <button
+                              className="logout"
+                              onClick={this.handleLogout}
+                            >
+                              Đăng Xuất
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    ) : (
+                      <div>
+                        <Link to="/login" className="btn_links d-inline-block">
+                          {" "}
+                          Đăng Nhập
+                        </Link>
+                        <Link
+                          to="/register"
+                          className="btn_links sign_up d-inline-block position-relative"
+                        >
+                          {" "}
+                          Đăng Ký
+                        </Link>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -239,12 +308,14 @@ const mapStateToProps = (state) => {
     cart: state.cart.cartItem,
     isLogin: state.login.isAuth,
     user: state.login,
+    countOrder: state.orderInfo,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     logoutHandler: () => dispatch(logoutHandler()),
+    getOrder: () => dispatch(getOrderDeliver()),
   };
 };
 

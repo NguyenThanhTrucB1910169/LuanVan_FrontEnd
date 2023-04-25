@@ -1,7 +1,10 @@
 import React, { Fragment } from "react";
 import SideBar from "./sideBar";
 import { connect } from "react-redux";
-import { getAllOrders, changeStatusOrder } from "../../store/actions/adminAction";
+import {
+  getAllOrders,
+  changeStatusOrder,
+} from "../../store/actions/adminAction";
 // import { updateStatus } from "../../store/actions/adminAction";
 import moment from "moment";
 import "./allOrders.css";
@@ -15,6 +18,9 @@ class AllOrders extends React.Component {
       order: [],
       open: [],
       total: {},
+      placed: 0,
+      deliver: 0,
+      recieve: 0,
     };
   }
 
@@ -27,7 +33,7 @@ class AllOrders extends React.Component {
   };
 
   componentDidUpdate = (prevProps) => {
-    if(prevProps.allOrders !== this.props.allOrders){
+    if (prevProps.allOrders !== this.props.allOrders) {
       const custom = this.props.allOrders.reduce((result, product) => {
         const mdh = product.id;
         if (!result[mdh]) {
@@ -38,53 +44,80 @@ class AllOrders extends React.Component {
       }, {});
       this.setState({ order: custom }, () => {
         Object.entries(this.state.order).map(([key, value]) => {
+          // console.log(value);
           var price = 0;
+          // var placed= value.filter((item) => item.status === 0).length;
+          // var deliver= value.filter((item) => item.status === 1).length;
+          // var recieve= value.filter((item) => item.status === 2).length
+         
           value.map((item) => (price += item.quantity));
           this.setState((prev) => ({
             total: { ...prev.total, [key]: price },
+            placed: value.filter((item) => item.status === 0).length
           }));
         });
       });
     }
-  }
+  };
 
   componentDidMount = () => {
     this.props.getAllOrders();
   };
 
-  setStatusOrder = async(id, currentStatus) => {
-    if(currentStatus === 0){
-      await this.props.setStatusOrder(id, 1)
-      toast.success(<Toast message="Giao hàng thành công"/>, {className: 'success'})
-    } else  if(currentStatus === 1) {
-      toast.warning(<Toast message="Đơn hàng đang giao"/>, {className: 'warning'})
+  setStatusOrder = async (id, currentStatus) => {
+    if (currentStatus === 0) {
+      await this.props.setStatusOrder(id, 1);
+      toast.success(<Toast message="Giao hàng thành công" />, {
+        className: "success",
+      });
+    } else if (currentStatus === 1) {
+      toast.warning(<Toast message="Đơn hàng đang giao" />, {
+        className: "warning",
+      });
     } else {
-      toast.warning(<Toast message="Giao hàng hoàn tất"/>, {className: 'warning'})
+      toast.warning(<Toast message="Giao hàng hoàn tất" />, {
+        className: "warning",
+      });
     }
   };
 
   render() {
-    // console.log(this.state.order)
+    console.log('------------------')
+     Object.entries(this.state.order).map(([key, value]) => {
+      console.log(value);
+    })
     return (
       <Fragment>
         <SideBar />
         <div className="col-sm-7 col-lg-7 ms-sm-5 ms-lg-0 main_side">
           <h1 className="text-uppercase text-center my-4">tất cả đơn hàng</h1>
+          <div className="stats">
+            <p>
+              Tổng số đơn hàng: {" "}
+              {this.state.order !== null
+                ? Object.entries(this.state.order).length
+                : null}
+            </p>
+          </div>
           <div className="row ad_pdhead">
             <div className="col-2">Mã Đơn</div>
             <div className="col-sm-4 col-lg-3">Người Đặt</div>
             <div className="col-sm-4 col-lg-2">Tổng Đơn</div>
-            <div className="d-sm-none d-lg-block col-3 text-center">Ngày đặt</div>
+            <div className="d-sm-none d-lg-block col-3 text-center">
+              Ngày đặt
+            </div>
             <div className="col-2 text-end">Chi Tiết</div>
           </div>
           <div>
             {this.state.order !== null ? (
               Object.entries(this.state.order).map(([key, value]) => (
                 <div>
-                  <div key={key} className="ad_itempd">
+                  <div key={key} className={`${value[0].status === 0 ? 'placed' : value[0].status === 1 ? 'complete' : null } ad_itempd`}>
                     <div className="row">
                       <div className="col-2 text-center">#S{key}</div>
-                      <div className="col-sm-4 col-lg-3">{value[0].fullname}</div>
+                      <div className="col-sm-4 col-lg-3">
+                        {value[0].fullname}
+                      </div>
                       <div className="col-sm-4 col-lg-2">
                         <div>
                           {Intl.NumberFormat("vi-VN", {
@@ -115,7 +148,8 @@ class AllOrders extends React.Component {
                       }`}
                     >
                       <div className="d-sm-block d-lg-none col-12 text-center">
-                        Ngày đặt: {moment.utc(value[0].createdAt).format("DD/MM/YYYY")}
+                        Ngày đặt:{" "}
+                        {moment.utc(value[0].createdAt).format("DD/MM/YYYY")}
                       </div>
                       <div className="row ad_detail_title">
                         <div className="col-6">
@@ -160,7 +194,12 @@ class AllOrders extends React.Component {
                             : ""}
                         </div>
                         <div className="col-sm-5 col-lg-2">
-                          <button onClick={() => this.setStatusOrder(key, value[0].status)} className="ad_btn_order">
+                          <button
+                            onClick={() =>
+                              this.setStatusOrder(key, value[0].status)
+                            }
+                            className="ad_btn_order"
+                          >
                             Giao Hàng
                           </button>
                         </div>
@@ -188,7 +227,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllOrders: () => dispatch(getAllOrders()),
-    setStatusOrder: (id, status) => dispatch(changeStatusOrder(id, status))
+    setStatusOrder: (id, status) => dispatch(changeStatusOrder(id, status)),
   };
 };
 

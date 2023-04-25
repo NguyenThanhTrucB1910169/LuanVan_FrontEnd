@@ -1,27 +1,26 @@
 import axios from "axios";
 import * as Types from "../constants/actionType";
+import { getCartItem } from "./cartAction";
 
 const createOrder = (data) => {
   return async (dispatch) => {
     try {
-      // console.log(data);
       await axios
         .post("http://localhost:3005/api/order/", data, {
           withCredentials: true,
         })
         .then(async (response) => {
-          //   console.log(response);
           if (response.data) {
             await axios.delete("http://localhost:3005/api/alldelete", {
               withCredentials: true,
             })
               .then((res) => {
-                // console.log(rs)
                 dispatch({
                   type: Types.ORDER_SUCCESS,
                   payload: res.data,
                 });
               });
+              dispatch(getCartItem())
           }
         })
         .catch((error) => {
@@ -39,11 +38,9 @@ const createOrder = (data) => {
 const getOrderByUser = () => {
   return async (dispatch) => {
     try {
-      // console.log(1)
       await axios
         .get("http://localhost:3005/api/order/", { withCredentials: true })
         .then((data) => {
-          // console.log(data.data)
           dispatch({
             type: Types.GET_ORDERS_SUCCESS,
             payload: data.data,
@@ -78,4 +75,24 @@ const getDetailProduct = (id) => {
   };
 };
 
-export { createOrder, getOrderByUser, getDetailProduct };
+const getOrderDeliver = () => {
+  return async (dispatch) => {
+    try {
+      axios.get("http://localhost:3005/api/orderdeliver/", { withCredentials: true }).then((response) => {
+        if(response.data !== undefined) {
+          dispatch({
+            type: Types.GET_ORDER_DELIVER_SUCCESS,
+            payload: response.data,
+          })
+        }
+      })
+    } catch (error) {
+      dispatch({
+        type: Types.GET_ORDER_DELIVER_FAILED,
+        payload: error.message,
+      })
+    }
+  }
+}
+
+export { createOrder, getOrderByUser, getDetailProduct, getOrderDeliver };

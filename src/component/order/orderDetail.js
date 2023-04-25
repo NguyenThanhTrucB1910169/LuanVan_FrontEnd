@@ -34,7 +34,7 @@ class OrderDetail extends React.Component {
     var dateFormatted = date.format("DD/MM/YYYY HH:mm");
     return (
       <Fragment>
-        <SubHeader />
+        <SubHeader position="position-relative"/>
         <div className="view_detail">
           <div className="row justify-content-between">
             <div className="col-1 text-center detail_back">

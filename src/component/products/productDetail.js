@@ -18,6 +18,12 @@ class ProductDetail extends React.Component {
     };
   }
 
+  componentDidUpdate = (prevProps, prevState) => {
+    if(prevProps.detailProduct !== this.props.detailProduct){
+      this.setState({pd: this.props.detailProduct})
+    }
+  }
+
   componentDidMount() {
     const pd = this.props.detailProduct;
     // console.log(pd);
@@ -36,7 +42,7 @@ class ProductDetail extends React.Component {
       })
     } else {
       this.props.handleAddToCart(this.props.detailProduct.id, this.state.qty).then(async() => {
-        console.log(this.props.isAdd)
+        // console.log(this.props.isAdd)
         if(this.props.isAdd) {
           toast.success(<Toast message="Đã thêm vào giỏ hàng"/>, {
             className: 'success',
@@ -134,6 +140,11 @@ class ProductDetail extends React.Component {
                       <span className="fw-bolder">Chất liệu</span>{" "}
                       {this.state.pd.material}
                     </p>
+                    <p>
+                      {" "}
+                      <span className="fw-bolder">Số Lượng</span>{" "}
+                      {this.state.pd.count}
+                    </p>
                   </div>
                   <p className="about">
                     <span className="fw-bolder">Mô tả</span>{" "}
@@ -170,7 +181,7 @@ class ProductDetail extends React.Component {
                               }
                             );
                           }
-                          else if (this.state.qty > this.props.detailProduct.count)
+                          else if (this.state.qty >= this.props.detailProduct.count)
                             toast.warning(
                               <Toast message="Vượt quá số lượng" />,
                               {

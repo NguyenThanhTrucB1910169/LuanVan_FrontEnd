@@ -40,6 +40,7 @@ class AllProducts extends React.Component {
               <div className="col-2">Mã SP</div>
               <div className="col-sm-4 col-lg-3">Tên Sản Phẩm</div>
               <div className="col-sm-4 col-lg-3 text-center">Mô Tả</div>
+              <div className="col-sm-1 col-lg-2"></div>
             </div>
             <div>
               {this.props.allProducts.map((product, index) => (
@@ -66,7 +67,7 @@ class AllProducts extends React.Component {
                     <i className="fa-solid fa-sort-down icon_display"></i>
                     <div className="edit_frame">
                       <div onClick={() => this.deleteProduct(product.id)}>
-                        <i className="fa-solid fa-trash d-sm-none d-lg-block"></i>Xóa
+                        <i className="fa-solid fa-trash d-sm-none d-lg-inline-block"></i>Xóa
                       </div>
                       <div>
                         <Link
@@ -75,7 +76,7 @@ class AllProducts extends React.Component {
                             state: {pd: product},
                           }}
                         >
-                        <i className="fa-solid fa-pen d-sm-none d-lg-block"></i>Thay Đổi
+                        <i className="fa-solid fa-pen d-sm-none d-lg-inline-block"></i>Thay Đổi
                         </Link>
                       </div>
                     </div>

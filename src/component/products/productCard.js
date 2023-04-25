@@ -46,6 +46,7 @@ class ProductCard extends React.Component {
   componentDidUpdate = (prevProps) => {
     if (prevProps.cardItem !== this.props.cardItem) {
       this.configImage(this.props.cardItem.image);
+      this.props.getDetailPd(this.props.cardItem)
     }
   };
 

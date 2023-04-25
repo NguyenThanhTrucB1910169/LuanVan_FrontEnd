@@ -22,6 +22,10 @@ export const orderReduce = (state = initState, action) => {
       return { ...state, detail: action.payload };
     case Types.DETAIL_ORDER_FAILED:
       return { ...state, error: action.payload };
+    case Types.GET_ORDER_DELIVER_SUCCESS:
+      return { ...state, deliver: action.payload}
+    case Types.GET_ORDER_DELIVER_FAILED:
+      return { ...state, error: action.payload, deliver: null };
     default:
       return state;
   }
