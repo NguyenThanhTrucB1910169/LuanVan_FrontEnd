@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
 .card-left{
     background-color: #fff;
     padding: 30px 0;
@@ -5,7 +6,7 @@
 }
 
 .font-cart{
-    font-family: 'Montserrat', sans-serif;
+    font: 300 20px cursive;
 }
 
 .back_cart{
@@ -18,4 +19,22 @@
 
 .empty_cart_icon{
     width: 20%;
+}
+
+.title_cart{
+    /* font: 300 20px cursive; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.title_cart i{
+    margin-top: 20px;
+    font-size: 35px;
+    margin-right: 10px;
+}
+
+.title_cart p{
+    font-size: 60px;
+    margin-left: 1rem;
+    font-family: 'Philosopher', sans-serif;
 }

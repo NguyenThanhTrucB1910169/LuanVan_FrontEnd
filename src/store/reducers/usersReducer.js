@@ -20,19 +20,18 @@ export const createUser = (state={} , action) => {
 
 export const loginAccount = (state={user: {}} , action) => {
     switch(action.type){
-        case Types.AUTH_USER:
+        case Types.IS_USER:
             state.user = action.payload
             // console.log(action.payload)
-            return {...state, isAuth: true, isAdmin: false};
+            return {...state, role: 0};
         case Types.AUTH_WRONG_INFO:
             // state.message = action.payload
-            return {...state, isAuth: false, message: action.payload};
+            return {...state, role: 2, message: action.payload};
         case Types.LOGOUT_SUCCESS: 
             return {
                 ...state,
                 user: null,
-                isAuth: false,
-                isAdmin: false,
+                role: 2,
                 update: false,
                 message: null,
             }
@@ -40,7 +39,8 @@ export const loginAccount = (state={user: {}} , action) => {
             console.log(action.payload)
             return {
                 ...state,
-                user: null,
+                // user: null,
+                // role: 2,
                 message: action.payload
             }
         case Types.UPDATE_INFO_SUCCESS: 
@@ -61,8 +61,7 @@ export const loginAccount = (state={user: {}} , action) => {
         // console.log(action.payload)
             return {
                 ...state,
-                isAdmin: true,
-                isAuth: false
+                role: 1
             }
         default:
             return state;

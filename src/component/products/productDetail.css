@@ -2,7 +2,7 @@
   font-size: 13px;
 }
 .act-price {
-  color: #00b7ce;
+  color: #ff001abf;
   font-weight: 700;
   font-size: 18px;
   padding-right: 13px;
@@ -54,8 +54,9 @@ label.radio input:checked + span {
 
 .contain-detail {
   height: 100%;
-  margin: 0 20px;
+  margin: 0;
   padding: 0;
+  background-color: #fce3de3b;
 }
 
 .main-image img {
@@ -72,9 +73,14 @@ label.radio input:checked + span {
   width: 45%;
 }
 
-.pd-detail .img_list {
-  overflow-y: scroll;
-  height: 80%;
+.img_list .border_img {
+  border-radius: 20px;
+}
+
+.img_list {
+  padding: 20px 6rem 3rem;
+  margin: 9rem 0px 5rem;
+  border-radius: 20px;
 }
 
 ::-webkit-scrollbar {
@@ -159,18 +165,39 @@ label.radio input:checked + span {
 }
 
 .add_cart .set_quant {
-  margin: 6px;
+  margin: 6px auto;
   border-radius: 15px;
   height: 41px;
   line-height: 27px;
-  padding: 0px 19px;
+  padding: 0px 20px;
   box-shadow: 6px 4px 10px #bcbcbc;
+  width: 22%;
+  background-color: #fff;
 }
 
 .add_cart .set_quant button {
-  padding: 0px 5px;
+  padding: 0px 7px;
   font-size: 32px;
   line-height: 38px;
   border: none;
   background-color: #fff;
+}
+
+.product{
+  margin-top: 7rem;
+}
+
+.mg_top{
+  margin-top: 6rem;
+}
+
+.slick-dots li button:before {
+  color: #fe5f7f!important;
+}
+
+.slick-prev,
+.slick-next {
+  color: #534e4e!important;
+  background: #7d7d7e!important;
+  border-radius: 10px!important;
 }

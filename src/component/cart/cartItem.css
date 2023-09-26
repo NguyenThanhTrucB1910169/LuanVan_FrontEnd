@@ -50,6 +50,7 @@
 
 .item {
   border: none!important;
+  margin-left: 2rem;
 }
 
 /* .flex-cart{

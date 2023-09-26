@@ -9,6 +9,47 @@
   height: 6rem;
 }
 
+
+.sub_header .header_top {
+  background-color: #d2e6f182;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.sub_header .and_word{
+  font-size: 45px;
+}
+
+.sub_header .col_b{
+  width: 13%;
+}
+
+.sub_header .row_sub .col_b{
+  width: 21%;
+}
+
+.sub_header .row_sub .logo{
+  margin-left: 6rem;
+}
+
+.sub_header .logo{
+  font-family: 'Dancing Script', cursive;
+  font-size: 79px;
+  color: #000;
+  line-height: 84px;
+  transition: top 0.7s ease;
+  font-weight: 500;
+}
+
+.sub_header .col_a{
+  width: 13%;
+}
+
+.sub_header .icon_logo{
+  width: 6%;
+  position: absolute;
+  top: 4px;
+}
+
 .top_links a {
   color: #000;
 }

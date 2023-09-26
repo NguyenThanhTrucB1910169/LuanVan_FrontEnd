@@ -7,8 +7,9 @@ class Footer extends React.Component {
       <Fragment>
         <footer className="text-center text-lg-start text-muted footer">
             <div className="mx-auto mb-3 mt-4">
-              <h6 className="text-uppercase fw-bold mb-4 text-center fs-5">
-                <i className="fas fa-gem me-3"></i>Sparkle & Shine Jewelry
+              <h6 className="fw-bold mb-4 text-center fs-5">
+              <img className="foo_logo" src="./logo.png" alt="" />
+                Shine and Lux Jewelry
               </h6>
             </div>
               <div className="foo_link text-center pt-2">
@@ -38,7 +39,7 @@ class Footer extends React.Component {
           <div className="text-center p-4">
             &reg; 2023 &nbsp;
             <a className="fw-bold text-decoration-none foo_text" href="#">
-              sparkleshine.com
+              shineandlux.com
             </a>
           </div>
         </footer>

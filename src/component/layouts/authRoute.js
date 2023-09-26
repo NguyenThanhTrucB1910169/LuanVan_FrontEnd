@@ -7,11 +7,9 @@ import { toast, ToastContainer } from "react-toastify";
 class AuthRoute extends React.Component {
 
   componentDidMount = () => {
-    // console.log(this.isActive !== false)
     if(this.isActive === false){
       toast.warning(<Toast message="Đăng nhập để tiếp tục"/>,{
           className: "warning",
-          // autoClose: false,
         })
     }
   };

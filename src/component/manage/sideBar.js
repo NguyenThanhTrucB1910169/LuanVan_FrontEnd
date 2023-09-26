@@ -59,7 +59,7 @@ class SideBar extends React.Component {
                   </Link>
                   <Link onClick={() => this.props.logout()} to="/login" className="m-sm-0 m-lg-3 btn_logout_ad">
                     Đăng xuất
-                    <i class="fa-solid fa-arrow-right-from-bracket ms-3"></i>
+                    <i className="fa-solid fa-arrow-right-from-bracket ms-3"></i>
                   </Link>
                 </div>
               </div>

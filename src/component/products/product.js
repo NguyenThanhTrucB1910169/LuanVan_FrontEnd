@@ -98,7 +98,7 @@ class Product extends React.Component {
   render() {
     return (
       <Fragment>
-        <SubHeader />
+        {/* <SubHeader /> */}
         <div className="contain">
           <div className="products_title">
             <h1 className="text-center text-uppercase">tất cả sản phẩm</h1>

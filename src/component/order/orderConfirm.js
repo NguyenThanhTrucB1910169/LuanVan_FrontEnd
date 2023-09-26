@@ -60,7 +60,7 @@ class OrderConfirm extends React.Component {
               product={this.props.cartInfo.cartItem}
               checkout={true}
               pay={this.handleNext}
-              order={(isactive) => this.props.submit(isactive)}
+              // order={(isactive) => this.props.submit(isactive)}
             />
           </div>
         </div>

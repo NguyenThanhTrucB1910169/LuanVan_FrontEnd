@@ -6,7 +6,7 @@ const fetchProducts = () => {
     return async (dispatch, getState) => {
     try {
         let res = await axios.get('http://localhost:3005/api/products');
-        // console.log(res.data);
+        // console.log(res);
       if (res) {
         dispatch({
           type: Types.FETCH_PRODUCTS,
@@ -25,6 +25,7 @@ const fetchProducts = () => {
 const createProduct = (req) => {
   return async (dispatch) => {
     try {
+      console.log(req)
       await axios.post('http://localhost:3005/api/products', req)
       .then ((res) => {
         dispatch({

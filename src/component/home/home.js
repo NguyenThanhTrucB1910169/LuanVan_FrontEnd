@@ -10,22 +10,23 @@ class Home extends React.Component {
     this.state = {
       currentSlide: 0,
       blur: false,
+      search:''
     };
     this.slideImages = [
       {
-        url: "/slider-1.webp",
+        url: "/sd-1.jpg",
       },
       {
-        url: "/slide-9.webp",
+        url: "/sd-2.jpg",
       },
       {
-        url: "/slide-6.webp",
+        url: "/sd-3.avif",
       },
       {
-        url: "/slider-4.webp",
+        url: "/sd-4.webp",
       },
       {
-        url: "/slide-4.webp",
+        url: "/sd-5.webp",
       },
     ];
   }
@@ -43,23 +44,32 @@ class Home extends React.Component {
         localStorage.setItem("isactive", null);
       }
     }
+    this.searchResult();
   }
 
   handleBlur = () => {
     this.setState({ blur: !this.state.blur });
   };
+  searchResult = (rs) => {
+    this.setState({search : rs }, () => {
+      console.log(this.state.search)
+    })
+  }
 
   render() {
     return (
       <Fragment>
-        <Header onBlurScreen={this.handleBlur} />
-        <div className={`home-content ${this.state.blur ? "add-fil" : ""}`}>
+        <Header onBlurScreen={this.handleBlur} searchResult={this.searchResult} />
+        <div 
+        // className={`home-content ${this.state.blur ? "add-fil" : ""}`}
+        >
           <div className="home-slide">
             <div className="slider-container">
               <div
                 className="slide"
                 style={{
-                  backgroundImage: `url(${
+                  backgroundImage: 
+                  `url(${
                     this.slideImages[this.state.currentSlide].url
                   })`,
                 }}
@@ -71,7 +81,7 @@ class Home extends React.Component {
               <h1 className="text-center">Trang sức cao cấp</h1>
               <hr className="hr" />
               <p className="text-center fs-5">
-                Các tác phẩm trang sức cao cấp của S&S thể hiện sự đa dạng trong
+                Các tác phẩm trang sức cao cấp thể hiện sự đa dạng trong
                 phong cách, sự sáng tạo và tỉ mĩ trong từng thiết kế thông qua
                 kỹ thuật chế tác đặc biệt.
               </p>
@@ -93,8 +103,8 @@ class Home extends React.Component {
               </div>
             </div>
             <div className="intro_row">
-              <div className="col-5 home-flex p-0">
-                <img src="./flex-new-1.webp" alt="" className="h-100" />
+              <div className="col-6 home-flex p-0">
+                <img src="./flex-new-1.avif" alt="" className="h-100" />
                 <div className="overlay">
                   <div className="content">
                     <Link
@@ -127,7 +137,7 @@ class Home extends React.Component {
               <div className="box-2">
                 <h3 className="text-center text-capitalize">Dịch vụ</h3>
                 <p className="">
-                  S&S luôn sẵn sàng phục vụ với đội ngũ tư vấn chuyên nghiệp,
+                  S&L luôn sẵn sàng phục vụ với đội ngũ tư vấn chuyên nghiệp,
                   nhiệt tình và cung cấp dịch vụ bảo dưỡng trang sức trọn đời.
                 </p>
                 <Link

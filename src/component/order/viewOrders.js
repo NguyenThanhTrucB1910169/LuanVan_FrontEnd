@@ -56,7 +56,7 @@ class ViewOrders extends React.Component {
     this.setState((prev) => ({
       isDetail: !prev.isDetail,
     }));
-    console.log(id);
+    // console.log(id);
     // this.props.detailOrder(id)
   };
   render() {

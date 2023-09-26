@@ -31,9 +31,9 @@ const authUsers = (req, res) => {
           withCredentials: true,
         })
         .then((val) => {
+          console.log(val.data)
           const now = new Date();
           if (val.data.isAuth) {
-            console.log("user");
             let isAccess = {
               key: val.data.key,
               expiry: now.getTime() + 28800000,
@@ -41,7 +41,7 @@ const authUsers = (req, res) => {
             };
             localStorage.setItem("isactive", JSON.stringify(isAccess));
             dispatch({
-              type: Types.AUTH_USER,
+              type: Types.IS_USER,
               payload: val.data.user,
             });
           } else if (val.data.isAdmin) {

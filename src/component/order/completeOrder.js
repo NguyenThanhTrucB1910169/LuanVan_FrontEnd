@@ -8,7 +8,7 @@ class CompleteOrder extends React.Component {
     render() {
         return (
             <Fragment>
-            <StepLayout activeStep={2} />
+            <StepLayout activeStep={3} />
             <div className="order_complete_img">
                 <img src="./completed.gif" className="text-center" alt="" />
             </div>

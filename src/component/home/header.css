@@ -3,16 +3,48 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap");
-
-html,
+@import url('https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+ html,
 body {
   overscroll-behavior-y: none;
 }
 
 .header_main .header_top {
   height: 2.5rem;
+}
+
+.noti_icon{
+  font-size: 1.4rem;
+}
+
+.alert{
+  cursor: pointer;
+}
+
+.alert:hover .alert_frame{
+  display: block;
+}
+
+.alert_frame{
+  display: none;
+}
+
+.alert_frame::before{
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 12px solid white;
+  top: 36px;
+  left: 17px;
+  z-index: 30;
 }
 
 header {
@@ -28,6 +60,7 @@ header {
 .social_icone ul li {
   display: inline-block;
   margin-left: 5px;
+  cursor: pointer;
 }
 
 .social_icone ul li:first-child {
@@ -43,6 +76,67 @@ header {
   text-align: center;
   color: #fff;
   border-radius: 50%;
+}
+
+.search{
+  position: relative;
+  margin-right: 1rem;
+}
+
+.search i{
+  position: absolute;
+  top: -1rem;
+  left: 0;
+  transition: left 0.5s ease-in-out;
+}
+
+.search .search_frame input{
+  background: transparent;
+  height: 50px;
+  position: absolute;
+  border-radius: 28px;
+  outline: none;
+  border: none;
+  padding: 10px 47px 10px 42px;
+  left: -2rem;
+  top: -2rem;
+  transition: all 0.8s ease-in-out;
+  width: 0;
+  color: #000;
+}
+
+.search:hover .search_frame input {
+  display: block;
+  width: 23rem;
+  background: #e1e2e6;
+  z-index: 19;
+}
+
+.search .search_frame .icon_del{
+  position: absolute;
+  display: none;
+}
+
+.search:hover .search_frame .icon_del{
+  display: block;
+  z-index: 20;
+  left: 18rem;
+  top: -20px;
+}
+
+.search:hover{
+  cursor: pointer;
+}
+
+.search:hover i{
+  left: -1rem;
+  z-index: 20;
+}
+
+.and_word{
+  font-family: 'EB Garamond', serif;
+  font-size: 60px;
+  margin: 0 10px;
 }
 
 .social_icone ul li i:hover {
@@ -131,11 +225,32 @@ header {
   color: #fff;
 }
 
-.header_main .logo h1 {
-  font-family: "Pinyon Script", cursive;
-  font-size: 90px;
+.header_main .logo {
+  font-family: 'Dancing Script', cursive;
+  font-size: 129px;
   color: #000;
   margin-bottom: 0;
+  transition: top 0.7s ease;
+  font-weight: 500;
+  position: absolute;
+  top: -10rem;
+  left: 30%;
+}
+
+.header_main .logo_scroll{
+  font-family: 'Dancing Script', cursive;
+  font-size: 75px;
+  color: #000;
+  margin-bottom: 0;
+  font-weight: 500;
+  position: absolute;
+  top: -1rem;
+  transition: top 0.7s ease-in-out;
+  left: 37%;
+}
+
+.header_main .logo_scroll .and_word{
+  font-size: 43px;
 }
 
 .middel_right {
@@ -241,17 +356,17 @@ header {
   color: #000;
   font-weight: 400;
   text-transform: capitalize;
-  font-size: 16px !important;
+  font-size: 18px !important;
   display: block;
   padding: 19px 20px;
 }
 
 .stick .nav-head {
-  background-color: #060b26;
+  /* background-color: #060b26;
   height: 80px;
   display: flex;
   justify-content: start;
-  align-items: center;
+  align-items: center; */
 }
 
 .menu-bars {
@@ -331,13 +446,105 @@ header {
   position: fixed;
   z-index: 10;
   width: 100%;
-  background-color: #fafafa;
+  background-color: #e6f0f6;
+}
+
+.set_index{
+  z-index: 11;
+}
+
+.h-0{
+  height: 0;
+}
+
+.brand_logo::before,
+.brand_logo::after{
+  content: '';
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: -webkit-calc(50% - 27px);
+    width: calc(50% - 27px);
+    height: 1px;
+    background-color: #766d42;
+}
+.brand_logo::after{
+  right: 2px;
+}
+
+.brand_logo{
+  padding-top: 0.9375rem;
+    padding-bottom: 0.9375rem;
+    position: relative;
+    margin-top: 6rem;
+}
+
+
+.brand_logo img{
+  width: 5%;
+  position: absolute;
+  top: calc(50% - 35px);
+  right: calc(48% - 6px);
+}
+
+.top_stick{
+  top: 0;
+}
+
+.icon_nav{
+  font-size: 27px;
+    margin-left: 3rem;
+  border: none;
+  background-color: transparent;
+}
+
+.stick_hidden{
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+
+/* .alert i{
+  font-size: 1.4rem;
+} */
+
+.serch i{
+  font-size: 1.3rem;
+}
+
+.stick_nav{
+  top: 12%;
+  position: fixed;
+  padding-top: 1rem;
+  z-index: 10;
+  width: 100%;
+  background-color: #dcebf4;
+  display: block!important;
+  transition: all 0.3s ease-out;
+}
+
+.stick .social_icone,
+.stick .search_btn {
+  /* display: none; */
+}
+
+.stick .header_middel{
+  /* height: 30px; */
 }
 
 .stick .header_middel,
-.stick .social_icone,
-.stick .search_btn {
-  display: none;
+.stick .header_top{
+  background-color: #d2e6f182;
+  /* transition: background-color 0.5s ease-in-out; */
+  /* color: #fff; */
+}
+
+.stick .brand_logo{
+  margin-top: 5rem;
 }
 
 .stick .header_top {
@@ -403,11 +610,11 @@ header {
   background-color: #fff;
 }
 
-.top_links .btn_links {
+.btn_links {
   border: none;
-  background-color: #fff;
-  font-family: "Raleway", sans-serif;
+  background-color: transparent;
   font-size: 17px;
+  color: #4d4949;
   text-decoration: none;
 }
 
@@ -415,7 +622,7 @@ header {
   position: relative;
 }
 
-.top_links .btn_links:hover {
+.btn_links:hover {
   color: #edd56d;
 }
 
@@ -431,7 +638,7 @@ header {
   background: #ebebeb;
   top: 50%;
   /* left: 0px; */
-  right: 77px;
+  right: 85px;
   background: #000;
   transform: translateY(-50%);
 }
@@ -495,6 +702,10 @@ header {
 @media only screen and (min-width: 1400px) {
   .col_header_b {
     flex: 0 0 auto;
-    width: 14%;
+    width: 12%;
+  }
+  .notLogin .col_header_b{
+    flex: 0 0 auto;
+    width: 21%;
   }
 }

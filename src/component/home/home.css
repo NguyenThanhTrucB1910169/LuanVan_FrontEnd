@@ -5,7 +5,8 @@
 
 
 .home-slide {
-  height: 50rem;
+  height: 31rem;
+  margin: 0 3rem 0 3.7rem;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
@@ -109,6 +110,7 @@ img {
 .slide {
   width: 100%;
   height: 100%;
+  /* background-image: url(../../images/bg-home.jpg); */
   background-size:cover;
   background-position: 50% 50%;
   transition: background-image 0.5s ease-in-out;
@@ -225,7 +227,7 @@ img {
   width: 100%;
   transform: scaleX(0);
   height: 2px;
-  bottom: 0;
+  bottom: 6px;
   left: 0;
   background-color: #9bd8e0;
   transform-origin: bottom right;
@@ -270,7 +272,7 @@ img {
   position: relative;
 }
 .home-flex:hover .overlay {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 .content .button-explore{
   background: none;

@@ -53,18 +53,28 @@ class Cart extends React.Component {
     return (
       <Fragment>
         <SubHeader />
-        <section className="h-100 h-custom" style={{ backgroundColor: "#eee", paddingTop: '6rem' }}>
-          <div className="container py-5 h-100">
+        <section className="h-100 h-custom" style={{ backgroundColor: "#eee", paddingTop: '3rem' }}>
+          <div className="title_cart">
+              <div className="col-5 text-end">
+              <i className="fa-brands fa-opencart"></i>
+              </div>
+              <p className="col-7 text-uppercase">Giỏ Hàng</p>
+          </div>
+          <div className="container py-4 h-100">
             <div className="row justify-content-around">
               <div className="col-xl-8 card-left">
-                <h2 className="mb-3 text-center font-cart text-uppercase">giỏ hàng</h2>
-                <hr />
-
-                <div className="d-flex justify-content-between align-items-center mb-4">
+                {/* <h2 className="mb-3 text-center font-cart text-uppercase">giỏ hàng</h2> */}
+                {/* d-flex justify-content-between align-items-center  */}
+                <div className="mb-4">
                   <div>
-                    <p className="mb-0">Có {this.state.listProducts.length} sản phẩm trong giỏ hàng</p>
+                    <i className="fa-solid fa-tags d-inline-block me-3 ms-2"></i>
+                    <p className="mb-0 d-inline-block font-cart">{this.state.listProducts.length} sản phẩm trong giỏ hàng</p>
                   </div>
-                  
+                  <hr style={{ width: "95%"}} />
+                  {/* <div> */}
+
+                {/* <hr /> */}
+                  {/* </div> */}
                 </div>
                 {
                  this.state.listProducts.length !== 0? 

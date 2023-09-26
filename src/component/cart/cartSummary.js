@@ -44,8 +44,8 @@ class CartSummary extends React.Component {
 
   handleSummary = () => {
     if (this.props.checkout) {
-      this.props.pay(2);
-      this.props.order(true);
+      this.props.pay(3);
+      // this.props.order(true);
     } else {
       if (this.props.product.length > 0) {
         this.props.history.push("/order");

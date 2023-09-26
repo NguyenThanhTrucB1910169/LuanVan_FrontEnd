@@ -23,6 +23,8 @@ import EditProduct from "./component/manage/editProduct";
 import AllOrders from "./component/manage/allOrders";
 import AllUsers from "./component/manage/allUsers";
 import Profile from "./component/user/profile";
+import FileUploadComponent from "./component/user/upload";
+import AdRoute from './component/layouts/adRoute'
 function App() {
   return (
     <BrowserRouter>
@@ -32,12 +34,12 @@ function App() {
         <Route path="/products" component={Product}></Route>
         <Route path="/product/detail" component={ProductDetail}></Route>
         <Route path="/register" component={Register}></Route>
-        <Route path="/ad/create" component={CreateProduct}></Route>
-        <Route path="/ad/listpd" component={AllProducts}></Route>
-        <Route path="/ad/editpd" component={EditProduct}></Route>
-        <Route path="/ad/orders" component={AllOrders}></Route>
-        <Route path="/ad/allusers" component={AllUsers}></Route>
-        <Route path="/login" component={Login}></Route>
+        <AdRoute path="/ad/create" component={CreateProduct}></AdRoute>
+        <AdRoute path="/ad/listpd" component={AllProducts}></AdRoute>
+        <AdRoute path="/ad/editpd" component={EditProduct}></AdRoute>
+        <AdRoute path="/ad/orders" component={AllOrders}></AdRoute>
+        <AdRoute path="/ad/allusers" component={AllUsers}></AdRoute>
+        <Route path="/login/:tab" component={Login}></Route>
         <AuthRoute path="/ad/dashboard" component={DashBoard}></AuthRoute>
         <AuthRoute path="/cart" component={Cart} />
         <Route path="/order" component={Order}></Route>
@@ -47,6 +49,7 @@ function App() {
         <Route path="/intro" component={IntroPage}></Route>
         <Route path="/contact" component={ContactPage}></Route>
         <Route path="/profile" component={Profile}></Route>
+        <Route path="/upload" component={FileUploadComponent}></Route>
       </Switch>
     </BrowserRouter>
   );

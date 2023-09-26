@@ -1,0 +1,17 @@
+.speedDial {
+    position: fixed;
+    right: 3vmax;
+    top: 1.6rem;
+  }
+  
+  /* .MuiSpeedDial-root .MuiFab-root button{ */
+    .MuiFab-primary{
+    height: 30px!important;
+    width: 35px!important;
+  }
+
+  .speedDialIcon {
+    height: 36px;
+    border-radius: 100%;
+    width: 100%;
+  }

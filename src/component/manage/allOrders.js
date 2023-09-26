@@ -18,9 +18,9 @@ class AllOrders extends React.Component {
       order: [],
       open: [],
       total: {},
-      placed: 0,
-      deliver: 0,
-      recieve: 0,
+      // placed: 0,
+      // deliver: 0,
+      // recieve: 0,
     };
   }
 
@@ -53,7 +53,7 @@ class AllOrders extends React.Component {
           value.map((item) => (price += item.quantity));
           this.setState((prev) => ({
             total: { ...prev.total, [key]: price },
-            placed: value.filter((item) => item.status === 0).length
+            // placed: value.filter((item) => item.status === 0).length
           }));
         });
       });
@@ -82,10 +82,10 @@ class AllOrders extends React.Component {
   };
 
   render() {
-    console.log('------------------')
-     Object.entries(this.state.order).map(([key, value]) => {
-      console.log(value);
-    })
+    // console.log('------------------')
+    //  Object.entries(this.state.order).map(([key, value]) => {
+    //   console.log(value);
+    // })
     return (
       <Fragment>
         <SideBar />
