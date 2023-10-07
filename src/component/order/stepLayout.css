@@ -1,9 +1,17 @@
-.step_label_active > span:first-child {
+.step_box .step_label_active > span:first-child {
+  padding: 8px;
+  border-radius: 50%;
+  border: 3px solid #8cb5f0;
+  color: #296ca9;
+}
+
+.step_box_complete .step_label_active > span:first-child {
   padding: 8px;
   border-radius: 50%;
   color: #fff;
 }
 
+.btn_step_complete,
 .btn_step {
   width: 30%;
   border: none;
@@ -12,21 +20,34 @@
   position: relative;
 }
 
+.btn_step_complete::after{
+  content: "";
+  position: absolute;
+  width: 57%;
+  height: 3px;
+  border-radius: 10px;
+  top: 30%;
+  left: 8rem;
+  background-color: #70e0d9;
+}
+
 .btn_step::after{
   content: "";
   position: absolute;
   width: 57%;
   height: 3px;
-  background-color: #70e0d9;
+  background-color: #b3b3b3;
   border-radius: 10px;
   top: 30%;
   left: 8rem;
 }
 
+.btn_step_complete:last-child::after,
 .btn_step:last-child::after{
   display: none;
 }
 
+.btn_step_complete .MuiStepLabel-root,
 .btn_step .MuiStepLabel-root{
   flex-direction: column;
 }
@@ -39,6 +60,10 @@
 
 .step_box {
   color: #000;
+}
+
+.step_box_complete{
+  color: blueviolet;
 }
 
 .MuiStepConnector-completed span {

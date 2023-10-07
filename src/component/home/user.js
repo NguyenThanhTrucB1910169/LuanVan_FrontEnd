@@ -20,6 +20,7 @@ const User = () => {
   const role = useSelector((state) => state.login.role);
   // const [prevRole, setPrevRole] = useState(role)
   const cartItem = useSelector((state) => state.cart.cartItem);
+  const user = useSelector((state) => state.login.user);
   const [isLogout, setLogout] = useState(false);
   const [open, setOpen] = useState(false);
   const history = useHistory();
@@ -86,17 +87,17 @@ const User = () => {
   }, [role, isLogout]);
   return (
     <Fragment>
-      <Backdrop open={open} style={{ zIndex: "10" }} />
+      <Backdrop open={open} style={{ zIndex: "99" }} />
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
-        style={{ zIndex: "11" }}
+        style={{ zIndex: "99" }}
         open={open}
         direction="down"
         className="speedDial"
         icon={
-          <img className="speedDialIcon" src="./avatar-2.jpg" alt="Profile" />
+          <img className="speedDialIcon" src={user && user.avatar ? user.avatar : "./avatar_default.png"} alt="Profile" />
         }
       >
         {options.map((item) => (

@@ -34,7 +34,7 @@ class OrderDetail extends React.Component {
     var dateFormatted = date.format("DD/MM/YYYY HH:mm");
     return (
       <Fragment>
-        <SubHeader position="position-relative"/>
+        {/* <SubHeader position="position-relative" /> */}
         <div className="view_detail">
           <div className="row justify-content-between">
             <div className="col-1 text-center detail_back">
@@ -75,7 +75,12 @@ class OrderDetail extends React.Component {
                     key={index}
                   >
                     <div className="col-sm-2 col-lg-2 img_detail p-0 text-center">
-                      <img src={detail.image.split(",")[2]} alt="" />
+                      {detail.image && detail.image.split(",")[2] && (
+                        <img
+                          src={`http://localhost:3005/uploads/${detail.image.split(',')[2]}`}
+                          alt=""
+                        />
+                      )}
                     </div>
                     <div className="col-sm-5 col-lg-6 title_detail p-0">
                       <h5>{detail.name}</h5>

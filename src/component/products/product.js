@@ -13,22 +13,25 @@ class Product extends React.Component {
     super(props);
     this.state = {
       products: this.props.listProduct,
-      searchText: "",
+      searchText: '',
       searchProduct: this.props.listProduct || [],
       filterProduct: [],
       isActive: "",
       material: ["bạch kim", "vàng hồng", "bạc", "đá quý", "ngọc trai"],
       type: ["hoa tai", "vòng cổ", "vòng tay", "nhẫn", "ghim cài"],
+      option: false
     };
   }
 
-  search = (e) => {
-    this.setState({ searchText: e.target.value.toLowerCase() }, () => {
-      let searchProduct = [...this.state.products].filter((item) =>
-        item.name.toLowerCase().includes(this.state.searchText)
-      );
-      this.setState({ searchProduct: searchProduct });
-    });
+  search = (value) => {
+    if(value !== 'none'){
+      this.setState({ searchText: value.toLowerCase() }, () => {
+        let searchProduct = [...this.state.products].filter((item) =>
+          item.name.toLowerCase().includes(this.state.searchText)
+        );
+        this.setState({ searchProduct: searchProduct });
+      });
+    }
   };
 
   clearSearch = () => {
@@ -39,6 +42,10 @@ class Product extends React.Component {
 
   componentDidMount() {
     this.props.fetchProductsRedux();
+    console.log(this.props.match.params)
+    if(this.props.match.params !== ''){
+      this.search(this.props.match.params.search)
+    }
   }
 
   addToCart = async (id) => {
@@ -95,15 +102,20 @@ class Product extends React.Component {
     });
   };
 
+  showOption = (op) => {
+    console.log(op);
+    this.setState({option: op});
+  }
+
   render() {
     return (
       <Fragment>
-        {/* <SubHeader /> */}
-        <div className="contain">
+        <SubHeader show={this.showOption}/>
+        <div className={this.state.option ? "contain_bottom" + " contain" : "" + " contain"}>
           <div className="products_title">
-            <h1 className="text-center text-uppercase">tất cả sản phẩm</h1>
+            <h1 className="text-center">fine jewelry</h1>
           </div>
-          <div className="row align-items-md-end nav_products">
+          <div className="row align-items-md-end nav_products m-0">
             <div className="col-md-12 col-xl-7 col-xxl-6 row justify-content-between">
               <div className="col-md-4 col-lg-4 col-xl-4 col-xxl-4 ms-3 btn_sort">
                 <span className="me-2">Lọc theo giá</span>
@@ -170,7 +182,7 @@ class Product extends React.Component {
                   type="text"
                   placeholder="Tìm kiếm sản phẩm ...."
                   value={this.state.searchText}
-                  onChange={this.search}
+                  onChange={(e) => this.search(e.target.value)}
                 />
                 <button onClick={this.clearSearch}>
                   <i className="fa-solid fa-xmark"></i>

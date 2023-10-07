@@ -21,6 +21,7 @@ class Cart extends React.Component {
     this.state = {
       listProducts: [],
       quantity: 0,
+      option: false
     };
   }
 
@@ -48,11 +49,14 @@ class Cart extends React.Component {
       })
     }
   };
+  showOption = (op) => {
+    this.setState({option: op})
+  }
 
   render() {
     return (
       <Fragment>
-        <SubHeader />
+        <SubHeader show={this.showOption}/>
         <section className="h-100 h-custom" style={{ backgroundColor: "#eee", paddingTop: '3rem' }}>
           <div className="title_cart">
               <div className="col-5 text-end">

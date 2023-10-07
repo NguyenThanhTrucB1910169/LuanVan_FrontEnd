@@ -53,14 +53,14 @@ class ContactPage extends React.Component {
             </div>
           </div>
           <div className="cont_assist">
-          <h2 className="text-center fw-semibold">Dịch Vụ Tại S&S</h2>
+          <h2 className="text-center fw-semibold">Dịch Vụ Tại Swans Lux</h2>
             <div className="d-flex flex-sm-column flex-lg-row m-sm-0 mf cont_mt justify-content-around">
               <div className="col-sm-12 col-lg-5 text-center">
                 <img src="./cont-3.webp" alt="" />
                 <h3>Dịch Vụ Sản Phẩm</h3>
                 <p>
                   Chúng tôi cung cấp dịch vụ vệ sinh, sửa chữa và thay đổi kích
-                  cỡ trong suốt thời gian sử dụng trang sức S&S của bạn.
+                  cỡ trong suốt thời gian sử dụng trang sức Swans Lux của bạn.
                 </p>
               </div>
               <div className="col-sm-12 col-lg-5 text-center">
@@ -68,7 +68,7 @@ class ContactPage extends React.Component {
                 <h3>Chăm Sóc Sản Phẩm</h3>
                 <p>
                   Khám phá cách chăm sóc các chất liệu độc đáo trong thiết kế
-                  của S&S, từ ngọc trai đến bạc.
+                  của Swans Lux, từ ngọc trai đến bạc.
                 </p>
               </div>
             </div>

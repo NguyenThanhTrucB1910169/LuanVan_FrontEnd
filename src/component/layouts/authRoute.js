@@ -23,7 +23,7 @@ class AuthRoute extends React.Component {
         ) : (
           <Fragment>
             <ToastContainer />
-            <Redirect to="/login"></Redirect>
+            <Redirect to="/login/1"></Redirect>
           </Fragment>
         )}
       </Fragment>

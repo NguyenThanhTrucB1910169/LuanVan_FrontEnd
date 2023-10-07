@@ -51,7 +51,7 @@ class CartItem extends React.Component {
             <div className="d-flex flex-row align-items-center col-6">
               <div>
                 <img
-                  src={this.state.listImages[2]}
+                  src={`http://localhost:3005/uploads/${this.state.listImages[2]}`}
                   className="img-fluid rounded-3"
                   alt="Shopping item"
                   style={{ width: "65px" }}

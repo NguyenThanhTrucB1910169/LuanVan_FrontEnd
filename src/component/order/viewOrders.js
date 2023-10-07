@@ -63,7 +63,7 @@ class ViewOrders extends React.Component {
     // console.log(this.props.orders);
     return (
       <Fragment>
-        <SubHeader />
+        {/* <SubHeader /> */}
         <div className="container view_order_contain">
           <div className="d-flex justify-content-center row">
             <div className="col-md-10 col-xl-8">

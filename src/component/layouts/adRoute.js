@@ -6,15 +6,15 @@ import Toast from "../home/toast";
 import {useSelector} from 'react-redux'
 
 const AdRoute = (props) => {
-  const [role] = useSelector((state) => state.login.role)
+  const role = useSelector((state) => state.login.role)
   useEffect(() => {
     const isActive = JSON.parse(localStorage.getItem('isactive'));
 
-    if (!isActive) {
+    if (isActive && role === 2) {
       toast.warning(<Toast message="Đăng nhập để tiếp tục" />, {
         className: 'warning',
       });
-    } else if(isActive && role !== 1){
+    } else if(isActive && role === 0){
       toast.warning(<Toast message="Đăng nhập dưới quyền admin" />, {
         className: 'warning',
       });
@@ -30,7 +30,7 @@ const AdRoute = (props) => {
       ) : (
         <React.Fragment>
           <ToastContainer />
-          <Redirect to="/login"></Redirect>
+          <Redirect to={`/login/${1}`}></Redirect>
         </React.Fragment>
       )}
     </React.Fragment>

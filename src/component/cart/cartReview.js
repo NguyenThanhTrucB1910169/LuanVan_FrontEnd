@@ -46,7 +46,7 @@ class CartReview extends React.Component {
             >
               <div className="col-md-3 col-lg-3 col-xl-2">
                 <img
-                  src={this.state.listImages[index][2]}
+                  src={`http://localhost:3005/uploads/${this.state.listImages[index][2]}`}
                   className="rounded-4"
                 />
               </div>

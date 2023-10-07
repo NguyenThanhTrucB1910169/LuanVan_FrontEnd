@@ -26,8 +26,9 @@ const createUsers = (req) => {
 const authUsers = (req, res) => {
   return async (dispatch) => {
     try {
+      console.log(req);
       await axios
-        .post("http://localhost:3005/api/signup/auth", req, {
+        .post("http://localhost:3005/api/login", req, {
           withCredentials: true,
         })
         .then((val) => {

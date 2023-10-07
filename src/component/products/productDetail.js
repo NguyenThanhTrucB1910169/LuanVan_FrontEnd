@@ -19,6 +19,7 @@ const ProductDetail = () => {
   const detailProduct = useSelector((state) => state.getAllProducts.detail);
   const isAdd = useSelector((state) => state.cart.isAdd);
   const dispatch = useDispatch();
+  const [op, setOptions] = useState(false)
   const prevDetailProductRef = useRef(detailProduct);
   const settings = {
     dots: true,
@@ -67,10 +68,12 @@ const ProductDetail = () => {
       setArrayImages(product.image.split(","));
     }
   }, []);
-
+  const showOption = (op) => {
+    setOptions(op)
+  }
   return (
     <Fragment>
-      <SubHeader />
+      <SubHeader show={showOption}/>
       <div className="product-detail">
         <div className="mb-5 contain-detail">
           <div className="row d-flex justify-content-around h-100">

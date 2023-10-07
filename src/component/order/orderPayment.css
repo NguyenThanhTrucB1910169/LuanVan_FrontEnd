@@ -1,0 +1,11 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
+@font-face {
+    font-family: 'Cedarville Cursive';
+    src: url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
+    font-weight: normal;
+    font-style: normal;
+}
+  
+.font_element{
+  font: 300 50px cursive!important;
+} */

@@ -14,6 +14,7 @@ class OrderConfirm extends React.Component {
   }
 
   handleNext = (page) => {
+    console.log(page)
     this.props.handleNext(page);
   };
 
@@ -22,10 +23,10 @@ class OrderConfirm extends React.Component {
   render() {
     return (
       <Fragment>
-        <StepLayout activeStep={1} />
-        <div>
+        <StepLayout activeStep={1} linkToStep={(step) => this.handleNext(step)}/>
+        {/* <div>
             <button className="btn_back_order" onClick={() => this.handleNext(1)}><i className="fa-solid fa-circle-left"></i></button>
-        </div>
+        </div> */}
         <div className="order_confirm">
           <div className="col-7 confirm_info">
             <div className="order_info">

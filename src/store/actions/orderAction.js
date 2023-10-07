@@ -5,6 +5,7 @@ import { getCartItem } from "./cartAction";
 const createOrder = (data) => {
   return async (dispatch) => {
     try {
+      console.log(data)
       await axios
         .post("http://localhost:3005/api/order/", data, {
           withCredentials: true,

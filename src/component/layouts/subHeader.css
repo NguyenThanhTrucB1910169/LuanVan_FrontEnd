@@ -9,30 +9,122 @@
   height: 6rem;
 }
 
-
 .sub_header .header_top {
   background-color: #d2e6f182;
   transition: background-color 0.5s ease-in-out;
 }
 
-.sub_header .and_word{
-  font-size: 45px;
+.sub_header .and_word {
+  font-size: 43px;
 }
 
-.sub_header .col_b{
+.sub_header .col_b {
   width: 13%;
 }
 
-.sub_header .row_sub .col_b{
-  width: 21%;
+.sub_header .row_header {
+  width: 100%;
+  position: fixed;
+  z-index: 11;
+  background-color: #dcebf4;
 }
 
-.sub_header .row_sub .logo{
+.sub_header .brand_logo {
+  /* padding-top: 0;
+  padding-bottom: 3px;
+  margin-top: 5rem;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+  background-color: #dcebf4;
+  transition: all 0.3s ease-in-out; */
+  height: 7%;
+  margin-top: 5rem;
+  width: 100%;
+  position: fixed;
+  z-index: 12;
+  background-color: #dcebf4;
+}
+
+.sub_header .brand_logo::after,
+.sub_header .brand_logo::before {
+  background-color: #000;
+  width: calc(50% - 560px);
+  left: 35%;
+}
+
+.sub_header .d-hide{
+  width: 0;
+  height: 0;
+}
+
+.sub_header .d-hide .sticky-header li{
+  /* opacity: 0; */
+}
+
+.sub_header .brand_logo::after {
+  left: calc(52% - 5px);
+}
+
+.sub_header .icon_nav{
+  margin-top: 1.5rem;
+}
+
+.brand_logo .brand_logo_icon {
+  text-align: center;
+}
+.brand_logo .brand_logo_icon svg {
+  font-size: 50px;
+  margin-top: -15px;
+}
+.sub_header .brand_logo img {
+  width: 3%;
+  position: absolute;
+  top: calc(50% - 24px);
+  right: calc(48% - -9px);
+}
+
+.sub_header .d-hide svg{
+  display: none;
+}
+
+.sub_header .stick_nav {
+  top: 15%;
+  /* z-index: 3;
+  padding-top: 0.5rem;
+  width: 100%;
+  height: 12%;
+  transition: all .4s ease-in; */
+  width: 100%;
+  position: fixed;
+  z-index: 13;
+  background-color: #dcebf4;
+}
+
+.sub_header .stick_nav .sticky-header li{
+  /* opacity: 1; */
+  /* transition: all 0.9 ease-in; */
+}
+
+.sub_header .main_menu a {
+  color: #000;
+  font-weight: 400;
+  text-transform: capitalize;
+  font-size: 18px !important;
+  display: block;
+  padding: 19px 20px;
+}
+
+.sub_header .row_sub .col_b {
+  width: 22%;
+}
+
+.sub_header .row_sub .logo {
   margin-left: 6rem;
 }
 
-.sub_header .logo{
-  font-family: 'Dancing Script', cursive;
+.sub_header .logo {
+  font-family: "Dancing Script", cursive;
   font-size: 79px;
   color: #000;
   line-height: 84px;
@@ -40,11 +132,11 @@
   font-weight: 500;
 }
 
-.sub_header .col_a{
+.sub_header .col_a {
   width: 13%;
 }
 
-.sub_header .icon_logo{
+.sub_header .icon_logo {
   width: 6%;
   position: absolute;
   top: 4px;
@@ -150,6 +242,21 @@
 .sub_header .main_menu {
   font-family: "Montserrat", sans-serif;
 }
+
+.row_header .show_options{
+  position: absolute;
+  width: 100%;
+  height: 10%;
+}
+
+.sub_header .d-hide .main_menu{
+  display: none;
+} 
+
+.sub_header .stick_nav .main_menu{
+  display: block;
+}
+
 .sub_header form {
   color: #fff;
   background-color: #000 !important;
@@ -164,7 +271,7 @@
 
 .sub_header .top_links:hover .dropdown_links {
   top: 100%;
-  opacity: 1;
+  /* opacity: 1; */
   visibility: visible;
 }
 
@@ -185,43 +292,6 @@
 
 .home_icon i {
   position: relative;
-}
-
-.dropdown_sub {
-  position: absolute;
-  width: fit-content;
-  padding: 10px;
-  transform: perspective(600px) rotateX(-90deg);
-  transform-origin: 0 0 0;
-  left: 5px;
-  visibility: hidden;
-  transition: 0.5s;
-  z-index: 10;
-  top: 70%;
-  left: 10px;
-  margin: 0;
-  background: #242424;
-  border-radius: 15px;
-  border: none;
-  font-size: 15px;
-  line-height: 10px;
-}
-
-.dropdown_sub a {
-  padding: 20px 30px;
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.dropdown_sub a:hover {
-  color: #a8741a;
-}
-
-.home_icon:hover .dropdown_sub {
-  visibility: visible;
-  transform: perspective(600px) rotateX(0deg);
 }
 
 .logo h1 {

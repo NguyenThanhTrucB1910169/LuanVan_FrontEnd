@@ -5,13 +5,14 @@ import { Link, withRouter } from "react-router-dom";
 import { logoutHandler } from "../../store/actions/usersAction";
 import { getOrderDeliver } from "../../store/actions/orderAction";
 import { connect, useDispatch, useSelector } from "react-redux";
+import ArrowDropDownRoundedIcon from "@material-ui/icons/ArrowDropDownRounded";
 import { toast } from "react-toastify";
 import Toast from "../home/toast";
 import { useHistory } from "react-router-dom";
 import Notify from "./notify";
 import User from "../home/user";
 
-const SubHeader = () => {
+const SubHeader = ({ show }) => {
   const [amout, setAmount] = useState(0);
   const [order, setOrder] = useState(0);
   // const [showHeader, setShowHeader] = useState(true);
@@ -66,25 +67,48 @@ const SubHeader = () => {
     }
   }, []);
 
+  useEffect(() => {
+    show(showOps);
+  }, [showOps]);
+
+  const showOptions = () => {
+    setShowOps(!showOps);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowOps(false);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <Fragment>
       <header className="sub_header me-0">
         <div className="">
           <div className="header_top">
-            <div className="ms-4">
-              <div className={isLogin === 0 ? 'row_header' : 'row_sub row_header'}>
+            <div className="">
+              <div
+                className={isLogin === 0 ? "row_header" : "row_sub row_header"}
+              >
                 <div className="col_a">
-                  <img src="./logo.png" alt="" className="icon_logo" />
+                  {/* <img src="./logo_sub.png" alt="" className="icon_logo" /> */}
+                  <button className="icon_nav" onClick={showOptions}>
+                    {showOps ? (
+                      <i className="fa-solid fa-xmark"></i>
+                    ) : (
+                      <i className="fa-solid fa-bars"></i>
+                    )}
+                  </button>
                 </div>
-                  <div className="text-center">
-                    <div
-                      className="logo text-center"
-                    >
-                      Shine
-                      <span className="and_word"> and </span>
-                      Lux
-                    </div>
+                <div className="text-center">
+                  <div className="logo text-center">
+                    <p>Swans Lux</p>
                   </div>
+                </div>
                 <div className="col_b float-end me-4 mt-3 top_right">
                   <div className="d-inline-block search">
                     <i className="fa-solid fa-magnifying-glass"></i>
@@ -96,28 +120,105 @@ const SubHeader = () => {
                     </div>
                   </div>
                   <div className="d-inline-block">
-                      {isLogin === 0 ? (
-                        <User />
-                      ) : (
-                        <div className="d-inline-block signin ms-3">
-                          <Link
-                            to={`/login/${1}`}
-                            className="btn_links d-inline-block"
-                          >
-                            {" "}
-                            Đăng Nhập
-                          </Link>
-                          <Link
-                            to={`/login/${2}`}
-                            className="btn_links sign_up d-inline-block position-relative"
-                          >
-                            {" "}
-                            Đăng Ký
-                          </Link>
-                        </div>
-                      )}
-                    </div>
+                    {isLogin === 0 ? (
+                      <User />
+                    ) : (
+                      <div className="d-inline-block signin ms-3">
+                        <Link
+                          to={`/login/${1}`}
+                          className="btn_links d-inline-block"
+                        >
+                          {" "}
+                          Đăng Nhập
+                        </Link>
+                        <Link
+                          to={`/login/${2}`}
+                          className="btn_links sign_up d-inline-block position-relative"
+                        >
+                          {" "}
+                          Đăng Ký
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+
                   {/* </div> */}
+                </div>
+                <div className="show_options">
+                  <div className={showOps ? "brand_logo" : "d-hide"}>
+                    {/* <img className="" src="./logo_sub.png" alt="" /> */}
+                    <div className={showOps ? "brand_logo_icon" : "d-hide"}>
+                      <ArrowDropDownRoundedIcon />
+                    </div>
+                  </div>
+                  <div className={showOps ? "stick_nav" : "d-hide" + " me-3"}>
+                    <div className="row align-items-center justify-content-around">
+                      <div className="sticky-header">
+                        <div className="row align-items-center">
+                          <div className="main_menu text-center">
+                            <ul>
+                              <li>
+                                <Link
+                                  to="/"
+                                  className="text-decoration-none fs-2"
+                                >
+                                  Trang Chủ
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/products"
+                                  className="text-decoration-none fs-2"
+                                >
+                                  Trang sức
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/intro"
+                                  className="text-decoration-none fs-2"
+                                >
+                                  Đồng hồ
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/products"
+                                  className="text-decoration-none fs-2"
+                                >
+                                  Trang sức cưới
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/products"
+                                  className="text-decoration-none fs-2"
+                                >
+                                  Phụ kiện & Quà tặng
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/intro"
+                                  className="text-decoration-none fs-2"
+                                >
+                                  Giới thiệu
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/contact"
+                                  className="text-decoration-none fs-2"
+                                >
+                                  Liên Hệ
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

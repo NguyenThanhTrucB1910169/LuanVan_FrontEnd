@@ -31,7 +31,7 @@ function App() {
       <ToastContainer autoClose={1000} hideProgressBar transition={Flip} closeButton={false}/>
       <Switch>
         <Route exact path="/" component={Home}></Route>
-        <Route path="/products" component={Product}></Route>
+        <Route path="/products/:search" component={Product}></Route>
         <Route path="/product/detail" component={ProductDetail}></Route>
         <Route path="/register" component={Register}></Route>
         <AdRoute path="/ad/create" component={CreateProduct}></AdRoute>

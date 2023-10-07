@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Typography, Stepper, StepLabel, Step } from "@material-ui/core";
 import "./stepLayout.css";
 import LocalShippingIcon from "@material-ui/icons/LocalShipping";
@@ -8,7 +8,7 @@ import DoneIcon from "@material-ui/icons/Done";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { Link } from "react-router-dom";
 
-const StepLayout = ({ activeStep }) => {
+const StepLayout = ({ activeStep, linkToStep }) => {
   const steps = [
     {
       label: <Typography>Thông tin giao hàng</Typography>,
@@ -33,8 +33,15 @@ const StepLayout = ({ activeStep }) => {
   ];
   const [step, setStep] = useState(activeStep);
   const linkActiveStep = (step) => {
+    console.log(step)
     setStep(step);
+    linkToStep(step);
   };
+  useEffect(() => {
+    setStep(activeStep);
+    // console.log(activeStep)
+    // console.log(step);
+  }, [activeStep]);
   return (
     <div className="row w-100">
       <div className="col-1 text-center pt-4">
@@ -45,13 +52,13 @@ const StepLayout = ({ activeStep }) => {
       <div className="col-11">
         <Stepper alternativeLabel activeStep={step}>
           {steps.map((item, index) => (
-            <button className="btn_step" onClick={() => linkActiveStep(index)}>
+            <button className={step > index ? 'btn_step_complete' : 'btn_step'} onClick={() => linkActiveStep(index+1)}>
               <Step
                 key={index}
                 active={step === index ? true : false}
-                completed={step >= index ? true : false}
+                completed={step > index ? true : false}
                 // completed={true}
-                className="step_box"
+                className={step > index ? 'step_box_complete' : 'step_box'}
               >
                 <StepLabel
                   // style={{
