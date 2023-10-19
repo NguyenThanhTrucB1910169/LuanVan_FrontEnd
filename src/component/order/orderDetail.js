@@ -1,7 +1,7 @@
 import React from "react";
 import { Fragment } from "react";
 import "./orderDetail.css";
-import SubHeader from "../layouts/subHeader";
+import Header from "../home/header";
 import Footer from "../home/footer";
 import { withRouter, Link } from "react-router-dom";
 import { getDetailProduct } from "../../store/actions/orderAction";
@@ -34,9 +34,9 @@ class OrderDetail extends React.Component {
     var dateFormatted = date.format("DD/MM/YYYY HH:mm");
     return (
       <Fragment>
-        {/* <SubHeader position="position-relative" /> */}
+        <Header type={0} />
         <div className="view_detail">
-          <div className="row justify-content-between">
+          <div className="row justify-content-between m-0">
             <div className="col-1 text-center detail_back">
               <Link to="/vieworder">
                 <i className="fa-solid fa-angles-left"></i>
@@ -53,8 +53,9 @@ class OrderDetail extends React.Component {
                 ? `#0${this.props.detailsOrder[0].id}`
                 : `#${this.props.detailsOrder[0].id}`}
             </h3>
-            <p>
-              Ngày đặt: {dateFormatted}. Tình trạng:{" "}
+            <p>Ngày đặt: {dateFormatted}</p>
+            <p className="mb-5">
+              Tình trạng:{" "}
               {this.props.detailsOrder[0].status === 0 ? (
                 <span>Đã đặt, đang chờ xử lý...</span>
               ) : this.props.detailsOrder[0].status === 1 ? (
@@ -77,7 +78,9 @@ class OrderDetail extends React.Component {
                     <div className="col-sm-2 col-lg-2 img_detail p-0 text-center">
                       {detail.image && detail.image.split(",")[2] && (
                         <img
-                          src={`http://localhost:3005/uploads/${detail.image.split(',')[2]}`}
+                          src={`http://localhost:3005/uploads/${
+                            detail.image.split(",")[2]
+                          }`}
                           alt=""
                         />
                       )}
@@ -99,7 +102,7 @@ class OrderDetail extends React.Component {
                   </div>
                 ))}
               </div>
-              <div className="row justify-content-start">
+              <div className="row justify-content-start mt-5">
                 <div className="col-8 sum_detail">
                   <div className="row justify-content-between">
                     <div className="col-4">Tổng đơn</div>
@@ -114,8 +117,8 @@ class OrderDetail extends React.Component {
                     <div className="col-4">Phí</div>
                     <div className="col-4">Miễn Phí</div>
                   </div>
-                  <div className="border_sum"></div>
-                  <div className="row justify-content-between">
+                  {/* <div className="border_sum"></div> */}
+                  <div className="row justify-content-between mt-3">
                     <div className="col-4 fw-bold">Tổng cộng</div>
                     <div className="col-4 fw-bold">
                       {Intl.NumberFormat("vi-VN", {

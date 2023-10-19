@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap');
+
 .order_complete_img{
     width: 25%;
     text-align: center;
@@ -20,4 +23,147 @@
 
 .success_order{
     color: #32c459;
+}
+.order_complete{
+    text-align: center;
+}
+
+.order_complete h1{
+  font-family: 'Pacifico', cursive;
+  font-size: 70px;
+  margin: 1rem 0 .5rem;
+}
+
+.order_complete .bag_icon{
+    font-size: 25px;
+}
+
+.order_complete p{
+    font-size: 20px;
+    color: rgb(93, 93, 93);
+    margin-top: 1rem;
+}
+
+.order_complete .cart_completed_img{
+    width: 4%;
+}
+
+.order_complete_contain .order_review{
+    padding: 3rem 1.5rem 2rem 5rem;
+    background-color: #fff;
+    margin-top: 1.5rem;
+    border-radius: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    height: 67rem;
+    max-height: 20rem;
+    overflow: hidden;
+    transition: max-height .6s ease-in-out;
+}
+
+.order_complete_contain .order_review.re_height{
+    max-height: 100rem;
+}
+
+.bg_order{
+    margin: 0;
+}
+
+.order_complete_contain .info_frame .title{
+    padding-bottom: .4rem;
+    border-bottom: 2px dashed gray;
+    width: 26rem;
+    font-family: 'Young Serif', serif;
+    font-size: 18px;
+    margin-top: 2rem;
+}
+
+.order_complete_contain .products_frame {
+    height: 19.5rem;
+    overflow: scroll;
+    margin-top: 3rem;
+}
+
+.order_complete_contain .products_frame .img img{
+    width: 100%;
+    border-radius: 13px;
+}
+
+.order_complete_contain .products_frame .img{
+    padding-top: 5px;
+}
+
+.order_complete_contain .title_info{
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: 600;
+    font-size: 43px;
+}
+
+.icon_down{
+    position: absolute;
+    bottom: 14px;
+    border-radius: 7px;
+    background-color: #fff;
+    padding: 1px 5px;
+    right: 22%;
+    border: none;
+    width: 3%;
+    color: #186ff7;
+    border: none;
+}
+
+.order_complete_contain .info_frame p{
+    padding-left: 1rem;
+    font-size: 16px;
+}
+
+.order_complete_contain .total_order{
+    line-height: 60px;
+    font-size: 14px;
+}
+
+.order_complete_contain .total_order span{
+    font-family: 'Young Serif', serif;
+    /* font-weight: bold; */
+    font-size: 22px;
+}
+
+.order_complete_contain .btn_navigate{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    padding: 2rem auto;
+    padding: 2rem 25rem;
+    margin-top: 4rem;
+}
+
+.order_complete_contain .btn_navigate a{
+    text-decoration: none;
+    color: #000;
+    padding: 12px 20px;
+    /* border: 1px solid #000; */
+    background-color: #a8741a4d;
+    border-radius: 20px;
+}
+
+.order_complete .img_completed{
+    display: inline-block;
+    width: 2%;
+    margin-left: 9px;
+}
+
+.order_complete_contain .products_frame p{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.order_complete_contain .info_frame .title_pd{
+    font-size: 24px;
+    font-weight: 500;
+    font-family: cursive;
+}
+
+.btn_navigate .icon_shopping{
+    display: inline-block;
 }

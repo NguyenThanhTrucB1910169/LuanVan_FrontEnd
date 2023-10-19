@@ -22,3 +22,11 @@
 .btn_ad_return i{
     margin-right: 13px;
 }
+
+.form_edit {
+  margin: 0 8rem 2rem;
+}
+
+.form_edit .ad_title{
+    font-size: 40px;
+}

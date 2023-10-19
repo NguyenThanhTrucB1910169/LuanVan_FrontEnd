@@ -100,7 +100,7 @@ class CartSummary extends React.Component {
             </li>
           </ul>
           <div className="text-center">
-            <button className="btn_order" onClick={this.handleSummary}>
+            <button className="btn_order" onClick={this.handleSummary} disabled={this.props.product.length > 0 ? false : true}>
               {this.props.checkout ? "Xác Nhận" : "Đặt Hàng"}
             </button>
           </div>

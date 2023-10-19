@@ -114,4 +114,29 @@ const updateInfo = (req) => {
   };
 };
 
-export { createUsers, authUsers, logoutHandler, updateInfo };
+const getUserById = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios
+        .get(`http://localhost:3005/api/getById/${id}`, {
+          withCredentials: true,
+        })
+        .then((val) => {
+          if (val.data) {
+            console.log(val.data);
+            dispatch({
+              type: Types.GET_USER_BYID_SUCCESS,
+              payload: val.data,
+            });
+          }
+        });
+    } catch (error) {
+      dispatch({
+        type: Types.GET_USER_BYID_FAILED,
+        payload: error,
+      });
+    }
+  };
+};
+
+export { createUsers, authUsers, logoutHandler, updateInfo, getUserById };

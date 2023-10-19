@@ -1,18 +1,22 @@
 .sum-head {
-    background-color: gray!important;
-    color: #fff!important;
+  background-color: gray !important;
+  color: #fff !important;
 }
 
-
-.btn_order{
-    background-color: #81d8d0;
-    text-align: center;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 7px;
-    font-size: 20px;
+.btn_order {
+  background-color: #81d8d0;
+  text-align: center;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 7px;
+  font-size: 20px;
 }
 
-.font_sum{
-    font-family: 'Montserrat', sans-serif;
+.font_sum {
+  font-family: "Montserrat", sans-serif;
+}
+
+.btn_order:disabled {
+  background-color: #e8ebee;
+  color: #000;
 }

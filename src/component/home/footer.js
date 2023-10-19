@@ -6,8 +6,8 @@ class Footer extends React.Component {
     return (
       <Fragment>
         <footer className="text-center text-lg-start text-muted footer">
-          <div className="mx-auto mb-3 mt-4">
-            <h6 className="fw-bold mb-4 text-center fs-5">
+          <div className="mx-auto mb-3 mt-3">
+            <h6 className="fw-bold mb-3 text-center fs-5">
               <img className="foo_logo" src="./logo.png" alt="" />
               Swans Lux
             </h6>
@@ -36,7 +36,7 @@ class Footer extends React.Component {
             </a>
           </div>
 
-          <div className="text-center p-4">
+          <div className="text-center p-4 font_cus">
             &reg; 2023 &nbsp;
             <a className="fw-bold text-decoration-none foo_text" href="#">
             swanslux.com

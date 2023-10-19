@@ -89,7 +89,7 @@ class Home extends React.Component {
   render() {
     return (
       <Fragment>
-        <Header />
+        <Header type={1} />
         <div id="home-element">
           <div className="slide-container">
             <Slide

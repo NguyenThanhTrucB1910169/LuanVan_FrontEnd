@@ -23,7 +23,7 @@
 
 .product_hover {
   position: absolute;
-  z-index: 9;
+  z-index: 3;
   left: 0;
   background: #fff;
   opacity: 0;

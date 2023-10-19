@@ -5,7 +5,8 @@ import { addToCart, getCartItem } from "../../store/actions/cartAction";
 import "./product.css";
 import Footer from "../home/footer";
 import ProductCard from "./productCard";
-import SubHeader from "../layouts/subHeader";
+// import SubHeader from "../layouts/subHeader";
+import Header from "../home/header";
 import { toast } from "react-toastify";
 import Toast from "../home/toast";
 class Product extends React.Component {
@@ -49,9 +50,9 @@ class Product extends React.Component {
   }
 
   addToCart = async (id) => {
-    if (this.props.isLogin) {
+    if (this.props.isLogin === 0) {
       await this.props.handleAddToCart(id, 1);
-      // console.log(this.props.messageAdded)
+      console.log(this.props.messageAdded)
       if (this.props.messageAdded) {
         toast.success(<Toast message="Đã thêm vào giỏ hàng" />, {
           className: "success",
@@ -110,7 +111,7 @@ class Product extends React.Component {
   render() {
     return (
       <Fragment>
-        <SubHeader show={this.showOption}/>
+        <Header type={0} option={this.showOption}/>
         <div className={this.state.option ? "contain_bottom" + " contain" : "" + " contain"}>
           <div className="products_title">
             <h1 className="text-center">fine jewelry</h1>
@@ -190,6 +191,11 @@ class Product extends React.Component {
               </div>
             </div>
           </div>
+
+          <div className="filter_div_contain">
+            
+          </div>
+
           <div className="row justify-content-sm-around mx-3 justify-content-lg-start">
             {this.state.searchProduct.length > 0 &&
             this.state.searchProduct !== null ? (
@@ -222,7 +228,7 @@ const mapStateToProps = (state) => {
   return {
     listProduct: state.getAllProducts.products,
     messageAdded: state.cart.isAdd,
-    isLogin: state.login.isAuth,
+    isLogin: state.login.role,
   };
 };
 

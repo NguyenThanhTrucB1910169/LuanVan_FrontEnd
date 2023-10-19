@@ -9,6 +9,7 @@ import { createUser, loginAccount } from "./reducers/usersReducer";
 import { cartReducer } from "./reducers/cartReducer";
 import { orderReduce } from "./reducers/orderReducer";
 import { adminReducer } from "./reducers/adminReducer";
+import { reviewsReducer } from "./reducers/reviewReducer";
 
 const reducer = combineReducers({
   getAllProducts: products,
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   login: loginAccount,
   orderInfo: orderReduce,
   admin: adminReducer,
+  reviews: reviewsReducer
 });
 
 const persistConfig = {

@@ -3,8 +3,8 @@ import axios from "axios";
 
 let addToCart = (idproduct, qt) => {
   return async (dispatch, getState) => {
-    console.log(getState().login.isAuth)
-    if(getState().login.isAuth) {
+    console.log(getState().login.role)
+    if(getState().login.role === 0) {
       await axios
       .get(`http://localhost:3005/api/cart/${idproduct}/${qt}`, {
         withCredentials: true,

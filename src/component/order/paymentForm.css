@@ -3,7 +3,7 @@
   /* flex-direction: row; */
   /* justify-content: space-between; */
   /* width: 85%; */
-  margin: 5rem auto;
+  /* margin: 5rem auto; */
 }
 
 /* .payment_order .payment_form{
@@ -101,17 +101,15 @@
 
 .form_stripe {
   margin: 0 auto;
-  width: 30%;
+  width: 94%;
   padding: 2rem 2rem 3rem 2rem;
-  background-color: #c1e2ff69;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   font: 300 18px cursive;
 }
 
 .form_stripe .input_stripe{
   margin: 20px;
-  background-color: #fff;
+  background-color: #ebebeba6;
   border-radius: 40px;
 }
 

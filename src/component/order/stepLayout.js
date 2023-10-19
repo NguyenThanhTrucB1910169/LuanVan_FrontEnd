@@ -26,7 +26,7 @@ const StepLayout = ({ activeStep, linkToStep }) => {
       iconComplete: <DoneIcon />,
     },
     {
-      label: <Typography>Hoàn thành đặt hàng</Typography>,
+      label: <Typography>Kết thúc đặt hàng</Typography>,
       icon: <CheckCircleIcon />,
       iconComplete: <DoneIcon />,
     },

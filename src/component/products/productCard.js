@@ -63,7 +63,7 @@ class ProductCard extends React.Component {
     return (
       <Fragment>
         <div className="my-3 product-card">
-          <img src={`http://localhost:3005/uploads/${this.state.arrayImages[1]}`} alt="" className="h-100 w-100" />
+          <img src={`http://localhost:3005/uploads/${this.state.arrayImages[2]}`} alt="" className="h-100 w-100" />
           <div className="product_hover">
             <div className="carditem">
               <div className="row img-slide">

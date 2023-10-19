@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap");
 .brand {
   font-size: 13px;
 }
@@ -10,8 +11,22 @@
 .dis-price {
   text-decoration: line-through;
 }
+
+/* .product_info{
+  text-align: end;
+} */
+
+.about .detail_descrip {
+  font-weight: bold;
+  display: block;
+  text-transform: capitalize;
+  margin: 2rem 0 7px;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 21px;
+}
+
 .about {
-  font-size: 16px;
+  font-size: 14px;
   margin: 20px 0;
 }
 .color {
@@ -109,12 +124,14 @@ label.radio input:checked + span {
   border: none;
   text-decoration: none;
   color: #000;
-  background-color: #fff;
-  font-size: 22px;
+  background-color: transparent;
+  position: absolute;
+  z-index: 5;
+  font-size: 27px;
 }
 
 .btn_back:hover {
-  color: #00a69e;
+  color: #008b85;
 }
 
 .button_add {
@@ -160,7 +177,7 @@ label.radio input:checked + span {
   position: relative;
   top: -4px;
   font-size: 18px;
-  padding: 0 7px;
+  padding: 0 11px;
   font-weight: 600;
 }
 
@@ -169,35 +186,181 @@ label.radio input:checked + span {
   border-radius: 15px;
   height: 41px;
   line-height: 27px;
-  padding: 0px 20px;
+  padding: 0px 15px;
   box-shadow: 6px 4px 10px #bcbcbc;
-  width: 22%;
+  width: 23%;
   background-color: #fff;
 }
 
 .add_cart .set_quant button {
-  padding: 0px 7px;
+  padding: 0px 10px;
   font-size: 32px;
   line-height: 38px;
   border: none;
   background-color: #fff;
 }
 
-.product{
+.product {
   margin-top: 7rem;
+  position: relative;
 }
 
-.mg_top{
+.product-detail {
+  transition: padding-top 0.4s ease-in-out;
+  position: relative;
+}
+
+.mg_top {
   margin-top: 6rem;
 }
 
+.pad_top {
+  padding-top: 8rem;
+  transition: padding-top 0.4s ease-in-out;
+}
+
 .slick-dots li button:before {
-  color: #fe5f7f!important;
+  color: #fe5f7f !important;
 }
 
 .slick-prev,
 .slick-next {
-  color: #534e4e!important;
-  background: #7d7d7e!important;
-  border-radius: 10px!important;
+  color: #534e4e !important;
+  background: #7d7d7e !important;
+  border-radius: 10px !important;
 }
+
+.rating_frame {
+  display: block;
+  text-align: center;
+}
+
+.title_review h2 {
+  font-size: 24px;
+  font-family: cursive;
+}
+
+.text_frame {
+  text-align: center;
+}
+
+.text_frame textarea {
+  border-radius: 15px;
+  border: 2px solid #8080808c;
+  padding: 15px;
+  width: 70%;
+  height: 8rem;
+  margin: 5px 0;
+}
+
+.btn_review_submit,
+.btn_review_cancel {
+  padding: 0 14px;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 1px 0.5px 2px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  touch-action: manipulation;
+  background: #eeeeeeb0;
+  margin-left: 0.8rem;
+}
+
+.btn_review_submit button:hover {
+  color: #0018a0 !important;
+}
+.btn_review_cancel button:hover {
+  color: #a8741a !important;
+}
+
+.btn_review_submit button {
+  background: #eeeeeeb0 !important;
+  font-weight: 600;
+  color: rgb(106 166 255) !important;
+}
+
+.btn_review_cancel button {
+  background: #eeeeeeb0 !important;
+  font-weight: 600;
+  color: rgb(254, 63, 63) !important;
+}
+
+.MuiDialog-paper {
+  border-radius: 10px !important;
+}
+
+.review_contain {
+  height: fit-content;
+  background-color: #fff;
+  padding-left: 2rem;
+  margin-bottom: 3rem;
+}
+
+.review_contain .reviews_heading {
+  width: 22%;
+  /* background-color: #fff; */
+  padding: 3px 20px 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-left: 3rem;
+  /* border: 4px solid #ffdfd2; */
+  border-bottom: 0;
+  background-color: #fef9f7;
+  position: relative;
+}
+
+.review_contain .reviews_heading::after {
+  content: "";
+  width: 87%;
+  height: 3px;
+  background-color: #ff8a5a82;
+  position: absolute;
+  top: 38px;
+  left: 11px;
+}
+
+.review_contain .review_content{
+  margin-top: 15px;
+}
+
+.add_review_text {
+  text-align: left;
+  margin: 0;
+  padding-left: 6rem;
+  margin-top: 0.7rem;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+
+.submitReview {
+  position: relative;
+  background-color: transparent;
+  color: #646464;
+  padding: 0;
+  border: none;
+  padding-top: 0px;
+  overflow: hidden;
+  font-size: 22px;
+  font-family: 'Pacifico', cursive;
+}
+
+.submitReview::before {
+  content: "";
+  position: absolute;
+  top: 83%;
+  left: 10px;
+  width: 0;
+  height: 2px;
+  background-color: #f7c66f;
+  transition: width 0.3s ease;
+}
+
+.submitReview:hover::before {
+  width: 86%;
+}
+
+
+
+
+

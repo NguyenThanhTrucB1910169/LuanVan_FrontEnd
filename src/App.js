@@ -25,6 +25,7 @@ import AllUsers from "./component/manage/allUsers";
 import Profile from "./component/user/profile";
 import FileUploadComponent from "./component/user/upload";
 import AdRoute from './component/layouts/adRoute'
+import ProductsClassify from "./component/products/productsClassify";
 function App() {
   return (
     <BrowserRouter>
@@ -34,6 +35,7 @@ function App() {
         <Route path="/products/:search" component={Product}></Route>
         <Route path="/product/detail" component={ProductDetail}></Route>
         <Route path="/register" component={Register}></Route>
+        <Route path="/category/:cate" component={ProductsClassify}></Route>
         <AdRoute path="/ad/create" component={CreateProduct}></AdRoute>
         <AdRoute path="/ad/listpd" component={AllProducts}></AdRoute>
         <AdRoute path="/ad/editpd" component={EditProduct}></AdRoute>

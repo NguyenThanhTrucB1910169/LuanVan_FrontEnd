@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 footer {
   font-family: 'Raleway', sans-serif;
+}
+
+.footer h6,
+.font_cus{
+  font-family: 'Pacifico', cursive;
 }
 
 .footer-social {
@@ -46,5 +51,5 @@ footer {
 }
 
 .foo_logo{
-  width: 7%;
+  width: 10%;
 }

@@ -4,7 +4,7 @@ import CartSummary from "./cartSummary";
 import { Fragment } from "react";
 import Footer from "../home/footer";
 import "./cart.css";
-import SubHeader from "../layouts/subHeader";
+import Header from "../home/header";
 import { connect } from "react-redux";
 import Toast from "../home/toast";
 import { toast } from "react-toastify";
@@ -21,48 +21,50 @@ class Cart extends React.Component {
     this.state = {
       listProducts: [],
       quantity: 0,
-      option: false
+      option: false,
     };
   }
 
   componentDidUpdate = (prevProps) => {
-    if(prevProps.listProductInCart !== this.props.listProductInCart){
-      this.setState({listProducts: this.props.listProductInCart});
+    if (prevProps.listProductInCart !== this.props.listProductInCart) {
+      this.setState({ listProducts: this.props.listProductInCart });
     }
-  }
-
-  componentDidMount = async (e) => {
-   
-    await this.props.getListItems();
-   
   };
 
-  updateQt = async(newPd) => {
-    await this.props.updateQuantity(newPd);
-  }
+  componentDidMount = async (e) => {
+    await this.props.getListItems();
+  };
 
-  removeItem = async(id) => {
+  updateQt = async (newPd) => {
+    await this.props.updateQuantity(newPd);
+  };
+
+  removeItem = async (id) => {
     await this.props.remove(id);
-    if(this.props.isDelete) {
-      toast.success(<Toast message="Đã xóa khỏi giỏ hàng."/>, {
-        className: 'success',
-      })
+    if (this.props.isDelete) {
+      toast.success(<Toast message="Đã xóa khỏi giỏ hàng." />, {
+        className: "success",
+      });
     }
   };
   showOption = (op) => {
-    this.setState({option: op})
-  }
+    this.setState({ option: op });
+  };
 
   render() {
     return (
       <Fragment>
-        <SubHeader show={this.showOption}/>
-        <section className="h-100 h-custom" style={{ backgroundColor: "#eee", paddingTop: '3rem' }}>
+        <Header type={0} option={this.showOption} />
+        <section
+          className={`${
+            this.state.option ? "cart_section_bottom" : "cart_section"
+          } h-100 h-custom `}
+        >
           <div className="title_cart">
-              <div className="col-5 text-end">
+            <div className="col-4 text-end">
               <i className="fa-brands fa-opencart"></i>
-              </div>
-              <p className="col-7 text-uppercase">Giỏ Hàng</p>
+            </div>
+            <p className="col-6 text-uppercase">Giỏ Hàng</p>
           </div>
           <div className="container py-4 h-100">
             <div className="row justify-content-around">
@@ -72,34 +74,39 @@ class Cart extends React.Component {
                 <div className="mb-4">
                   <div>
                     <i className="fa-solid fa-tags d-inline-block me-3 ms-2"></i>
-                    <p className="mb-0 d-inline-block font-cart">{this.state.listProducts.length} sản phẩm trong giỏ hàng</p>
+                    <p className="mb-0 d-inline-block font-cart">
+                      {this.state.listProducts.length} sản phẩm trong giỏ hàng
+                    </p>
                   </div>
-                  <hr style={{ width: "95%"}} />
+                  <hr style={{ width: "95%" }} />
                   {/* <div> */}
 
-                {/* <hr /> */}
+                  {/* <hr /> */}
                   {/* </div> */}
                 </div>
-                {
-                 this.state.listProducts.length !== 0? 
-                this.state.listProducts.map((product, index) => (
-                  <CartItem
-                    eachProduct={product}
-                    key={index}
-                    removeItem={this.removeItem}
-                    update = {this.updateQt}
-                    
-                  />
-                )) : (
+                {this.state.listProducts.length !== 0 ? (
+                  this.state.listProducts.map((product, index) => (
+                    <CartItem
+                      eachProduct={product}
+                      key={index}
+                      removeItem={this.removeItem}
+                      update={this.updateQt}
+                    />
+                  ))
+                ) : (
                   <div className="text-center">
-                  <img src="./empty-cart.gif" alt="" className="empty_cart_icon"/>
-                  <h5 className="mt-4">Giỏ Hàng Trống</h5>
+                    <img
+                      src="./empty-cart.gif"
+                      alt=""
+                      className="empty_cart_icon"
+                    />
+                    <h5 className="mt-4">Giỏ Hàng Trống</h5>
                   </div>
                 )}
                 {/* <CartItem /> */}
                 <h5 className="mb-3 mt-5">
                   <Link
-                    to="/products"
+                    to="/products/none"
                     className="text-body text-decoration-none back_cart border-0"
                   >
                     <i className="fas fa-long-arrow-alt-left me-2"></i>
@@ -107,7 +114,14 @@ class Cart extends React.Component {
                 </h5>
               </div>
               <div className="col-xl-3">
-                <CartSummary product={this.state.listProducts.length !== 0 ? this.state.listProducts : []} checkout={false}/>
+                <CartSummary
+                  product={
+                    this.state.listProducts.length !== 0
+                      ? this.state.listProducts
+                      : []
+                  }
+                  checkout={false}
+                />
               </div>
             </div>
           </div>
@@ -122,7 +136,7 @@ const mapStateToProps = (state) => {
   return {
     listProductInCart: state.cart.cartItem,
     isDelete: state.cart.message,
-    isEmpty: state.cart.empty
+    isEmpty: state.cart.empty,
   };
 };
 

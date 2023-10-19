@@ -57,7 +57,7 @@ class SideBar extends React.Component {
                     <i className="fas fa-users fa-fw me-3"></i>
                     <span>Người Dùng</span>
                   </Link>
-                  <Link onClick={() => this.props.logout()} to="/login" className="m-sm-0 m-lg-3 btn_logout_ad">
+                  <Link onClick={() => this.props.logout()} to={`/login/${1}`} className="m-sm-0 m-lg-3 btn_logout_ad">
                     Đăng xuất
                     <i className="fa-solid fa-arrow-right-from-bracket ms-3"></i>
                   </Link>

@@ -21,6 +21,7 @@ const CreateProduct = () => {
     description: "",
     type: "",
     material: "",
+    category: "",
   });
   const [nameImage, setNameImage] = useState([]);
   const [error, setError] = useState({
@@ -32,8 +33,9 @@ const CreateProduct = () => {
     description: "",
     type: "",
     material: "",
+    category: "",
   });
-  const category = [
+  const type = [
     "Vòng tay",
     "Nhẫn",
     "Hoa Tai",
@@ -42,6 +44,9 @@ const CreateProduct = () => {
     "Vòng Cổ",
     "Ghim Cài",
   ];
+
+  const typAccessories = ["Kính mắt", "Thắt lưng", "Ruy băng", "Móc khóa"];
+
   const materials = [
     "Bạc",
     "Vàng Hồng",
@@ -50,6 +55,7 @@ const CreateProduct = () => {
     "Đá Quý",
     "Pha Lê",
   ];
+  const category = ["jewelry", "watch", "wedding", "accessories"];
   useEffect(() => {
     dispatch(getIdProducts());
   }, []);
@@ -117,16 +123,25 @@ const CreateProduct = () => {
   };
 
   const checkValid = () => {
-    const isValid =
-      products.id.trim() !== "" &&
-      products.name.trim() !== "" &&
-      products.description.trim() !== "" &&
-      products.material.trim() !== "" &&
-      products.count !== null &&
-      products.type.trim() !== "" &&
-      products.image.length > 0 &&
-      products.price.trim() !== "";
-    return isValid;
+    const commonConditions = [
+      products.id.trim() !== "",
+      products.name.trim() !== "",
+      products.description.trim() !== "",
+      products.material.trim() !== "",
+      products.count !== null,
+      products.category.trim() !== "",
+      products.image.length > 0,
+      products.price.trim() !== "",
+    ];
+
+    if (products.category === "watch") {
+      return commonConditions.every((condition) => condition);
+    } else {
+      return (
+        commonConditions.every((condition) => condition) &&
+        products.type.trim() !== ""
+      );
+    }
   };
 
   const submitProductHandler = async (e) => {
@@ -139,14 +154,15 @@ const CreateProduct = () => {
       formData.append("count", products.count);
       formData.append("description", products.description);
       formData.append("type", products.type);
+      formData.append("category", products.category);
       formData.append("material", products.material);
       for (let i = 0; i < products.image.length; i++) {
         formData.append("image", products.image[i]);
       }
 
-      for (let pair of formData.entries()) {
-        console.log(pair);
-      }
+      // for (let pair of formData.entries()) {
+      //   console.log(pair);
+      // }
       await dispatch(createProduct(formData));
       if (result) {
         toast.success(<Toast message="Thêm sản phẩm thành công" />, {
@@ -162,7 +178,9 @@ const CreateProduct = () => {
         description: "",
         type: "",
         material: "",
+        category: "",
       });
+      setNameImage([]);
     } else {
       toast.warning(<Toast message="Vui lòng nhập đủ các giá trị" />, {
         className: "warning",
@@ -204,8 +222,43 @@ const CreateProduct = () => {
               <div className="error_ad">{error.name ? error.name : null}</div>
             </div>
           </div>
+          <div>
+            <div className="mb-3">
+              <select
+                className="form_add_item"
+                name="category"
+                value={products.category}
+                onChange={handleChange}
+              >
+                <option value="">Chọn Danh mục Sản Phẩm</option>
+                {category.map((cate) => (
+                  <option key={cate} value={cate}>
+                    {cate === "jewelry"
+                      ? "Trang sức"
+                      : cate === "watch"
+                      ? "Đồng hồ"
+                      : cate === "wedding"
+                      ? "Trang sức cưới"
+                      : cate === "accessories"
+                      ? "Phụ kiện & quà tặng"
+                      : null}
+                  </option>
+                ))}
+              </select>
+              <div className="error_ad">
+                {error.category ? error.category : null}
+              </div>
+            </div>
+          </div>
+
           <div className="row">
-            <div className="mb-3 col-6">
+            <div
+              className={`${
+                products.category === "watch"
+                  ? "mb-3 col-12"
+                  : "d-block mb-3 col-6"
+              }`}
+            >
               <select
                 className="form_add_item"
                 name="material"
@@ -223,20 +276,35 @@ const CreateProduct = () => {
                 {error.material ? error.material : null}
               </div>
             </div>
-            <div className="mb-3 col-6">
+            <div
+              className={`${
+                products.category === "watch" ? "d-none" : "d-block mb-3 col-6"
+              }`}
+            >
               <select
                 className="form_add_item"
                 name="type"
                 value={products.type}
                 onChange={handleChange}
               >
-                <option value="">Loại Trang Sức</option>
-                {category.map((cate) => (
-                  <option key={cate} value={cate}>
-                    {cate}
-                  </option>
-                ))}
+                <option value="">
+                  {products.category === "accessories"
+                    ? "Loại Phụ Kiện"
+                    : "Loại Trang Sức"}
+                </option>
+                {products.category === "accessories"
+                  ? typAccessories.map((typ) => (
+                      <option key={typ} value={typ}>
+                        {typ}
+                      </option>
+                    ))
+                  : type.map((typ) => (
+                      <option key={typ} value={typ}>
+                        {typ}
+                      </option>
+                    ))}
               </select>
+
               <div className="error_ad">{error.type ? error.type : null}</div>
             </div>
           </div>
@@ -264,7 +332,6 @@ const CreateProduct = () => {
               <div className="error_ad">{error.count ? error.count : null}</div>
             </div>
           </div>
-
           <div className="mb-3">
             <textarea
               placeholder="Mô Tả Sản Phẩm"

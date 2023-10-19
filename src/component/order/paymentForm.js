@@ -24,51 +24,51 @@ const PaymentForm = ({ onPaymentResult }) => {
   const cartItem = useSelector((state) => state.cart.cartItem);
   const user = useSelector((state) => state.login.user);
 
-  const isValid = async () => {
-    const number = elements.getElement(CardNumberElement);
-    const expiry = elements.getElement(CardExpiryElement);
-    const cvc = elements.getElement(CardCvcElement);
-    await Promise.all([
-      new Promise((resolve) => {
-        number.on("change", (event) => {
-          if (event.complete) {
-            console.log("CardNumber hợp lệ");
-            resolve(true);
-          } else if (event.error) {
-            console.log("CardNumber không hợp lệ");
-            resolve(false);
-          }
-        });
-      }),
-      new Promise((resolve) => {
-        expiry.on("change", (event) => {
-          if (event.complete) {
-            console.log("CardExpiry hợp lệ");
-            resolve(true);
-          } else if (event.error) {
-            console.log("CardExpiry không hợp lệ");
-            resolve(false);
-          }
-        });
-      }),
-      new Promise((resolve) => {
-        cvc.on("change", (event) => {
-          if (event.complete) {
-            console.log("CardCvc hợp lệ");
-            resolve(true);
-          } else if (event.error) {
-            console.log("CardCvc không hợp lệ");
-            resolve(false);
-          }
-        });
-      }),
-    ]);
-    if (!number || !expiry || !cvc) {
-      console.log("ko hop le");
-      return false;
-    }
-    return true;
-  };
+  // const isValid = async () => {
+  //   const number = elements.getElement(CardNumberElement);
+  //   const expiry = elements.getElement(CardExpiryElement);
+  //   const cvc = elements.getElement(CardCvcElement);
+  //   await Promise.all([
+  //     new Promise((resolve) => {
+  //       number.on("change", (event) => {
+  //         if (event.complete) {
+  //           console.log("CardNumber hợp lệ");
+  //           resolve(true);
+  //         } else if (event.error) {
+  //           console.log("CardNumber không hợp lệ");
+  //           resolve(false);
+  //         }
+  //       });
+  //     }),
+  //     new Promise((resolve) => {
+  //       expiry.on("change", (event) => {
+  //         if (event.complete) {
+  //           console.log("CardExpiry hợp lệ");
+  //           resolve(true);
+  //         } else if (event.error) {
+  //           console.log("CardExpiry không hợp lệ");
+  //           resolve(false);
+  //         }
+  //       });
+  //     }),
+  //     new Promise((resolve) => {
+  //       cvc.on("change", (event) => {
+  //         if (event.complete) {
+  //           console.log("CardCvc hợp lệ");
+  //           resolve(true);
+  //         } else if (event.error) {
+  //           console.log("CardCvc không hợp lệ");
+  //           resolve(false);
+  //         }
+  //       });
+  //     }),
+  //   ]);
+  //   if (!number || !expiry || !cvc) {
+  //     console.log("ko hop le");
+  //     return false;
+  //   }
+  //   return true;
+  // };
 
   const totalAmount = cartItem.reduce((total, item) => {
     return total + item.price * item.quantity;
@@ -78,43 +78,53 @@ const PaymentForm = ({ onPaymentResult }) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(paymentData)
+    console.log(totalAmount)
     payBtn.current.disabled = true;
     try {
-      const { data } = await axios.post(
-        "http://localhost:3005/api/payment",
-        paymentData,
-        {
-          withCredentials: true,
-        }
-      );
-      const client_secret = data.client_secret;
-      const result = await stripe.confirmCardPayment(client_secret, {
-        payment_method: {
-          card: elements.getElement(CardNumberElement),
-          billing_details: {
-            name: user.fullname,
-            email: user.email,
+      if(paymentData.amount > 0){
+        const { data } = await axios.post(
+          "http://localhost:3005/api/payment",
+          paymentData,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(data)
+        const client_secret = data.client_secret;
+        const result = await stripe.confirmCardPayment(client_secret, {
+          payment_method: {
+            card: elements.getElement(CardNumberElement),
+            billing_details: {
+              name: user.fullname,
+              email: user.email,
+            },
           },
-        },
-      });
-      if (result.error) {
-        const errorMessage = `${result.error.message}`;
-        toast.error(<Toast message={errorMessage} />, {
-          className: "fail",
         });
-        onPaymentResult("");
-        payBtn.current.disabled = false;
-      } else if (result.paymentIntent.status === "succeeded") {
-        const paymentInfo = {
-          id: result.paymentIntent.id,
-          status: result.paymentIntent.status,
-        };
-        onPaymentResult(paymentInfo);
-      } else {
-        onPaymentResult("");
+        if (result.error) {
+          const errorMessage = `${result.error.message}`;
+          console.error(errorMessage);
+          toast.error(<Toast message='Thanh toán thất bại' />, {
+            className: "fail",
+          });
+          onPaymentResult("");
+          payBtn.current.disabled = false;
+        } else if (result.paymentIntent.status === "succeeded") {
+          const paymentInfo = result.paymentIntent.id;
+          onPaymentResult(paymentInfo);
+        } else {
+          onPaymentResult("");
+        }
+      } else{
+        toast.error(<Toast message='Đơn hàng không hợp lệ' />, {
+          className: "fail",
+      });
       }
     } catch (error) {
       onPaymentResult("");
+      toast.error(<Toast message='Thanh toán thất bại' />, {
+          className: "fail",
+      });
       payBtn.current.disabled = false;
     }
   };

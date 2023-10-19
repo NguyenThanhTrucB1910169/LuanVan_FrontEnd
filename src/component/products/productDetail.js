@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Fragment } from "react";
 import "./productDetail.css";
-import SubHeader from "../layouts/subHeader";
+import Header from "../home/header";
 import Footer from "../home/footer";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -11,16 +11,21 @@ import Toast from "../home/toast";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import ReviewCard from "./reviewCard";
+import Loading from '../layouts/loading'
 const ProductDetail = () => {
   const [product, setProduct] = useState({});
   // const parameterValue = props.parameter;
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
   const [arrayImages, setArrayImages] = useState([]);
   const detailProduct = useSelector((state) => state.getAllProducts.detail);
   const isAdd = useSelector((state) => state.cart.isAdd);
   const dispatch = useDispatch();
-  const [op, setOptions] = useState(false)
+  const [op, setOptions] = useState(false);
   const prevDetailProductRef = useRef(detailProduct);
+  const history = useHistory();
+  
   const settings = {
     dots: true,
     infinite: true,
@@ -68,15 +73,17 @@ const ProductDetail = () => {
       setArrayImages(product.image.split(","));
     }
   }, []);
+
   const showOption = (op) => {
-    setOptions(op)
-  }
+    setOptions(op);
+  };
+  console.log(product)
   return (
     <Fragment>
-      <SubHeader show={showOption}/>
-      <div className="product-detail">
-        <div className="mb-5 contain-detail">
-          <div className="row d-flex justify-content-around h-100">
+      <Header type={0} option={showOption} />
+      <div className={`${op ? "pad_top" : ""} product-detail`}>
+        <div className="contain-detail">
+          <div className="row d-flex justify-content-around h-100 m-0">
             <div className="col-md-6 img_list">
               <Slider {...settings}>
                 <div>
@@ -104,61 +111,72 @@ const ProductDetail = () => {
             </div>
             <div className="col-md-5">
               <div className="product p-4">
-                <div>
-                  <Link to="/products" className="btn_back">
-                    {" "}
+                <div className="position-relative">
+                  <button className="btn_back" onClick={() => history.goBack()}>
                     <i className="fa fa-long-arrow-left"></i>{" "}
-                  </Link>{" "}
+                  </button>
                 </div>
-                <div className="mg_top mb-2">
-                  {" "}
-                  <h5 className="text-uppercase detail_name">{product.name}</h5>
-                  <div className="price d-flex flex-row align-items-center mt-2">
+                <div className="row justify-content-between">
+                  <div className="mg_top mb-2 col-7">
                     {" "}
-                    <span className="act-price pe-2">
-                      {Intl.NumberFormat("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                      }).format(product.price)}
-                    </span>
-                    <div className="ml-2">
+                    <h5 className="text-uppercase detail_name">
+                      {product.name}
+                    </h5>
+                    <div className="price d-flex flex-row align-items-center mt-2">
                       {" "}
-                      <small className="dis-price">
+                      <span className="act-price pe-2">
                         {Intl.NumberFormat("vi-VN", {
                           style: "currency",
                           currency: "VND",
-                        }).format(product.price + product.price * 0.4)}
-                      </small>{" "}
-                      <span>40% Sales</span>{" "}
+                        }).format(product.price)}
+                      </span>
+                      <div className="ml-2">
+                        {" "}
+                        <small className="dis-price">
+                          {Intl.NumberFormat("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                          }).format(product.price + product.price * 0.4)}
+                        </small>{" "}
+                        <span>40% Sales</span>{" "}
+                      </div>
                     </div>
+                    <p style={{ fontSize: "15px", fontFamily: "cursive" }}>
+                      Làm từ {product.material}
+                    </p>
+                  </div>
+                  <div className="text-end mg_top col-4">
+                    {/* <p>{product.type}</p> */}
+
+                    <p>
+                      {" "}
+                      <span style={{ fontSize: "13px", display: "block" }}>
+                        Cửa hàng hiện có
+                      </span>{" "}
+                      <span style={{ fontSize: "16px", fontWeight: "600" }}>
+                        {product.count} sản phẩm
+                      </span>
+                    </p>
                   </div>
                 </div>
-                <div className="product_info">
-                  <p>
-                    <span className="fw-bolder">Loại</span> {product.type}
-                  </p>
-                  <p>
-                    {" "}
-                    <span className="fw-bolder">Chất liệu</span>{" "}
-                    {product.material}
-                  </p>
-                  <p>
-                    {" "}
-                    <span className="fw-bolder">Số Lượng</span> {product.count}
-                  </p>
-                </div>
                 <p className="about">
-                  <span className="fw-bolder">Mô tả</span> {product.description}
+                  <span className="detail_descrip">
+                    Thông tin Chi Tiết về trang sức
+                  </span>
+                  {product.description}
                 </p>
 
                 <div className="add_cart">
                   <div className="set_quant">
                     <button
                       onClick={() => {
-                        if (qty === 0)
-                          toast.warning(<Toast message="Không thể giảm" />, {
-                            className: "warning",
-                          });
+                        if (qty === 1)
+                          toast.warning(
+                            <Toast message="Số lượng tối thiểu" />,
+                            {
+                              className: "warning",
+                            }
+                          );
                         else setQty(qty - 1);
                       }}
                     >
@@ -197,6 +215,7 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+      {product.id !== undefined ? <ReviewCard productId={product.id} /> : <Loading />}
       <Footer />
     </Fragment>
   );

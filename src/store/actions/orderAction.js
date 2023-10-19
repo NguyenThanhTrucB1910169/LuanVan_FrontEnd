@@ -5,33 +5,37 @@ import { getCartItem } from "./cartAction";
 const createOrder = (data) => {
   return async (dispatch) => {
     try {
-      console.log(data)
+      // console.log('data gửi đi', data);
       await axios
         .post("http://localhost:3005/api/order/", data, {
           withCredentials: true,
         })
         .then(async (response) => {
+          // console.log('data nhận về', response);
           if (response.data) {
-            await axios.delete("http://localhost:3005/api/alldelete", {
-              withCredentials: true,
-            })
+            await axios
+              .delete("http://localhost:3005/api/alldelete", {
+                withCredentials: true,
+              })
               .then((res) => {
                 dispatch({
                   type: Types.ORDER_SUCCESS,
-                  payload: res.data,
+                  payload: {info: response.data, result: res.data},
                 });
               });
-              dispatch(getCartItem())
-          }
+              // return response.data;
+            dispatch(getCartItem());
+          } 
         })
         .catch((error) => {
           dispatch({
             type: Types.ORDER_FAILED,
             payload: error,
           });
+          return error;
         });
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 };
@@ -40,7 +44,7 @@ const getOrderByUser = () => {
   return async (dispatch) => {
     try {
       await axios
-        .get("http://localhost:3005/api/order/", { withCredentials: true })
+        .get("http://localhost:3005/api/orderByUser/", { withCredentials: true })
         .then((data) => {
           dispatch({
             type: Types.GET_ORDERS_SUCCESS,
@@ -79,21 +83,25 @@ const getDetailProduct = (id) => {
 const getOrderDeliver = () => {
   return async (dispatch) => {
     try {
-      axios.get("http://localhost:3005/api/orderdeliver/", { withCredentials: true }).then((response) => {
-        if(response.data !== undefined) {
-          dispatch({
-            type: Types.GET_ORDER_DELIVER_SUCCESS,
-            payload: response.data,
-          })
-        }
-      })
+      axios
+        .get("http://localhost:3005/api/orderdeliver/", {
+          withCredentials: true,
+        })
+        .then((response) => {
+          if (response.data !== undefined) {
+            dispatch({
+              type: Types.GET_ORDER_DELIVER_SUCCESS,
+              payload: response.data,
+            });
+          }
+        });
     } catch (error) {
       dispatch({
         type: Types.GET_ORDER_DELIVER_FAILED,
         payload: error.message,
-      })
+      });
     }
-  }
-}
+  };
+};
 
 export { createOrder, getOrderByUser, getDetailProduct, getOrderDeliver };

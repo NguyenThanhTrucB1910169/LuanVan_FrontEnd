@@ -163,7 +163,7 @@ header {
   visibility: visible;
 }
 
-.dropdown_links {
+/* .dropdown_links {
   position: absolute;
   background: #242424;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -178,7 +178,7 @@ header {
   border-radius: 5px;
   opacity: 0;
   visibility: hidden;
-}
+} */
 
 .header_main .dropdown_links li a {
   text-transform: capitalize;
@@ -241,11 +241,12 @@ header {
 .div_search {
   background-color: #fafafa;
   width: 97%;
-  height: 71vh;
+  height: 99vh;
   position: absolute;
-  top: 13rem;
+  padding-top: 13rem;
+  top: 0;
   margin: 0 25px;
-  z-index: 4;
+  z-index: 3;
   opacity: 1;
   transition: max-height 1s ease-out;
   display: block;
@@ -253,12 +254,39 @@ header {
   overflow: hidden;
 }
 
+.stick .div_search{
+  /* background-color: #fafafa; */
+  width: 100%;
+  height: 98vh;
+  /* position: absolute; */
+  /* padding-top: 13rem; */
+  /* top: 0rem; */
+  margin: 0;
+  z-index: -1;
+  opacity: 0;
+  transition: all 1s ease-out;
+  /* display: block; */
+  /* max-height: 0; */
+  /* overflow: hidden; */
+}
+
+.stick .div_search.show{
+  max-height: 100vh;
+  opacity: 1;
+}
+
 .z_index {
   z-index: 4;
 }
 
+.test{
+  z-index: 2;
+}
+
 .div_search.show {
   max-height: 1000px;
+  /* top: 31rem; */
+  margin: 0;
 }
 
 .search_notfound img {
@@ -546,12 +574,12 @@ header {
   /* transition: 850ms; */
 }
 
-.nav-menu.active {
+/* .nav-menu.active {
   left: 0;
-  /* transition: 350ms; */
+  /* transition: 350ms; 
   z-index: 10;
   transition: all 0.4s ease;
-}
+} */
 
 .nav-menu-items {
   width: 100%;
@@ -595,9 +623,9 @@ header {
 
 .stick {
   position: fixed;
-  z-index: 10;
+  z-index: 4;
   width: 100%;
-  background-color: #e6f0f6;
+  background-color: #dcebf4;
 }
 
 .set_index {
@@ -639,6 +667,11 @@ header {
   right: calc(48% - 6px);
 }
 
+.stick .brand_logo img {
+  top: calc(50% - 38px);
+  right: calc(48% - 11px);
+}
+
 .top_stick {
   top: 0;
 }
@@ -669,7 +702,7 @@ header {
   top: 12%;
   position: fixed;
   padding-top: 2rem;
-  z-index: 10;
+  z-index: 2;
   width: 100%;
   background-color: #dcebf4;
   display: block !important;
@@ -685,9 +718,9 @@ header {
   /* height: 30px; */
 }
 
-.stick .header_middel,
+/* .stick .header_middel, */
 .stick .header_top {
-  background-color: #d2e6f182;
+  background-color: #dcebf4;
   /* transition: background-color 0.5s ease-in-out; */
   /* color: #fff; */
 }
@@ -806,6 +839,7 @@ header {
   flex-direction: row;
   justify-content: space-between;
   position: relative;
+  z-index: 5;
 }
 
 @media only screen and (max-width: 767px) {
