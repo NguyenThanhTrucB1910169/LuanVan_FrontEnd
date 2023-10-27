@@ -156,6 +156,7 @@ const CreateProduct = () => {
       formData.append("type", products.type);
       formData.append("category", products.category);
       formData.append("material", products.material);
+      formData.append("isAvatar", false);
       for (let i = 0; i < products.image.length; i++) {
         formData.append("image", products.image[i]);
       }

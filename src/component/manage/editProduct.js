@@ -13,17 +13,18 @@ const EditProduct = () => {
   const listId = useSelector((state) => state.admin.idproducts);
   const dispatch = useDispatch();
   const location = useLocation();
+  const [clickUpdate, setClickUpdate] = useState(false);
   const product = location.state ? location.state.pd : null;
   const [products, setProducts] = useState({
     id: "",
     name: "",
     price: "",
-    count: 0,
+    count: "",
     image: [],
     description: "",
     type: "",
     material: "",
-    category: ''
+    category: "",
   });
   const [nameImage, setNameImage] = useState([]);
   const [error, setError] = useState({
@@ -34,7 +35,7 @@ const EditProduct = () => {
     image: "",
     description: "",
     type: "",
-    category: '',
+    category: "",
     material: "",
   });
   const type = [
@@ -46,6 +47,7 @@ const EditProduct = () => {
     "Vòng Cổ",
     "Ghim Cài",
   ];
+  const typAccessories = ["Kính mắt", "Thắt lưng", "Ruy băng", "Móc khóa"];
   const category = ["jewelry", "watch", "wedding", "accessories"];
   const materials = [
     "Bạc",
@@ -58,17 +60,12 @@ const EditProduct = () => {
   useEffect(() => {
     dispatch(getIdProducts());
     if (product) {
-      // var pd = this.props.location.state.pd;
-      var newImages = product.image.split(",");
-      // console.log(product);
-      // console.log(typeof product.price)
-      // console.log(pd)
       setProducts({
         id: product.id,
         name: product.name,
         price: product.price.toString(),
-        count: product.count,
-        image: newImages,
+        count: product.count.toString(),
+        image: product.image,
         description: product.description,
         type: product.type,
         category: product.category,
@@ -114,11 +111,6 @@ const EditProduct = () => {
       [name]: value,
     }));
   };
-  useEffect(() => {
-    // if(products)
-    console.log(products);
-    console.log(typeof products.image);
-  }, [products]);
 
   const addNameToImageList = (e) => {
     if (e.target.value.trim() === "") {
@@ -142,17 +134,25 @@ const EditProduct = () => {
   };
 
   const checkValid = () => {
-    const isValid =
-      products.id.trim() !== "" &&
-      products.name.trim() !== "" &&
-      products.description.trim() !== "" &&
-      products.material.trim() !== "" &&
-      products.count !== null &&
-      products.type.trim() !== "" &&
-      products.category.trim() !== "" &&
-      products.image.length > 0 &&
-      products.price.trim() !== "";
-    return isValid;
+    const commonConditions = [
+      products.id.trim() !== "",
+      products.name.trim() !== "",
+      products.description.trim() !== "",
+      products.material.trim() !== "",
+      products.count.trim() !== "",
+      products.category.trim() !== "",
+      products.image.length > 0,
+      products.price.trim() !== "",
+    ];
+
+    if (products.category === "watch") {
+      return commonConditions.every((condition) => condition);
+    } else {
+      return (
+        commonConditions.every((condition) => condition) &&
+        products.type.trim() !== ""
+      );
+    }
   };
 
   const submitProductHandler = async (e) => {
@@ -167,36 +167,40 @@ const EditProduct = () => {
       formData.append("type", products.type);
       formData.append("category", products.category);
       formData.append("material", products.material);
-      for (let i = 0; i < products.image.length; i++) {
-        formData.append("image", products.image[i]);
+      formData.append("isAvatar", false);
+      if (nameImage && nameImage.length > 0) {
+        for (let i = 0; i < products.image.length; i++) {
+          formData.append("image", products.image[i]);
+        }
+        formData.append("isUpdateImage", true);
+      } else {
+        formData.append("image", products.image);
+        formData.append("isUpdateImage", false);
       }
 
-      // for (let pair of formData.entries()) {
-      //   console.log(pair);
-      // }
       await dispatch(updateProduct(formData));
-      console.log(result);
-      if (result) {
-        toast.success(<Toast message="Cập nhật sản phẩm thành công" />, {
-          className: "success",
-        });
-      }
-      // setProducts({
-      //   id: "",
-      //   name: "",
-      //   price: "",
-      //   count: 0,
-      //   image: [],
-      //   description: "",
-      //   type: "",
-      //   material: "",
-      // });
+      setClickUpdate(true);
     } else {
       toast.warning(<Toast message="Vui lòng nhập đủ các giá trị" />, {
         className: "warning",
       });
     }
   };
+
+  useEffect(() => {
+    if (clickUpdate) {
+      if (result === true) {
+        toast.success(<Toast message="Hoàn thành cập nhật sản phẩm" />, {
+          className: "success",
+        });
+      } else {
+        toast.error(<Toast message="Cập nhật sản phẩm không thành công" />, {
+          className: "fail",
+        });
+      }
+      setClickUpdate(false);
+    }
+  }, [result, clickUpdate]);
 
   return (
     <Fragment>
@@ -207,7 +211,9 @@ const EditProduct = () => {
           encType="multipart/form-data"
           onSubmit={submitProductHandler}
         >
-          <h1 className="text-uppercase text-center ad_title">Thay đổi thông tin trang sức</h1>
+          <h1 className="text-uppercase text-center ad_title">
+            Thay đổi thông tin trang sức
+          </h1>
           <div className="row">
             <div className="mb-3 col-4">
               <input
@@ -261,7 +267,13 @@ const EditProduct = () => {
             </div>
           </div>
           <div className="row">
-            <div className="mb-3 col-6">
+            <div
+              className={`${
+                products.category === "watch"
+                  ? "mb-3 col-12"
+                  : "d-block mb-3 col-6"
+              }`}
+            >
               <select
                 className="form_add_item"
                 name="material"
@@ -279,19 +291,33 @@ const EditProduct = () => {
                 {error.material ? error.material : null}
               </div>
             </div>
-            <div className="mb-3 col-6">
+            <div
+              className={`${
+                products.category === "watch" ? "d-none" : "d-block mb-3 col-6"
+              }`}
+            >
               <select
                 className="form_add_item"
                 name="type"
                 value={products.type}
                 onChange={handleChange}
               >
-                <option value="">Loại Trang Sức</option>
-                {type.map((typ) => (
-                  <option key={typ} value={typ}>
-                    {typ}
-                  </option>
-                ))}
+                <option value="">
+                  {products.category === "accessories"
+                    ? "Loại Phụ Kiện"
+                    : "Loại Trang Sức"}
+                </option>
+                {products.category === "accessories"
+                  ? typAccessories.map((typ) => (
+                      <option key={typ} value={typ}>
+                        {typ}
+                      </option>
+                    ))
+                  : type.map((typ) => (
+                      <option key={typ} value={typ}>
+                        {typ}
+                      </option>
+                    ))}
               </select>
               <div className="error_ad">{error.type ? error.type : null}</div>
             </div>
@@ -311,7 +337,7 @@ const EditProduct = () => {
             <div className="mb-3 col-5">
               <input
                 className="form_add_item"
-                type="number"
+                type="text"
                 placeholder="Số Lượng"
                 name="count"
                 value={products.count}
@@ -360,14 +386,18 @@ const EditProduct = () => {
                       key={index}
                     />
                   ))
-                : products.image.map((img, i) => (
-                    <img
-                      key={i}
-                      src={`http://localhost:3005/uploads/${img}`}
-                      alt=""
-                      className="col-3"
-                    />
-                  ))}
+                : product && product.image.length > 0
+                ? product.image
+                    .split(",")
+                    .map((img, i) => (
+                      <img
+                        key={i}
+                        src={`http://localhost:3005/uploads/${img}`}
+                        alt=""
+                        className="col-3"
+                      />
+                    ))
+                : null}
             </div>
           </div>
           <div className="text-center mb-3">

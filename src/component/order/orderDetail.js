@@ -67,7 +67,7 @@ class OrderDetail extends React.Component {
               )}
             </p>
           </div>
-          <div className="d-flex flex-sm-column flex-lg-row justify-content-between">
+          <div className="d-flex flex-sm-column flex-lg-row justify-content-between mb-5">
             <div className="col-sm-12 col-lg-6 detail_pd">
               <div>
                 {this.props.detailsOrder.map((detail, index) => (

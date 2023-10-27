@@ -31,6 +31,8 @@ const Header = ({ type, option }) => {
   const [showOps, setShowOps] = useState(false);
   const [isSignin, setSignIn] = useState(false);
   const [result, setResult] = useState(true);
+  const [numAlert, setNumAlert] = useState(0);
+  const login = useSelector((state) => state.login.role);
   const history = useHistory();
   const settings = {
     dots: true,
@@ -54,7 +56,6 @@ const Header = ({ type, option }) => {
     }
     const handleScroll = () => {
       const currentPosition = window.scrollY;
-      console.log(type);
       if (type === 1) {
         if (currentPosition < 200) {
           setShowHeader(true);
@@ -70,11 +71,17 @@ const Header = ({ type, option }) => {
         }
       }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const displayNumNoti = (num) => {
+    console.log(num)
+    setNumAlert(num);
+  };
 
   const showOptions = () => {
     setShowOps(!showOps);
@@ -82,9 +89,9 @@ const Header = ({ type, option }) => {
   const autoLogout = async () => {
     const now = new Date();
     const isActive = await JSON.parse(localStorage.getItem("isactive"));
-      if (isActive && now.getTime() > isActive.expiry) {
-        await dispatch(logoutHandler());
-      }
+    if (isActive && now.getTime() > isActive.expiry) {
+      await dispatch(logoutHandler());
+    }
   };
 
   useEffect(() => {
@@ -184,8 +191,16 @@ const Header = ({ type, option }) => {
                   </div>
                   <div className="d-inline-block ms-2 alert position-relative">
                     <i className="fa-regular fa-bell noti_icon"></i>
+
                     <div className="alert_frame">
-                      <Notify />
+                      <Notify lengthNotiList={displayNumNoti} />
+                    </div>
+                    <div className={login === 0 ? "d-block" : "d-none"}>
+                      <div
+                        className={numAlert > 0 ? "num_alert" : "d-none"}
+                      >
+                        {numAlert}
+                      </div>
                     </div>
                   </div>
                   <div className="d-inline-block">
@@ -237,7 +252,7 @@ const Header = ({ type, option }) => {
                     >
                       <img
                         className=""
-                        src={process.env.PUBLIC_URL + "/logo.png"}
+                        src='/logo.png'
                         alt=""
                       />
                     </div>
@@ -375,7 +390,7 @@ const Header = ({ type, option }) => {
                   ))
                 ) : (
                   <div className="search_notfound">
-                    <img src="./not_found.png" alt="" />
+                    <img src="/not_found.png" alt="" />
                     <p>Không tìm thấy sản phẩm phù hợp</p>
                   </div>
                 )}

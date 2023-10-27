@@ -170,15 +170,11 @@ label.radio input:checked + span {
 }
 
 .add_cart .set_quant span {
-  width: 50px;
-  border: none;
-  text-align: center;
-  text-align: center;
-  position: relative;
-  top: -4px;
-  font-size: 18px;
-  padding: 0 11px;
-  font-weight: 600;
+    border: none;
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .add_cart .set_quant {
@@ -188,8 +184,11 @@ label.radio input:checked + span {
   line-height: 27px;
   padding: 0px 15px;
   box-shadow: 6px 4px 10px #bcbcbc;
-  width: 23%;
+  width: 30%;
   background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .add_cart .set_quant button {
@@ -248,7 +247,7 @@ label.radio input:checked + span {
   border-radius: 15px;
   border: 2px solid #8080808c;
   padding: 15px;
-  width: 70%;
+  width: 85%;
   height: 8rem;
   margin: 5px 0;
 }

@@ -14,7 +14,7 @@ class Footer extends React.Component {
           </div>
           <div className="foo_link text-center pt-2">
             <Link to="/">Trang chủ</Link>
-            <Link to="/products">Sản Phẩm</Link>
+            <Link to="/products/none">Sản Phẩm</Link>
             <Link to="/intro">Giới Thiệu</Link>
             <Link to="/contact">Liên Hệ</Link>
           </div>

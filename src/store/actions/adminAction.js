@@ -8,6 +8,7 @@ const getAllUsers = () => {
       .get("http://localhost:3005/api/getallusers", { withCredentials: true })
       .then((val) => {
         if (val.data) {
+          console.log(val.data);
           dispatch({
             type: Types.GET_ALLUSERS_SUCCESS,
             payload: val.data,
@@ -65,9 +66,9 @@ const getAllOrders = () => {
 };
 
 const changeStatusOrder = (id, status) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     try {
-      axios
+      await axios
         .put(
           "http://localhost:3005/api/updatestatus",
           { id: id, status: status },

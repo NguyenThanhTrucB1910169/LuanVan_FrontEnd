@@ -16,7 +16,7 @@ import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 const Login = () => {
   const { tab } = useParams();
   const [username, setUsername] = useState("");
-  const [current, setCurrent] = useState("username");
+  const [current, setCurrent] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
   const [onTab, setOnTap] = useState(tab);
@@ -65,7 +65,7 @@ const Login = () => {
         }
         return errors;
       case "password":
-        console.log(info.password)
+        console.log(info.password);
         if (info.password === "") {
           setError((prevState) => ({
             ...prevState,
@@ -83,7 +83,7 @@ const Login = () => {
           }));
         return errors;
       case "confirmpassword":
-        if (info.confirmpassword === '') {
+        if (info.confirmpassword === "") {
           setError((prevState) => ({
             ...prevState,
             confirmpassword: "Nhập lại mật khẩu",
@@ -112,17 +112,27 @@ const Login = () => {
           }));
         return errors;
       case "email":
+        console.log("CASE EMAIL");
+        console.log(
+          /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(info.email)
+        );
         if (!info.email) {
           setError((prevState) => ({
             ...prevState,
             email: "Vui lòng nhập email",
           }));
-        } else if (!/\S+@\S+\.\S+/.test(info.email)) {
+        } else if (
+          !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(info.email)
+        ) {
           setError((prevState) => ({
             ...prevState,
             email: "Email không hợp lệ",
           }));
-        }
+        } else
+          setError((prevState) => ({
+            ...prevState,
+            email: "",
+          }));
         return errors;
       default:
         return errors;
@@ -143,8 +153,9 @@ const Login = () => {
       email: "",
       gender: "",
     });
+    setCurrent('')
   };
-  
+
   const handleChange = (event) => {
     setInfo((prevState) => ({
       ...prevState,
@@ -184,8 +195,8 @@ const Login = () => {
   };
   useEffect(() => {
     setInfo((prevInfo) => ({
-      ... prevInfo
-    }))
+      ...prevInfo,
+    }));
     setError({
       username: "",
       password: "",
@@ -194,7 +205,7 @@ const Login = () => {
       gender: "",
     });
     console.log(onTab);
-    console.log(info)
+    console.log(info);
   }, [onTab]);
   useEffect(() => {
     let name = "";
@@ -217,14 +228,13 @@ const Login = () => {
       );
       // console.log(role);
     }
-    setHasClickedLogin(true)
-
+    setHasClickedLogin(true);
   };
 
   useEffect(() => {
     console.log(role);
-    console.log(hasClickedLogin)
-    if (hasClickedLogin && typeof role === 'number') {
+    console.log(hasClickedLogin);
+    if (hasClickedLogin && typeof role === "number") {
       if (role === 0) {
         toast.success(<Toast message="Đăng nhập thành công" />, {
           className: "success",
@@ -235,7 +245,7 @@ const Login = () => {
         history.push("/ad/dashboard");
         return;
       } else if (role === 2) {
-        console.log('lỗi')
+        console.log("lỗi");
         toast.error(<Toast message="Tên hoặc mật khẩu không hợp lệ" />, {
           className: "fail",
         });
@@ -262,12 +272,14 @@ const Login = () => {
         toast.success(<Toast message="Tạo tài khoản thành công." />, {
           onClose: () => {
             setInfo({
-              name: "",
-              pass: "",
+              username: "",
+              password: "",
               confirmpassword: "",
               email: "",
               gender: "",
             });
+            setError({});
+            setCurrent('')
           },
           className: "success",
         });
@@ -283,9 +295,6 @@ const Login = () => {
       <div className="d-flex flex-sm-column login-container">
         <div className="m-sm-0 screen col-sm-12">
           <div className="screen-content">
-            {/* <Link to="/register" className="">
-                
-              </Link> */}
             <button className="back-icon" onClick={() => history.goBack()}>
               <i className="fa-solid fa-chevron-left"></i>
             </button>

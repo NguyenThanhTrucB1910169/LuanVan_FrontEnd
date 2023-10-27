@@ -5,6 +5,7 @@ import { useState } from "react";
 import { getReviewsByProduct } from "../../store/actions/reviewAction";
 import { addNewReview } from "../../store/actions/reviewAction";
 import { getUserById } from "../../store/actions/usersAction";
+import RatingChart from "../layouts/ratingChart";
 import "./reviewCard.css";
 import {
   Dialog,
@@ -27,7 +28,10 @@ const ReviewCard = ({ productId }) => {
   const reviews = useSelector((state) => state.reviews.reviewsByProduct);
   const create = useSelector((state) => state.reviews.create);
   const post = useSelector((state) => state.reviews.create);
+  const [displayedReviews, setDisplayedReviews] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
+  const itemsPerPage = 4;
   const useStyles = makeStyles((theme) => ({
     customRating: {
       "& .MuiRating-iconFilled": {
@@ -50,10 +54,28 @@ const ReviewCard = ({ productId }) => {
     setComment("");
   };
 
+  const totalPages = Math.ceil(reviews.length / itemsPerPage);
+
+  // const currentReviews = reviews.slice(
+  //   (currentPage - 1) * itemsPerPage,
+  //   currentPage * itemsPerPage
+  // );
+  const updateDisplayedReviews = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = currentPage * itemsPerPage;
+    console.log(reviews);
+    setDisplayedReviews(reviews.slice(startIndex, endIndex));
+  };
+
+  // Hàm xử lý sự kiện chuyển trang
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
   const submitReviewToggle = () => {
-    if(user && user.role === 0){
+    if (user && user.role === 0) {
       open ? setOpen(false) : setOpen(true);
-    } else{
+    } else {
       toast.warning(<Toast message="Đăng nhập để tiếp tục đánh giá" />, {
         className: "warning",
       });
@@ -61,7 +83,7 @@ const ReviewCard = ({ productId }) => {
   };
 
   useEffect(() => {
-    dispatch(getReviewsByProduct(productId));
+    // dispatch(getReviewsByProduct(productId));
     if (postReview) {
       if (post) {
         toast.success(<Toast message="Hoàn thành đánh giá" />, {
@@ -75,12 +97,14 @@ const ReviewCard = ({ productId }) => {
       dispatch(getReviewsByProduct(productId));
       setPostReview(false);
     }
-  }, [post, postReview, dispatch, create]);
-
+  }, [post, postReview, dispatch, create, reviews]);
 
   useEffect(() => {
-    console.log(productId)
-  },[])
+    dispatch(getReviewsByProduct(productId));
+  }, [postReview]);
+  useEffect(() => {
+    updateDisplayedReviews();
+  }, [currentPage, reviews, postReview]);
 
   return (
     <Fragment>
@@ -89,50 +113,79 @@ const ReviewCard = ({ productId }) => {
           <h3 className="">Đánh giá sản phẩm</h3>
         </div>
         <div className="row m-0">
-          <div className="list_reviews col-6">
-            {reviews.length > 0 ? (
-              reviews.map((review) => (
-                <div class="review_customer_section">
-                  <div class="image_review">
-                    <div class="customer_image">
-                      <img src={review.user.avatar} alt="customer image" />
-                    </div>
-
-                    <div class="customer_name_review_status">
-                      <div class="customer_name">{review.user.fullname}</div>
-                      <div class="customer_review">
-                        <Rating
-                          name="user-rating"
-                          value={review.reviewData.rating}
-                          precision={0.5}
-                          readOnly
+          <div className="list_reviews col-7">
+            <div className="min_h_reviews">
+              {displayedReviews.length > 0 ? (
+                displayedReviews.map((review, index) => (
+                  <div class="review_customer_section">
+                    <div class="image_review">
+                      <div class="customer_image">
+                        <img
+                          src={
+                            review.user.avatar
+                              ? review.user.avatar
+                              : "/avatar_default.png"
+                          }
+                          alt="customer image"
                         />
                       </div>
+
+                      <div class="customer_name_review_status">
+                        <div class="customer_name">{review.user.fullname}</div>
+                        <div class="customer_review">
+                          <Rating
+                            name="user-rating"
+                            value={review.reviewData.rating}
+                            precision={0.5}
+                            readOnly
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="customer_comment">
+                      {review.reviewData.reviewText}
                     </div>
                   </div>
-
-                  <div class="customer_comment">
-                    {review.reviewData.reviewText}
-                  </div>
+                ))
+              ) : (
+                <div className="text-center mt-5">
+                  <img src="/no_chat.png" alt="" style={{ width: "15%" }} />
+                  <p className="no_comment">Không có bình luận!</p>
                 </div>
-              ))
-            ) : (
-              <div className="text-center mt-5">
-                <img src="/no_chat.png" alt="" style={{ width: "15%" }} />
-                <p className="no_comment">Không có bình luận!</p>
-              </div>
-            )}
+              )}
+            </div>
+            <div className="pagination ms-5 justify-content-center">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <div key={page} className="page">
+                    <button
+                      className={`${currentPage === page ? "active" : ""}`}
+                      onClick={() => handlePageChange(page)}
+                    >
+                      {page}
+                    </button>
+                  </div>
+                )
+              )}
+            </div>
           </div>
-          <div className="review_content col-6">
-            <p className="d-inline-block">Bạn có đánh giá về sản phẩm?</p>
-            <img
-              src="/to_right.png"
-              alt=""
-              style={{ width: "4%", marginLeft: "10px" }}
-            />
-            <button onClick={submitReviewToggle} className="submitReview">
-              Thêm đánh giá
-            </button>
+
+          <div className="review_content col-5">
+            <div className="statis">
+              <RatingChart />
+            </div>
+            <div className="text-center mt-5">
+              <p className="fst-italic m-0">Bạn có đánh giá về sản phẩm?</p>
+              <img
+                src="/to_right.png"
+                alt=""
+                style={{ width: "4%", marginLeft: "10px" }}
+              />
+              <button onClick={submitReviewToggle} className="submitReview">
+                Thêm đánh giá
+              </button>
+            </div>
           </div>
         </div>
       </div>

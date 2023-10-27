@@ -12,6 +12,7 @@
     font-size: 19px;
     margin: 0 2px;
     justify-content: space-between;
+    border-radius: 10px;
 }
 
 .icon_display{

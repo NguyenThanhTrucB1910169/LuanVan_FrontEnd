@@ -18,10 +18,16 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     z-index: 20;
     background-color: #fff;
+    height: 32rem;
+    overflow: scroll;
+}
+
+.alert_icon{
+    width: 50%;
 }
 
 .img_noti{
-    width: 100%;
+    width: 80%;
 }
 
 .title p{

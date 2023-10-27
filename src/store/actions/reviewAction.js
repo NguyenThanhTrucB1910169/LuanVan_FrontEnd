@@ -7,11 +7,11 @@ const addNewReview = (reviewData) => {
         .post("http://localhost:3005/api/reviews", reviewData, {
           withCredentials: true,
         })
-        .then((res) => {
+        .then(async (res) => {
           console.log(res);
           dispatch({
             type: Types.NEW_REVIEW_SUCCESS,
-            message: res,
+            payload: res.data,
           });
         })
         .catch((err) => {
@@ -73,4 +73,28 @@ const getReviewsByProduct = (idProduct) => {
   };
 };
 
-export { addNewReview, getReviewsByProduct };
+const getReviewsByUser = () => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get(
+        "http://localhost:3005/api/getReviewsByUser",
+        { withCredentials: true }
+      );
+      if (res.data) {
+        console.log(res.data);
+        dispatch({
+          type: Types.GET_REVIEW_OFUSER_SUCCESS,
+          payload: res.data,
+        });
+      }
+      // });
+    } catch (error) {
+      dispatch({
+        type: Types.GET_REVIEW_OFUSER_FAILED,
+        payload: error.response.data.message,
+      });
+    }
+  };
+};
+
+export { addNewReview, getReviewsByProduct, getReviewsByUser };

@@ -13,7 +13,7 @@ export const products = (state = initialState, action) => {
     case Types.CREATE_PRODUCT_FAILED:
       return { ...state, message: action.message };
     case Types.UPDATE_PRODUCT_SUCCESS: 
-      return { ...state, update: action.payload };
+      return { ...state, message: action.payload };
     case Types.UPDATE_PRODUCT_FAILED:
       return { ...state, message: action.payload };
     case Types.DETAIL_PRODUCT:

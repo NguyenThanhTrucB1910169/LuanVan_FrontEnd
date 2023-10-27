@@ -7,7 +7,7 @@ import ProductCard from "./productCard";
 import Header from "../home/header";
 import Toast from "../home/toast";
 import { toast } from "react-toastify";
-import './productsClassify.css'
+import "./productsClassify.css";
 const ProductsClassify = (props) => {
   const category = props.match.params.cate;
   const isLogin = useSelector((state) => state.login.role);
@@ -19,18 +19,25 @@ const ProductsClassify = (props) => {
   const [option, setOption] = useState(false);
   const [imgSlide, setImgSlide] = useState({});
   const slide = {
+    jewelry: {
+      img: "/jewelry_slide.webp",
+      caption:
+        "Khám phá đồ trang sức độc đáo của chúng tôi. Từ những thiết kế huyền thoại cho đến những chiếc nhẫn, dây chuyền, bông tai và vòng tay mới nhất của chúng tôi, bạn không thể bỏ qua những món đồ yêu thích này.",
+    },
     watch: {
       img: "/watch_slide.webp",
       caption:
-        "Những chiếc đồng hổ được lấy cảm hứng từ những thiết kế cổ điển. Khám phá những chiếc đồng hồ đẹp mắt, sang trọng và được chế tác tinh xảo với các màu sắc đặc trưng của chúng tôi."
+        "Những chiếc đồng hổ được lấy cảm hứng từ những thiết kế cổ điển. Khám phá những chiếc đồng hồ đẹp mắt, sang trọng và được chế tác tinh xảo với các màu sắc đặc trưng của chúng tôi.",
     },
     wedding: {
       img: "/wedding_slide.webp",
-      caption: "Chúng tôi tôn vinh sự kết nối thực sự với bộ nhẫn cưới và nhẫn đôi tượng trưng cho tình yêu. Tất cả những thiết kết của chúng tôi, từ viên đá nhỏ nhất đến viên đá lớn nhất, đều có sự khéo léo tuyệt vời và đáp ứng các tiêu chuẩn chính xác.",
+      caption:
+        "Chúng tôi tôn vinh sự kết nối thực sự với bộ nhẫn cưới và nhẫn đôi tượng trưng cho tình yêu. Tất cả những thiết kết của chúng tôi, từ viên đá nhỏ nhất đến viên đá lớn nhất, đều có sự khéo léo tuyệt vời và đáp ứng các tiêu chuẩn chính xác.",
     },
     accessories: {
       img: "/accessories_slide.webp",
-      caption: "Khám phá một loạt thiết kế không chỉ bổ sung cho phong cách của bạn — mà còn phản ánh phong cách của bạn.",
+      caption:
+        "Khám phá một loạt thiết kế không chỉ bổ sung cho phong cách của bạn — mà còn phản ánh phong cách của bạn.",
     },
   };
   useEffect(() => {
@@ -81,10 +88,14 @@ const ProductsClassify = (props) => {
   return (
     <Fragment>
       <Header type={0} option={showOption} />
-      <div className={`${option ? "img_slide_option" : 'img_slide'}`}>
+      <div className={`${option ? "img_slide_option" : "img_slide"}`}>
         <img src={imgSlide.img} alt="" />
-        <div className={category === 'accessories' ? 'caption_img_acce' : 'caption_img'}>
-            <p>{imgSlide.caption}</p>
+        <div
+          className={
+            category === "accessories" ||  category === "jewelry" ? "caption_img_acce" : "caption_img"
+          }
+        >
+          <p>{imgSlide.caption}</p>
         </div>
       </div>
       <div className="product_cate_frame">

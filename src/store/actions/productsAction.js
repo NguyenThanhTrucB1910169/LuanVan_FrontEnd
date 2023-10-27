@@ -97,10 +97,10 @@ const updateProduct = (pd) => {
         })
         .then((response) => {
           if (response.data) {
-            // fetchProducts()
+            console.log(response.data);
             dispatch({
               type: Types.UPDATE_PRODUCT_SUCCESS,
-              payload: response.data,
+              payload: true,
             });
           }
         });

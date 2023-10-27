@@ -13,19 +13,21 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import ReviewCard from "./reviewCard";
-import Loading from '../layouts/loading'
+import Loading from "../layouts/loading";
 const ProductDetail = () => {
   const [product, setProduct] = useState({});
   // const parameterValue = props.parameter;
   const [qty, setQty] = useState(1);
   const [arrayImages, setArrayImages] = useState([]);
   const detailProduct = useSelector((state) => state.getAllProducts.detail);
+  const role = useSelector((state) => state.login.role);
   const isAdd = useSelector((state) => state.cart.isAdd);
   const dispatch = useDispatch();
   const [op, setOptions] = useState(false);
   const prevDetailProductRef = useRef(detailProduct);
+  const [isAddToCart, setAddToCart] = useState(false);
   const history = useHistory();
-  
+
   const settings = {
     dots: true,
     infinite: true,
@@ -37,6 +39,7 @@ const ProductDetail = () => {
   };
 
   useEffect(() => {
+    console.log(product.description)
     const prevDetailProduct = prevDetailProductRef.current;
     if (prevDetailProduct !== detailProduct) {
       setProduct(detailProduct);
@@ -44,24 +47,30 @@ const ProductDetail = () => {
     prevDetailProductRef.current = detailProduct;
   }, [detailProduct, product]);
 
+  useEffect(async () => {
+    if (isAddToCart) {
+      if (isAdd) {
+        toast.success(<Toast message="Đã thêm vào giỏ hàng" />, {
+          className: "success",
+        });
+        setQty(1);
+        await dispatch(getCartItem());
+      } else {
+        toast.error(<Toast message="Đăng nhập để tiếp tục" />, {
+          className: "fail",
+        });
+      }
+      setAddToCart(false);
+    }
+  }, [isAdd, isAddToCart]);
+
   const handleAddToCart = async () => {
-    if (qty === 0) {
-      toast.warning(<Toast message="Chọn số lượng thêm vào giỏ hàng" />, {
-        className: "warning",
-      });
+    if (role === 0) {
+      dispatch(addToCart(detailProduct.id, qty));
+      setAddToCart(true);
     } else {
-      dispatch(addToCart(detailProduct.id, qty)).then(async () => {
-        if (isAdd) {
-          toast.success(<Toast message="Đã thêm vào giỏ hàng" />, {
-            className: "success",
-          });
-          setQty(0);
-          await dispatch(getCartItem());
-        } else {
-          toast.error(<Toast message="Đăng nhập để tiếp tục" />, {
-            className: "fail",
-          });
-        }
+      toast.warning(<Toast message="Đăng nhập để mua hàng" />, {
+        className: "warning",
       });
     }
   };
@@ -77,7 +86,7 @@ const ProductDetail = () => {
   const showOption = (op) => {
     setOptions(op);
   };
-  console.log(product)
+  console.log(product);
   return (
     <Fragment>
       <Header type={0} option={showOption} />
@@ -100,13 +109,15 @@ const ProductDetail = () => {
                     className="border_img"
                   />
                 </div>
-                <div>
-                  <img
-                    src={`http://localhost:3005/uploads/${arrayImages[2]}`}
-                    alt="Slide 3"
-                    className="border_img"
-                  />
-                </div>
+                {arrayImages.length === 3 ? (
+                  <div>
+                    <img
+                      src={`http://localhost:3005/uploads/${arrayImages[2]}`}
+                      alt="Slide 3"
+                      className="border_img"
+                    />
+                  </div>
+                ) : null}
               </Slider>
             </div>
             <div className="col-md-5">
@@ -215,7 +226,11 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
-      {product.id !== undefined ? <ReviewCard productId={product.id} /> : <Loading />}
+      {product.id !== undefined ? (
+        <ReviewCard productId={product.id} />
+      ) : (
+        <Loading />
+      )}
       <Footer />
     </Fragment>
   );

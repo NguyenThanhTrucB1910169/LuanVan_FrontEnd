@@ -322,6 +322,16 @@ input:-webkit-autofill:active {
 .signUpForm {
   transform: translateY(-100%) translateX(-100vmax);
 }
+
+
+.signUpForm .signup-input:focus-visible{
+  border: 1px solid #135351;
+  outline: none;
+}
+
+.signUpForm .signup-input:focus{
+  box-shadow: none;
+}
 /* .loginForm > div, */
 /* .signUpForm > div {
   display: flex;

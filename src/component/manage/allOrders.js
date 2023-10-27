@@ -74,7 +74,11 @@ class AllOrders extends React.Component {
       toast.warning(<Toast message="Đơn hàng đang giao" />, {
         className: "warning",
       });
-    } else {
+    } else if (currentStatus === 3) {
+      toast.warning(<Toast message="Đơn hàng đã hủy" />, {
+        className: "warning",
+      });
+   } else {
       toast.warning(<Toast message="Giao hàng hoàn tất" />, {
         className: "warning",
       });
@@ -191,6 +195,8 @@ class AllOrders extends React.Component {
                             ? "Đang giao"
                             : value[0].status === 2
                             ? "Đã Nhận"
+                            : value[0].status === 3
+                            ? "Đã Hủy"
                             : ""}
                         </div>
                         <div className="col-sm-5 col-lg-2">

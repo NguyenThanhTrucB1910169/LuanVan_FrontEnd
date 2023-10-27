@@ -97,7 +97,7 @@ const User = () => {
         direction="down"
         className="speedDial"
         icon={
-          <img className="speedDialIcon" src={user && user.avatar ? user.avatar : "./avatar_default.png"} alt="Profile" />
+          <img className="speedDialIcon" src={user && user.avatar ? `http://localhost:3005/uploads/${user.avatar}` : "/avatar_default.png"} alt="Profile" />
         }
       >
         {options.map((item) => (

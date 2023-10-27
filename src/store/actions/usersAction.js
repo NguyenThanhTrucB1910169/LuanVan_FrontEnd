@@ -93,6 +93,7 @@ const logoutHandler = () => {
 const updateInfo = (req) => {
   return async (dispatch) => {
     try {
+      console.log('info ', req)
       await axios
         .put("http://localhost:3005/api/updateinfo", req, {
           withCredentials: true,
@@ -106,6 +107,7 @@ const updateInfo = (req) => {
           }
         });
     } catch (error) {
+      console.log('vao UPDATE_INFO_FAILED')
       dispatch({
         type: Types.UPDATE_INFO_FAILED,
         payload: error,

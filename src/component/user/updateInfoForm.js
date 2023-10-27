@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import Toast from "../home/toast";
 import "./updateInfoForm.css";
 import { Fragment } from "react";
-import SubHeader from "../layouts/subHeader";
+import Header from "../home/header";
 import Footer from "../home/footer";
 import { connect } from "react-redux";
 import { updateInfo } from "../../store/actions/usersAction";
@@ -25,61 +25,51 @@ class UpdateInfoForm extends React.Component {
       isProfile: this.props.location.state.profile,
       showpass: false,
       imgUrl: "",
+      option: false,
     };
   }
-
-  uploadImage = async (file) => {
-    const data = new FormData();
-    data.append("file", file);
-    data.append("upload_preset", "jkit6nzk");
-    data.append("cloud_name", "dylpbe4y8");
-    // this.setState({loading: true})
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/dylpbe4y8/image/upload",
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-
-    const fileitem = await res.json();
-    this.setState({ imgUrl: fileitem.url });
-  };
 
   handleSubmit = async (e) => {
     e.preventDefault();
     if (this.state.isValid) {
       let info = {};
+      const formData = new FormData();
       if (this.state.isProfile) {
+        console.log(typeof this.state.avatar);
         if (typeof this.state.avatar === "object") {
-          await this.uploadImage(this.state.avatar[0]);
-          info = {
-            address: this.state.address,
-            fullname: this.state.fullname,
-            phone: this.state.phone,
-            email: this.state.email,
-            password: this.state.pass,
-            avatar: this.state.imgUrl,
-          };
+          // await this.uploadImage(this.state.avatar[0]);
+          console.log("this.state.avatar ", this.state.avatar);
+          formData.append("address", this.state.address);
+          formData.append("fullname", this.state.fullname);
+          formData.append("phone", this.state.phone);
+          formData.append("email", this.state.email);
+          formData.append("password", this.state.pass);
+          formData.append("isAvatar", true);
+          formData.append("avatar", this.state.avatar);
+          formData.append("updateAddress", false);
+          formData.append("updateAvatar", true);
         } else if (this.state.avatar === "") {
-          info = {
-            address: this.state.address,
-            fullname: this.state.fullname,
-            phone: this.state.phone,
-            email: this.state.email,
-            password: this.state.pass,
-            avatar: this.state.imgReview,
-          };
+          formData.append("address", this.state.address);
+          formData.append("fullname", this.state.fullname);
+          formData.append("phone", this.state.phone);
+          formData.append("email", this.state.email);
+          formData.append("password", this.state.pass);
+          formData.append("avatar", this.state.imgReview);
+          formData.append("isAvatar", true);
+          formData.append("updateAddress", false);
+          formData.append("updateAvatar", false);
         }
       } else {
-        info = {
-          address: this.state.address,
-          fullname: this.state.fullname,
-          phone: this.state.phone,
-          email: this.state.email,
-        };
+        formData.append("address", this.state.address);
+        formData.append("fullname", this.state.fullname);
+        formData.append("phone", this.state.phone);
+        formData.append("email", this.state.email);
+        // formData.append("avatar", this.state.imgReview);
+        formData.append("isAvatar", true);
+        formData.append("updateAddress", true);
+        formData.append("updateAvatar", false);
       }
-      await this.props.updateInfo(info);
+      await this.props.updateInfo(formData);
       if (this.props.isUpdate) {
         toast.success(<Toast message="Cập nhật thông tin thành công" />, {
           className: "success",
@@ -91,7 +81,7 @@ class UpdateInfoForm extends React.Component {
         });
       }
     } else
-      toast.error(<Toast message="Cập nhật thông tin" />, {
+      toast.error(<Toast message="Thông tin không hợp lệ" />, {
         className: "fail",
       });
   };
@@ -202,17 +192,23 @@ class UpdateInfoForm extends React.Component {
   };
 
   handleImage = (e) => {
+    const selectedImage = e.target.files[0];
     this.setState({
-      avatar: e.target.files,
+      avatar: selectedImage,
       isValid: true,
     });
+  };
+
+  showOption = (option) => {
+    this.setState({ option: option });
   };
 
   render() {
     return (
       <Fragment>
-        <SubHeader position="position-relative"/>
-        <div className="">
+        <Header type={0} option={this.showOption} />
+
+        <div className="pt_cus">
           <div className="">
             {typeof this.props.location.state.edit !== "undefined" ? (
               <Link to="/order" className="return_order">
@@ -223,13 +219,17 @@ class UpdateInfoForm extends React.Component {
             )}
           </div>
           {/* <div className="col-xl-11 col-sm-10"> */}
-          <form action="" className="col-xl-7 col-sm-10 form_detail">
+          <form
+            onSubmit={this.handleSubmit}
+            className="col-xl-7 col-sm-10 form_detail"
+            enctype="multipart/form-data"
+          >
             <h1 className="update_title">
               {this.state.isProfile
                 ? "Cập nhật thông tin cá nhân"
                 : "Cập nhật thông tin giao hàng"}
             </h1>
-            <div className="">
+            <div className="mt-4">
               <label htmlFor="fullname">Họ Tên</label>
               <input
                 name="fullname"
@@ -243,7 +243,7 @@ class UpdateInfoForm extends React.Component {
                 <div className="reg_error">{this.state.errors.fullname}</div>
               )}
             </div>
-            <div className="">
+            <div className="mt-4">
               <label htmlFor="email">Email</label>
               <input
                 type="text"
@@ -257,7 +257,7 @@ class UpdateInfoForm extends React.Component {
                 <div className="reg_error">{this.state.errors.email}</div>
               )}
             </div>
-            <div className="">
+            <div className="mt-4">
               <label htmlFor="address">Địa chỉ</label>
               <textarea
                 name="address"
@@ -272,7 +272,7 @@ class UpdateInfoForm extends React.Component {
                 <div className="reg_error">{this.state.errors.address}</div>
               )}
             </div>
-            <div className="row ">
+            <div className="row mt-4">
               <div className={this.state.isProfile ? "col-6" : "col-12"}>
                 <label htmlFor="phone">Số Điện Thoại</label>
                 <input
@@ -335,7 +335,7 @@ class UpdateInfoForm extends React.Component {
                 <div>
                   {this.state.avatar ? (
                     <img
-                      src={this.state.avatar[0].name}
+                      src={this.state.avatar.name}
                       alt=""
                       className="img_avatar"
                     />
@@ -346,7 +346,7 @@ class UpdateInfoForm extends React.Component {
                 <div>
                   {this.state.imgReview && !this.state.avatar ? (
                     <img
-                      src={this.state.imgReview}
+                      src={`http://localhost:3005/uploads/${this.state.imgReview}`}
                       alt=""
                       className="img_avatar"
                     />
@@ -365,17 +365,17 @@ class UpdateInfoForm extends React.Component {
             >
               {this.state.isCoun && this.state.isProfile ? (
                 <Link to="/profile" className="col-3 btn_inupdate">
-                  <i class="fa-solid fa-angles-left"></i>
+                  <i className="fa-solid fa-angles-left"></i>
                   Trở về
                 </Link>
               ) : !this.state.isCoun && this.state.isProfile ? (
                 <Link to="/profile" className="col-3 btn_inupdate">
-                  <i class="fa-solid fa-angles-left"></i>
+                  <i className="fa-solid fa-angles-left"></i>
                   Thoát
                 </Link>
               ) : !this.state.isCoun && !this.state.isProfile ? (
                 <Link to="/cart" className="col-3 btn_inupdate">
-                  <i class="fa-solid fa-angles-left"></i>
+                  <i className="fa-solid fa-angles-left"></i>
                   Thoát
                 </Link>
               ) : null}
@@ -388,7 +388,7 @@ class UpdateInfoForm extends React.Component {
 
               {this.state.isCoun && !this.state.isProfile ? (
                 <Link to="/order" className="col-3 btn_inupdate">
-                  Tiếp tục <i class="fa-solid fa-angles-right"></i>
+                  Tiếp tục <i className="fa-solid fa-angles-right"></i>
                 </Link>
               ) : null}
             </div>

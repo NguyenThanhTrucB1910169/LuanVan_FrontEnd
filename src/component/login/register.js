@@ -19,32 +19,41 @@ class Register extends React.Component {
       gender: "",
       isValid: true,
       errors: {},
+      creatClick: false,
     };
   }
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    if(this.isEmpty()){
-      await this.props.createNewAccount(this.state);
-      if (this.props.result) {
-        toast.success(<Toast message="Tạo tài khoản thành công." />, {
-          onClose: () => {
-            this.setState({
-              username: "",
-              password: "",
-              confirmpassword: "",
-              email: "",
-              gender: "",
-            });
-          },
-          className: "success",
-        });
+  
+    if (this.isEmpty()) {
+      try {
+        await this.props.createNewAccount(this.state);
+  
+        if (this.props.result) {
+          toast.success(<Toast message="Tạo tài khoản thành công." />, {
+            onClose: () => {
+              this.setState({
+                username: "",
+                password: "",
+                confirmpassword: "",
+                email: "",
+                gender: "",
+              });
+              this.setState({errors: {}})
+            },
+            className: "success",
+          });
+        }
+      } catch (error) {
+        toast.error(<Toast message="Đã xảy ra lỗi khi tạo tài khoản." />, { className: "fail" });
+        console.error("Lỗi: ", error);
       }
-    }
-    else {
-      toast.error(<Toast message="Thông tin không hợp lệ" />, { className: 'fail'})
+    } else {
+      toast.error(<Toast message="Thông tin không hợp lệ" />, { className: 'fail' });
     }
   };
+  
 
   handleReset = () => {
     this.setState({
@@ -166,6 +175,7 @@ class Register extends React.Component {
           });
         return errors;
       case "gender":
+        console.log(this.state.gender)
         if (!this.state.gender) {
           this.setState({
             isValid: false,
@@ -183,6 +193,7 @@ class Register extends React.Component {
   };
 
   handleChange = (event) => {
+    console.log(event.target.value);
     this.setState({ [event.target.name]: event.target.value }, () => {
       this.validateForm(event.target.name);
     });
