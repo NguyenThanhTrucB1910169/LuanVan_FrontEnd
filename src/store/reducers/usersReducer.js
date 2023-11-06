@@ -28,6 +28,7 @@ export const loginAccount = (state={user: {}} , action) => {
             // state.message = action.payload
             return {...state, role: 2, message: action.payload};
         case Types.LOGOUT_SUCCESS: 
+        console.log('LOGOUT_SUCCESS')
             return {
                 ...state,
                 user: null,

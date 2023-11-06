@@ -186,7 +186,7 @@ class Product extends React.Component {
     }
     console.log("searchProduct", searchProduct);
     // Kết quả lọc được lưu trong searchProduct
-    this.setState({ searchProduct }, () => {
+    this.setState({ searchProduct: searchProduct, filter: false }, () => {
       console.log(this.state.searchProduct);
     });
   };

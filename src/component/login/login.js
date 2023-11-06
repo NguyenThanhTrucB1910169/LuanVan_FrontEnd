@@ -292,7 +292,9 @@ const Login = () => {
   };
   return (
     <Fragment>
+    <div className="position-relative" style={{height: '100vh'}}>
       <div className="d-flex flex-sm-column login-container">
+      </div>
         <div className="m-sm-0 screen col-sm-12">
           <div className="screen-content">
             <button className="back-icon" onClick={() => history.goBack()}>
@@ -443,7 +445,7 @@ const Login = () => {
                   </div> */}
                 </div>
               </div>
-              <div className="d-flex flex-sm-column flex-md-row justify-content-start align-items-start py-3 input_font">
+              <div className="d-flex flex-sm-column flex-md-row justify-content-start align-items-start py-3 ps-3 input_font">
                 <h6 className="mb-0 me-4">Giới Tính: </h6>
                 <div
                   className="form-check form-check-inline mb-0 me-4"
@@ -478,7 +480,7 @@ const Login = () => {
                   )}
                 </div>
               </div>
-              <div>
+              <div className='text-center'>
                 <button
                   type="submit"
                   className="btn-submit"
@@ -497,11 +499,11 @@ const Login = () => {
               </button>
             </form>
           </div>
-          <div className="d-sm-none d-lg-block screen-background">
+          {/* <div className="d-sm-none d-lg-block screen-background">
             <span className="screen-background-shape2"></span>
-          </div>
+          </div> */}
         </div>
-      </div>
+    </div>
       <Footer />
     </Fragment>
   );

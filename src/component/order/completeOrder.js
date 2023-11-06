@@ -8,88 +8,23 @@ import { useSelector } from "react-redux";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import moment from "moment";
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const CompleteOrder = ({ orderInfo }) => {
   const user = useSelector((state) => state.login.user);
   const [detail, setShowDetails] = useState(false);
-  const [info, setInfo] = useState({
-    createdAt: "2023-10-14T21:30:18.000Z",
-    id: 39,
-    note: "",
-    payment: "received",
-    status: 0,
-    totalPrice: 120000000,
-    userId: 2,
-    products: [
-      {
-        count: 1119,
-        createdAt: "2023-09-17T07:35:15.000Z",
-        description:
-          "Chất lượng tay nghề thủ công và sự chú ý đến từng chi tiết đi vào từng thiết kế lụa thủ công của Elsa Peretti. Chiếc trâm Amapola này được chế tác bằng bạch kim sáng bóng và lụa đỏ sang trọng.",
-        id: "JW02",
-        image:
-          "image-1694936115205-300740781.webp,image-1694936115241-671499175.webp,image-1694936115242-713037886.webp",
-        material: "Bạch Kim",
-        name: "Trâm cài Amapola ",
-        orderItems: {
-          orderId: 42,
-          productId: "JW02",
-          quantity: 4,
-          price: 1200000,
-        },
-        price: 1200000,
-        type: "Ghim Cài",
-      },
-      {
-        count: 90,
-        createdAt: "2023-09-17T07:32:10.000Z",
-        description:
-          "Gợi nhớ một hạt mưa đơn độc hay một hạt sương mai lấp lánh. Bông tai dạng vòng bằng bạch kim, bao quanh tai. Thiết kế ban đầu thuộc bản quyền của Elsa PerettiA",
-        id: "JW01",
-        image:
-          "image-1696867733585-947390987.webp,image-1696867733588-960151481.webp,image-1696867733601-431407143.webp",
-        material: "Bạc",
-        name: "Hoa Tai Teardrop",
-        orderItems: {
-          orderId: 42,
-          productId: "JW01",
-          quantity: 7,
-          price: 120000,
-        },
-        price: 120000,
-        type: "Hoa Tai",
-      },
-      {
-        count: 90,
-        createdAt: "2023-09-17T07:32:10.000Z",
-        description:
-          "Gợi nhớ một hạt mưa đơn độc hay một hạt sương mai lấp lánh. Bông tai dạng vòng bằng bạch kim, bao quanh tai. Thiết kế ban đầu thuộc bản quyền của Elsa PerettiA",
-        id: "JW01",
-        image:
-          "image-1696867733585-947390987.webp,image-1696867733588-960151481.webp,image-1696867733601-431407143.webp",
-        material: "Bạc",
-        name: "Hoa Tai Teardrop",
-        orderItems: {
-          orderId: 42,
-          productId: "JW01",
-          quantity: 7,
-          price: 120000,
-        },
-        price: 120000,
-        type: "Hoa Tai",
-      },
-    ],
-  });
-  // useEffect(() => {
-  //   console.log(orderInfo);
-  //   setInfo(orderInfo);
-  // }, [orderInfo]);
+  const [info, setInfo] = useState([]);
+  const [infoUser, setInfoUser] = useState({});
   useEffect(() => {
-    info.products.map((product) => {
-      console.log(product)
+    console.log("orderInfo ", orderInfo);
+    setInfoUser(orderInfo.newOrder);
+    setInfo(orderInfo.products);
+  }, [orderInfo]);
+  useEffect(() => {
+    info.map((product) => {
+      console.log(product);
     });
-  },[])
+  }, []);
   const date = moment.utc(info.createdAt);
   const dateFormatted = date.format("DD/MM/YYYY HH:mm");
   return (
@@ -116,7 +51,7 @@ const CompleteOrder = ({ orderInfo }) => {
                   {Intl.NumberFormat("vi-VN", {
                     style: "currency",
                     currency: "VND",
-                  }).format(info.totalPrice)}
+                  }).format(infoUser.totalPrice)}
                 </span>
               </div>
             </div>
@@ -137,22 +72,23 @@ const CompleteOrder = ({ orderInfo }) => {
               <div className="info_order_completed">
                 <div className="title">Thông tin đơn hàng</div>
                 <p className="mt-2">
-                  Mã đơn hàng: <span className="fw-semibold">{info.id}</span>{" "}
+                  Mã đơn hàng:{" "}
+                  <span className="fw-semibold">{infoUser.id}</span>{" "}
                 </p>
                 <p>
                   Ngày tạo đơn: <span>{dateFormatted}</span>{" "}
                 </p>
-                <p className={!info.note ? "d-none" : "d-block"}>
-                  Ghi chú: <span>{info.note}</span>{" "}
+                <p className={!infoUser.note ? "d-none" : "d-block"}>
+                  Ghi chú: <span>{infoUser.note}</span>{" "}
                 </p>
                 <p>
                   Tình trạng đơn:{" "}
                   <span>
-                    {info.status === 0
+                    {infoUser.status === 0
                       ? "Đã đặt"
-                      : info.status === 1
+                      : infoUser.status === 1
                       ? "Đang giao"
-                      : info.status === 2
+                      : infoUser.status === 2
                       ? "Đã Nhận"
                       : ""}
                   </span>{" "}
@@ -160,7 +96,7 @@ const CompleteOrder = ({ orderInfo }) => {
                 <p>
                   Thanh toán:{" "}
                   <span>
-                    {info.payment === "received"
+                    {infoUser.payment === "received"
                       ? "Thanh toán khi nhận hàng"
                       : "Đã thanh toán trực tuyến"}
                   </span>
@@ -169,47 +105,60 @@ const CompleteOrder = ({ orderInfo }) => {
               <div className="info_order_products">
                 <div className="title">Đơn hàng của bạn</div>
                 <div className="products_frame">
-                  {info.products.map((item, index) => (
-                    <div key={index} className="row mb-5 justify-content-start m-0">
-                      <div className="img col-2">
-                        {item.image.split(",")[0] && (
-                          <img
-                            src={`http://localhost:3005/uploads/${
-                              item.image.split(",")[0]
-                            }`}
-                            alt=""
-                          />
-                        )}
-                      </div>
-                      <div className="col-6">
-                        <p>
-                          #<span>{item.id}</span>
-                        </p>
-                        <p className="title_pd">{item.name}</p>
-                        <p className="ms-3">
-                          Loại trang sức: <span>{item.type}</span>
-                        </p>
-                        <p className="ms-3" style={{fontSize: '17px'}}>
-                          {" "}
-                          {Intl.NumberFormat("vi-VN", {
-                            style: "currency",
-                            currency: "VND",
-                          }).format(item.price)}
-                           <span style={{fontWeight:'700', fontSize: '14px'}}> x</span> <span>{item.orderItems.quantity}</span>
-                        </p>
-                       
-                      </div>
-                      <div className="col-4 text-end">
-                        <h5 className="fw-semibold" style={{fontFamily:'cursive'}}>Thành Tiền</h5>
-                        <h6>
-                        {Intl.NumberFormat("vi-VN", {
-                            style: "currency",
-                            currency: "VND",
-                          }).format((item.price * item.orderItems.quantity))}
-                        </h6>
-                      </div>
-                    </div>
-                  ))}
+                  {info
+                    ? info.map((item, index) => (
+                        <div
+                          key={index}
+                          className="row mb-5 justify-content-start m-0"
+                        >
+                          <div className="img col-2">
+                            {item.image.split(",")[0] && (
+                              <img
+                                src={`http://localhost:3005/uploads/${
+                                  item.image.split(",")[0]
+                                }`}
+                                alt=""
+                              />
+                            )}
+                          </div>
+                          <div className="col-6">
+                            <p>
+                              #<span>{item.id}</span>
+                            </p>
+                            <p className="title_pd">{item.name}</p>
+                            
+                            <p className="ms-3" style={{ fontSize: "17px" }}>
+                              {" "}
+                              {Intl.NumberFormat("vi-VN", {
+                                style: "currency",
+                                currency: "VND",
+                              }).format(item.price)}
+                              <span
+                                style={{ fontWeight: "700", fontSize: "14px" }}
+                              >
+                                {" "}
+                                x
+                              </span>{" "}
+                              <span>{item.quantity}</span>
+                            </p>
+                          </div>
+                          <div className="col-4 text-end">
+                            <h5
+                              className="fw-semibold"
+                              style={{ fontFamily: "cursive" }}
+                            >
+                              Thành Tiền
+                            </h5>
+                            <h6>
+                              {Intl.NumberFormat("vi-VN", {
+                                style: "currency",
+                                currency: "VND",
+                              }).format(item.price * item.quantity)}
+                            </h6>
+                          </div>
+                        </div>
+                      ))
+                    : null}
                 </div>
               </div>
             </div>
@@ -229,7 +178,7 @@ const CompleteOrder = ({ orderInfo }) => {
           </Link>
           <Link to="/products/none" className="text-capitalize col-4">
             <div className="icon_shopping">
-            <AddShoppingCartIcon />
+              <AddShoppingCartIcon />
             </div>
             <span className="ms-2">Tiếp tục mua sắm</span>{" "}
           </Link>

@@ -2,10 +2,24 @@
   border: none;
   padding: 20px 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 4px;
+  border-radius: 20px;
   transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
     0.3s box-shadow,
     0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+  height: 8rem;
+}
+
+.ad_dashboard{
+  position: absolute;
+  left: 16%;
+  padding-left: 8rem;
+  padding-right: 1rem;
+  background-color: #f6f6f8;
+  width: calc(83.33333333% + 10px)
+}
+
+.col-lg-3_ad{
+  width: 22%
 }
 
 .ad_card:hover {
@@ -20,8 +34,12 @@
   color: #1589c2;
 }
 
+.doughnutChart{
+  width: 35%;
+}
+
 .ad_dashtitle {
-  font-size: 73px;
+  font-size: 60px;
   text-transform: capitalize;
   font-weight: 400;
   letter-spacing: -3px;
@@ -32,6 +50,15 @@
   font-family: "Pinyon Script", cursive;
   outline: none;
   text-align: center;
+  width: calc( 112% + 5px);
+  margin-left: -8rem;
+  background-color: #fff;
+}
+
+.chart_gr{
+  background-color: #fff;
+  padding: 35px;
+  border-radius: 20px;
 }
 
 .ad_dashtitle:hover {

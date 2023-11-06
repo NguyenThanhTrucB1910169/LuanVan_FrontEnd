@@ -91,6 +91,7 @@ const Header = ({ type, option }) => {
     const isActive = await JSON.parse(localStorage.getItem("isactive"));
     if (isActive && now.getTime() > isActive.expiry) {
       await dispatch(logoutHandler());
+      history.push("/");
     }
   };
 
@@ -182,14 +183,14 @@ const Header = ({ type, option }) => {
                     </ul>
                   </div>
                 </div>
-                <div className="col_header_b float-end me-2 mt-3 top_right z_index">
+                <div className="col_header_b float-end me-lg-2 mt-xxl-3 top_right z_index">
                   <div
                     className="d-inline-block search"
                     onClick={() => setSearch(!search)}
                   >
                     <i className="fa-solid fa-magnifying-glass"></i>
                   </div>
-                  <div className="d-inline-block ms-2 alert position-relative">
+                  <div className="d-inline-block ms-2 alert position-relative mt-md-2 mt-lg-0">
                     <i className="fa-regular fa-bell noti_icon"></i>
 
                     <div className="alert_frame">
@@ -263,7 +264,7 @@ const Header = ({ type, option }) => {
                         <div className="sticky-header">
                           <div className="row align-items-center">
                             <div className="main_menu text-center">
-                              <ul>
+                              <ul className="ps-lg-0 ps-xl-4">
                                 <li>
                                   <Link
                                     to="/"

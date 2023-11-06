@@ -5,19 +5,20 @@ import { getCartItem } from "./cartAction";
 const createOrder = (data) => {
   return async (dispatch) => {
     try {
-      // console.log('data gửi đi', data);
+      console.log('create Order info ', data);
       await axios
         .post("http://localhost:3005/api/order/", data, {
           withCredentials: true,
         })
         .then(async (response) => {
-          // console.log('data nhận về', response);
+          console.log('create Order success', response.data);
           if (response.data) {
             await axios
               .delete("http://localhost:3005/api/alldelete", {
                 withCredentials: true,
               })
               .then((res) => {
+                console.log(res.data)
                 dispatch({
                   type: Types.ORDER_SUCCESS,
                   payload: {info: response.data, result: res.data},

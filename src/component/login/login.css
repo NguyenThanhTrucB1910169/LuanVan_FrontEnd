@@ -2,6 +2,14 @@
 .login-container {
   height: 100vh;
   font-family: "Montserrat", sans-serif;
+  position: relative;
+  background-image: url("../../images/bg-login.jpg");
+  background-clip: content-box;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black; /* Nền tối */
+  filter: brightness(0.8);
+  /* opacity: 0.5; */
 }
 
 /* .social {
@@ -36,14 +44,15 @@
 }
 
 .screen {
-  background: #cde8e9;
-  position: absolute;
-  top: 50px;
+  position: relative;
+  top: -44rem;
   left: 33%;
   border-radius: 50px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   border-radius: 50px;
+  background: #e9ecef61; /* Màu nền mờ và trong suốt */
+  backdrop-filter: blur(10px);
 }
 
 .screen-content {
@@ -286,7 +295,7 @@ input:-webkit-autofill:active {
   padding: 2vmax;
   /* justify-content: space-evenly; */
   height: 70%;
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 .signup-icon {
   position: absolute;
@@ -302,10 +311,10 @@ input:-webkit-autofill:active {
   flex-direction: column;
   align-items: center; */
   margin: auto;
-  padding: 0 2rem 1rem 5rem;
+  padding: 18px 1rem 1rem 2rem;
   /* justify-content: space-evenly; */
   height: 73%;
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 
 .input_font {
@@ -323,13 +332,12 @@ input:-webkit-autofill:active {
   transform: translateY(-100%) translateX(-100vmax);
 }
 
-
-.signUpForm .signup-input:focus-visible{
+.signUpForm .signup-input:focus-visible {
   border: 1px solid #135351;
   outline: none;
 }
 
-.signUpForm .signup-input:focus{
+.signUpForm .signup-input:focus {
   box-shadow: none;
 }
 /* .loginForm > div, */
@@ -382,7 +390,7 @@ input:-webkit-autofill:active {
   margin-top: 14px;
 }
 .login_toggle > p:hover {
-  color: #1c5ca2;
+  color: #27588b;
 }
 
 @media only screen and (min-width: 576px) {
@@ -458,7 +466,7 @@ input:-webkit-autofill:active {
   font-weight: 700;
   padding-top: 2rem;
   background-color: transparent;
-  margin-left: -3rem;
+  margin-left: 0;
 }
 
 .button-reset:after {
@@ -534,7 +542,7 @@ input:-webkit-autofill:active {
     #96e5e7
   );
   width: 62%;
-  margin-left: 4rem;
+  /* margin-left: 4rem; */
   margin-top: 1rem;
 }
 

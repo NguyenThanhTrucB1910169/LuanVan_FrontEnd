@@ -2,7 +2,8 @@ import * as Types from "../constants/actionType";
 
 const initState = {
   placed: false,
-  infoByOrderId: {}
+  infoByOrderId: {},
+  error: null
 };
 
 export const orderReduce = (state = initState, action) => {
@@ -22,7 +23,7 @@ export const orderReduce = (state = initState, action) => {
     case Types.DETAIL_ORDER_SUCCESS:
       return { ...state, detail: action.payload };
     case Types.DETAIL_ORDER_FAILED:
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, detail: {}};
     case Types.GET_ORDER_DELIVER_SUCCESS:
       return { ...state, deliver: action.payload}
     case Types.GET_ORDER_DELIVER_FAILED:

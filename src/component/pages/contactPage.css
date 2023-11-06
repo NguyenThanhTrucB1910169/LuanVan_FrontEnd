@@ -1,7 +1,10 @@
 .contact {
   height: fit-content;
   font-family: "Montserrat", sans-serif;
+  padding-top: 6rem;
+  transition: padding-top .3s ease-in;
 }
+
 
 .cont_overlay {
   height: 20rem;

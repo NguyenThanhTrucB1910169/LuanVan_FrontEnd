@@ -38,9 +38,9 @@ class Footer extends React.Component {
 
           <div className="text-center p-4 font_cus">
             &reg; 2023 &nbsp;
-            <a className="fw-bold text-decoration-none foo_text" href="#">
+            <Link className="fw-bold text-decoration-none foo_text" to="/">
             swanslux.com
-            </a>
+            </Link>
           </div>
         </footer>
       </Fragment>

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@300&display=swap');
 .update_form {
 }
 
@@ -5,8 +6,10 @@
   font-size: 30px;
   text-align: center;
   margin: 0;
-  font-weight: 600;
   padding: 0 0 20px;
+  font-weight: 600;
+  font-family: 'Playpen Sans', cursive;
+  text-transform: capitalize;
 }
 
 .form_detail {
@@ -20,6 +23,11 @@
 
 .pt_cus{
   padding-top: 7rem;
+  transition: padding-top 0.5s ease-in-out;
+}
+
+.add_pt{
+  padding-top: 14rem;
 }
 
 .update_input {
@@ -69,7 +77,7 @@
   border: none;
   background-color: #b2f4ed;
   color: #000;
-  padding: 20px 40px;
+  padding: 0 40px;
   border-radius: 20px;
   margin-right: 10px;
   font-size: 18px;
@@ -91,10 +99,11 @@
   border: none;
   background-color: transparent;
   text-align: center;
-  padding-top: 23px;
+  padding: 12px 0;
   font-size: 21px;
   color: #000;
   text-decoration: none;
+  margin-right: 2rem;
 }
 
 .btn_inupdate i{

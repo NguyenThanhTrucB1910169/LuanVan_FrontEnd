@@ -208,7 +208,7 @@ class UpdateInfoForm extends React.Component {
       <Fragment>
         <Header type={0} option={this.showOption} />
 
-        <div className="pt_cus">
+        <div className={`pt_cus ${this.state.option ? 'add_pt' : ''}`}>
           <div className="">
             {typeof this.props.location.state.edit !== "undefined" ? (
               <Link to="/order" className="return_order">
@@ -226,7 +226,7 @@ class UpdateInfoForm extends React.Component {
           >
             <h1 className="update_title">
               {this.state.isProfile
-                ? "Cập nhật thông tin cá nhân"
+                ? "Cập nhật thông tin tài khoản"
                 : "Cập nhật thông tin giao hàng"}
             </h1>
             <div className="mt-4">
@@ -273,7 +273,7 @@ class UpdateInfoForm extends React.Component {
               )}
             </div>
             <div className="row mt-4">
-              <div className={this.state.isProfile ? "col-6" : "col-12"}>
+              <div className={this.state.isProfile ? "col-10" : "col-12"}>
                 <label htmlFor="phone">Số Điện Thoại</label>
                 <input
                   name="phone"
@@ -287,7 +287,7 @@ class UpdateInfoForm extends React.Component {
                   <div className="reg_error">{this.state.errors.phone}</div>
                 )}
               </div>
-              <div
+              {/* <div
                 className={`col-6 ${
                   this.state.isProfile ? "d-block" : "d-none"
                 } position-relative`}
@@ -317,7 +317,7 @@ class UpdateInfoForm extends React.Component {
                 {this.state.errors.pass && (
                   <div className="reg_error">{this.state.errors.pass}</div>
                 )}
-              </div>
+              </div> */}
             </div>
             <div className={this.state.isProfile ? "d-block" : "d-none"}>
               <label htmlFor="avatar" className="update_avatar">
@@ -357,7 +357,7 @@ class UpdateInfoForm extends React.Component {
               </div>
             </div>
             <div
-              className={`col-12 mt-3 row ${
+              className={`col-12 mt-5 row ${
                 this.state.isCoun
                   ? "justify-content-between"
                   : "justify-content-center"

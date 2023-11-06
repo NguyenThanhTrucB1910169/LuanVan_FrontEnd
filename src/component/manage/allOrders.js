@@ -10,6 +10,8 @@ import moment from "moment";
 import "./allOrders.css";
 import { toast } from "react-toastify";
 import Toast from "../home/toast";
+import RoomIcon from "@mui/icons-material/Room";
+import SearchOffIcon from "@mui/icons-material/SearchOff";
 
 class AllOrders extends React.Component {
   constructor(props) {
@@ -18,6 +20,8 @@ class AllOrders extends React.Component {
       order: [],
       open: [],
       total: {},
+      filter: 5,
+      filteredOrder: [],
       // placed: 0,
       // deliver: 0,
       // recieve: 0,
@@ -42,14 +46,14 @@ class AllOrders extends React.Component {
         result[mdh].push(product);
         return result;
       }, {});
-      this.setState({ order: custom }, () => {
+      this.setState({ order: custom, filteredOrder: custom }, () => {
         Object.entries(this.state.order).map(([key, value]) => {
           // console.log(value);
           var price = 0;
           // var placed= value.filter((item) => item.status === 0).length;
           // var deliver= value.filter((item) => item.status === 1).length;
           // var recieve= value.filter((item) => item.status === 2).length
-         
+
           value.map((item) => (price += item.quantity));
           this.setState((prev) => ({
             total: { ...prev.total, [key]: price },
@@ -78,45 +82,89 @@ class AllOrders extends React.Component {
       toast.warning(<Toast message="Đơn hàng đã hủy" />, {
         className: "warning",
       });
-   } else {
+    } else {
       toast.warning(<Toast message="Giao hàng hoàn tất" />, {
         className: "warning",
       });
     }
   };
 
+  handleFilter = (e) => {
+    const selectedFilter = parseInt(e.target.value);
+    console.log("selectedFilter ", selectedFilter);
+    console.log("this.state.order ", this.state.order);
+    // Lọc danh sách đơn hàng dựa trên giá trị được chọn
+    const filteredOrders = Object.values(this.state.order).filter((order) => {
+      console.log("order ", order[0].status);
+      switch (selectedFilter) {
+        case 0:
+          return order[0].status === 0;
+        case 1:
+          return order[0].status === 1;
+        case 2:
+          return order[0].status === 2;
+        case 3:
+          return order[0].status === 3;
+        case 5:
+          return true; // Chọn "Tất cả đơn hàng" - trả về tất cả đơn hàng
+        default:
+          return true;
+      }
+    });
+
+    this.setState(
+      { filter: selectedFilter, filteredOrder: filteredOrders },
+      () => {
+        console.log("filteredOrders ", filteredOrders);
+      }
+    );
+  };
+
   render() {
-    // console.log('------------------')
-    //  Object.entries(this.state.order).map(([key, value]) => {
-    //   console.log(value);
-    // })
     return (
       <Fragment>
         <SideBar />
         <div className="col-sm-7 col-lg-7 ms-sm-5 ms-lg-0 main_side">
           <h1 className="text-uppercase text-center my-4">tất cả đơn hàng</h1>
-          <div className="stats">
-            <p>
-              Tổng số đơn hàng: {" "}
+          <div className="stats row justify-content-between">
+            <p className="col-5">
+              Tổng số đơn hàng:{" "}
               {this.state.order !== null
                 ? Object.entries(this.state.order).length
                 : null}
             </p>
+            <div className="col-5 text-end">
+              <select
+                name="order_filter"
+                id=""
+                className="filter_status"
+                value={this.state.filter}
+                onChange={(e) => this.handleFilter(e)}
+              >
+                <option value="0">Đã Đặt</option>
+                <option value="1">Đang Giao</option>
+                <option value="2">Hoàn Thành</option>
+                <option value="3">Đã Hủy</option>
+                <option value="5">Tất cả đơn hàng</option>
+              </select>
+            </div>
           </div>
           <div className="row ad_pdhead">
             <div className="col-2">Mã Đơn</div>
             <div className="col-sm-4 col-lg-3">Người Đặt</div>
             <div className="col-sm-4 col-lg-2">Tổng Đơn</div>
-            <div className="d-sm-none d-lg-block col-3 text-center">
+            <div className="col-lg-2">Tình trạng</div>
+            <div className="d-sm-none d-lg-block col-2 text-center">
               Ngày đặt
             </div>
-            <div className="col-2 text-end">Chi Tiết</div>
+            <div className="col-1 text-end"></div>
           </div>
           <div>
-            {this.state.order !== null ? (
-              Object.entries(this.state.order).map(([key, value]) => (
+            {this.state.filteredOrder !== null &&
+            Object.entries(this.state.filteredOrder).length > 0 ? (
+              Object.entries(this.state.filteredOrder).map(([key, value]) => (
                 <div>
-                  <div key={key} className={`${value[0].status === 0 ? 'placed' : value[0].status === 1 ? 'complete' : null } ad_itempd`}>
+                  <div key={key} className={`ad_itempd`}>
                     <div className="row">
                       <div className="col-2 text-center">#S{key}</div>
                       <div className="col-sm-4 col-lg-3">
@@ -130,10 +178,33 @@ class AllOrders extends React.Component {
                           }).format(value[0].totalPrice)}
                         </div>
                       </div>
-                      <div className="d-sm-none d-lg-block col-3 text-center">
+                      <div
+                        className={`col-lg-2 ${
+                          value[0].status === 0
+                            ? "sts_order_placed"
+                            : value[0].status === 1
+                            ? "sts_order_delivery"
+                            : value[0].status === 2
+                            ? "sts_order_received"
+                            : value[0].status === 3
+                            ? "sts_order_cancel"
+                            : null
+                        }`}
+                      >
+                        {value[0].status === 0
+                          ? "Đã đặt hàng"
+                          : value[0].status === 1
+                          ? "Đang giao"
+                          : value[0].status === 2
+                          ? "Đã Nhận"
+                          : value[0].status === 3
+                          ? "Đã Hủy"
+                          : ""}
+                      </div>
+                      <div className="d-sm-none d-lg-block col-2 text-center">
                         {moment.utc(value[0].createdAt).format("DD/MM/YYYY")}
                       </div>
-                      <div className="col-2 text-end">
+                      <div className="col-1 text-end">
                         <button
                           onClick={() => this.clickDetail(key)}
                           className="btn_ad_detail"
@@ -186,17 +257,33 @@ class AllOrders extends React.Component {
                           ))}
                         </tbody>
                       </table>
+
+                      <div className="add_user_contain">
+                        <RoomIcon
+                          style={{ fontSize: "20px", marginBottom: "3px" }}
+                        />
+                        <span
+                          style={{
+                            fontStyle: "italic",
+                            fontWeight: "600",
+                            fontFamily: '"Playpen Sans", cursive',
+                          }}
+                        >
+                          Địa chỉ giao hàng:{" "}
+                        </span>
+                        <span> {value[0].address}</span>
+                      </div>
+
                       <div className="ad_order_confirm">
-                        <div className="col-sm-5 col-lg-3 ms-2">
-                          Tình trạng:{" "}
+                        <div className="col-sm-5 col-lg-4 ms-2">
                           {value[0].status === 0
-                            ? "Đã đặt hàng"
+                            ? "Đã đặt. Đang chờ duyệt đơn hàng."
                             : value[0].status === 1
-                            ? "Đang giao"
+                            ? "Đang giao đến khách hàng."
                             : value[0].status === 2
-                            ? "Đã Nhận"
+                            ? "Đã nhận hàng. Hoàn thành."
                             : value[0].status === 3
-                            ? "Đã Hủy"
+                            ? "Đơn hàng đã hủy"
                             : ""}
                         </div>
                         <div className="col-sm-5 col-lg-2">
@@ -205,6 +292,17 @@ class AllOrders extends React.Component {
                               this.setStatusOrder(key, value[0].status)
                             }
                             className="ad_btn_order"
+                            disabled={
+                              value[0].status === 0
+                                ? false
+                                : value[0].status === 1
+                                ? true
+                                : value[0].status === 2
+                                ? true
+                                : value[0].status === 3
+                                ? true
+                                : true
+                            }
                           >
                             Giao Hàng
                           </button>
@@ -215,7 +313,10 @@ class AllOrders extends React.Component {
                 </div>
               ))
             ) : (
-              <div>Không có đơn hàng</div>
+              <div className="search_not_allorders">
+                <SearchOffIcon style={{ color: "red", marginRight: "1rem" }} />
+                <span>Không có đơn hàng</span>
+              </div>
             )}
           </div>
         </div>

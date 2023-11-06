@@ -28,7 +28,6 @@ const User = () => {
   const dispatch = useDispatch();
   const isActive = JSON.parse(localStorage.getItem("isactive"));
 
-
   const options = [
     { icon: <HomeIcon />, name: "Trang Chủ", func: dashboard },
     { icon: <ListAltIcon />, name: "Đơn Hàng", func: orders },
@@ -59,11 +58,10 @@ const User = () => {
     history.push("/cart");
   }
   async function logoutUser() {
-    console.log(role)
+    console.log(role);
     // const currentRole = role;
     dispatch(logoutHandler());
-    setLogout(true)
-    history.push("/");
+    setLogout(true);
   }
 
   // useEffect(() => {
@@ -78,12 +76,27 @@ const User = () => {
   //       });
   //     }
   //   }
-      
+
   // }, [isActive]);
 
   useEffect(() => {
-    console.log(role);
-    console.log(isLogout);
+    if (isLogout) {
+      if (role === 2) {
+        toast.success(<Toast message="Đăng xuất thành công" />, {
+          onClose: () => {
+            history.push("/");
+          },
+          className: "success",
+        });
+      } else if (role === 1) {
+        toast.error(<Toast message="Đăng xuất thất bại" />, {
+          onClose: () => {
+            history.push("/");
+          },
+          className: "fail",
+        });
+      }
+    }
   }, [role, isLogout]);
   return (
     <Fragment>
@@ -97,7 +110,15 @@ const User = () => {
         direction="down"
         className="speedDial"
         icon={
-          <img className="speedDialIcon" src={user && user.avatar ? `http://localhost:3005/uploads/${user.avatar}` : "/avatar_default.png"} alt="Profile" />
+          <img
+            className="speedDialIcon"
+            src={
+              user && user.avatar
+                ? `http://localhost:3005/uploads/${user.avatar}`
+                : "/avatar_default.png"
+            }
+            alt="Profile"
+          />
         }
       >
         {options.map((item) => (

@@ -87,6 +87,9 @@ const ReviewCard = ({ productId }) => {
     if (postReview) {
       if (post) {
         toast.success(<Toast message="Hoàn thành đánh giá" />, {
+          onClose: () => {
+            dispatch(getReviewsByProduct(productId));
+          },
           className: "success",
         });
       } else {
@@ -94,7 +97,6 @@ const ReviewCard = ({ productId }) => {
           className: "fail",
         });
       }
-      dispatch(getReviewsByProduct(productId));
       setPostReview(false);
     }
   }, [post, postReview, dispatch, create, reviews]);
@@ -122,8 +124,8 @@ const ReviewCard = ({ productId }) => {
                       <div class="customer_image">
                         <img
                           src={
-                            review.user.avatar
-                              ? review.user.avatar
+                            review.User.avatar
+                              ? `http://localhost:3005/uploads/${review.User.avatar}`
                               : "/avatar_default.png"
                           }
                           alt="customer image"
@@ -131,11 +133,11 @@ const ReviewCard = ({ productId }) => {
                       </div>
 
                       <div class="customer_name_review_status">
-                        <div class="customer_name">{review.user.fullname}</div>
+                        <div class="customer_name">{review.User.fullname}</div>
                         <div class="customer_review">
                           <Rating
                             name="user-rating"
-                            value={review.reviewData.rating}
+                            value={review.rating}
                             precision={0.5}
                             readOnly
                           />
@@ -144,7 +146,7 @@ const ReviewCard = ({ productId }) => {
                     </div>
 
                     <div class="customer_comment">
-                      {review.reviewData.reviewText}
+                      {review.reviewText}
                     </div>
                   </div>
                 ))

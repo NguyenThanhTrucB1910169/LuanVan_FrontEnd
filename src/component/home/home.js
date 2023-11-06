@@ -14,6 +14,7 @@ import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 const divStyle = {
   backgroundSize: "cover",
   height: "31rem",
+  backgroundPosition: 'center'
 };
 const slideImages = [
   {

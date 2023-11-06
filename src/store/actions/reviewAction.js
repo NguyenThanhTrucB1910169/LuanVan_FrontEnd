@@ -33,6 +33,7 @@ const getReviewsByProduct = (idProduct) => {
   return async (dispatch) => {
     try {
       console.log(idProduct);
+      console.log("VAO getReviewsByProduct");
       var result = [];
       const res = await axios.get(
         `http://localhost:3005/api/getReviews/byProduct/${idProduct}`,
@@ -41,27 +42,32 @@ const getReviewsByProduct = (idProduct) => {
         }
       );
       if (res.data) {
-        if (res.data) {
-          for (const review of res.data) {
-            console.log(review.userId);
-            const userResponse = await axios.get(
-              `http://localhost:3005/api/getById/${review.userId}`,
-              {
-                withCredentials: true,
-              }
-            );
-            const reviewWithUser = {
-              user: userResponse.data,
-              reviewData: review,
-            };
-
-            result.push(reviewWithUser);
-          }
-        }
+        console.log(res.data);
         dispatch({
           type: Types.GET_REVIEW_PRODUCT_SUCCESS,
-          payload: result,
+          payload: res.data,
         });
+        // if (res.data) {
+        //   for (const review of res.data) {
+        //     console.log(review.userId);
+        //     const userResponse = await axios.get(
+        //       `http://localhost:3005/api/getById/${review.userId}`,
+        //       {
+        //         withCredentials: true,
+        //       }
+        //     );
+        //     const reviewWithUser = {
+        //       user: userResponse.data,
+        //       reviewData: review,
+        //     };
+
+        //     result.push(reviewWithUser);
+        //   }
+        // }
+        // dispatch({
+        //   type: Types.GET_REVIEW_PRODUCT_SUCCESS,
+        //   payload: result,
+        // });
       }
       // });
     } catch (error) {
@@ -73,11 +79,12 @@ const getReviewsByProduct = (idProduct) => {
   };
 };
 
-const getReviewsByUser = () => {
+const getReviewsByUser = (page) => {
   return async (dispatch) => {
     try {
+      console.log(page);
       const res = await axios.get(
-        "http://localhost:3005/api/getReviewsByUser",
+        `http://localhost:3005/api/getReviewsByUser/${page}`,
         { withCredentials: true }
       );
       if (res.data) {
@@ -89,12 +96,124 @@ const getReviewsByUser = () => {
       }
       // });
     } catch (error) {
+      console.log("error ", error);
       dispatch({
         type: Types.GET_REVIEW_OFUSER_FAILED,
+        payload: error,
+      });
+    }
+  };
+};
+
+const getTotalPage = () => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get("http://localhost:3005/api/getTotalPage", {
+        withCredentials: true,
+      });
+      console.log(res.data);
+      if (res.data) {
+        console.log(res.data);
+        dispatch({
+          type: Types.GET_TOTALPAGE_SUCCESS,
+          payload: res.data,
+        });
+      }
+      // });
+    } catch (error) {
+      console.log("error ", error);
+      dispatch({
+        type: Types.GET_TOTALPAGE_FAILED,
+        payload: error,
+      });
+    }
+  };
+};
+
+const delReviewByUser = (id) => {
+  return async (dispatch) => {
+    console.log("id at action ", id);
+    try {
+      await axios
+        .delete("http://localhost:3005/api/delReviewByUser", {
+          withCredentials: true,
+          data: {
+            reviewId: id, // Truyền ID của đánh giá vào dưới dạng dữ liệu
+          },
+        })
+        .then((response) => {
+          console.log("response.data PHẢN HỒI", response.data);
+          dispatch({
+            type: Types.DEL_REVIEW_BY_USER_SUCCESS,
+            payload: response.data,
+          });
+        })
+        .catch((data) => {
+          dispatch({
+            type: Types.DEL_REVIEW_BY_USER_FAILED,
+            payload: data,
+          });
+        });
+      //   console.log('res data ', res.data)
+      //   if (res.data) {
+      //     console.log(res.data);
+      //     dispatch({
+      //       type: Types.GET_REVIEW_OFUSER_SUCCESS,
+      //       payload: res.data,
+      //     });
+      //   }
+      // });
+    } catch (error) {
+      console.log("error ", error);
+      dispatch({
+        type: Types.DEL_REVIEW_BY_USER_FAILED,
         payload: error.response.data.message,
       });
     }
   };
 };
 
-export { addNewReview, getReviewsByProduct, getReviewsByUser };
+const updateReviewByUser = (id, reviews) => {
+  return async (dispatch) => {
+    console.log("id at action ", id);
+    console.log("reviews at action ", reviews);
+    const data = {
+      reviewId: id,
+      review: reviews,
+    };
+    try {
+      await axios
+        .put("http://localhost:3005/api/updatebyuser/review", data, {
+          withCredentials: true,
+        })
+        .then((response) => {
+          console.log("response.data PHẢN HỒI", response.data);
+          dispatch({
+            type: Types.UPD_REVIEW_BY_USER_SUCCESS,
+            payload: response.data,
+          });
+        })
+        .catch((data) => {
+          dispatch({
+            type: Types.UPD_REVIEW_BY_USER_FAILED,
+            payload: data,
+          });
+        });
+    } catch (error) {
+      console.log("error ", error);
+      dispatch({
+        type: Types.UPD_REVIEW_BY_USER_FAILED,
+        payload: error.response.data.message,
+      });
+    }
+  };
+};
+
+export {
+  addNewReview,
+  getReviewsByProduct,
+  getReviewsByUser,
+  delReviewByUser,
+  getTotalPage,
+  updateReviewByUser,
+};

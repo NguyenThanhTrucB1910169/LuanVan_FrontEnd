@@ -30,7 +30,7 @@ class AllUsers extends React.Component {
         <div className="row">
           <SideBar />
           <div className="main_side col-sm-8 col-lg-6 my-4 ms-3">
-            <h1 className="text-center text-uppercase">danh sách người dùng</h1>
+            <h1 className="text-center text-uppercase" style={{fontFamily: '"Playpen Sans", cursive'}}>danh sách người dùng</h1>
             {this.props.users
               ? this.props.users.map((user, key) => (
                   <div key={key} className="row user_item">

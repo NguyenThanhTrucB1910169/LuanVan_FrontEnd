@@ -49,6 +49,7 @@ const ProductDetail = () => {
 
   useEffect(async () => {
     if (isAddToCart) {
+      console.log(isAdd)
       if (isAdd) {
         toast.success(<Toast message="Đã thêm vào giỏ hàng" />, {
           className: "success",

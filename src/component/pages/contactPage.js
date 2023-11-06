@@ -1,13 +1,24 @@
 import React, { Fragment } from "react";
-import SubHeader from "../layouts/subHeader";
+import Header from "../home/header";
 import "./contactPage.css";
 import Footer from "../home/footer";
 class ContactPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false,
+    };
+  }
+
+  option = (op) => {
+    this.setState({ show: op });
+  };
+
   render() {
     return (
       <Fragment>
-        <SubHeader />
-        <div className="contact">
+        <Header option={this.option} />
+        <div className={`contact ${this.state.show ? "pt_page" : ""}`}>
           {/* <h1>Liên hệ</h1> */}
           <div className="position-relative cont_overlay">
             <div className="overlay_ct"></div>
@@ -23,12 +34,12 @@ class ContactPage extends React.Component {
                 </li>
                 <li>
                   <i className="fa-solid fa-envelope"></i>
-                  <span>Email: sparkleshine@jewel.com</span>
+                  <span>Email: swanlux@jewel.com</span>
                   <i className="fa-solid fa-caret-right"></i>
                 </li>
                 <li>
                   <i className="fa-solid fa-link"></i>
-                  <span>Website: sparkleshine.com</span>
+                  <span>Website: swanslux.com</span>
                   <i className="fa-solid fa-caret-right"></i>
                 </li>
                 <li>
@@ -38,7 +49,7 @@ class ContactPage extends React.Component {
                 </li>
                 <li>
                   <i className="fa-solid fa-house"></i>
-                  <span>Fanpage: sparkleandshine.jewery</span>
+                  <span>Fanpage: swanslux.jewery</span>
                   <i className="fa-solid fa-caret-right"></i>
                 </li>
               </ul>
@@ -53,7 +64,7 @@ class ContactPage extends React.Component {
             </div>
           </div>
           <div className="cont_assist">
-          <h2 className="text-center fw-semibold">Dịch Vụ Tại Swans Lux</h2>
+            <h2 className="text-center fw-semibold">Dịch Vụ Tại Swans Lux</h2>
             <div className="d-flex flex-sm-column flex-lg-row m-sm-0 mf cont_mt justify-content-around">
               <div className="col-sm-12 col-lg-5 text-center">
                 <img src="./cont-3.webp" alt="" />

@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap");
 
 .home-slide {
   height: 31rem;
@@ -86,7 +84,6 @@
   left: 190px;
 }
 
-
 img {
   max-width: 100%;
 }
@@ -131,7 +128,7 @@ img {
   width: 100%;
   height: 100%;
   /* background-image: url(../../images/bg-home.jpg); */
-  background-size:cover;
+  background-size: cover;
   background-position: 50% 50%;
   transition: background-image 0.5s ease-in-out;
   /* transition: transform 0.5s, opacity 0.5s; */
@@ -156,10 +153,10 @@ img {
 .home-intro .box-1 {
   position: absolute;
   width: 50%;
-    right: 0;
-    padding: 0 10px 0 30px;
-    top: 30%;
-    text-align: center;
+  right: 0;
+  padding: 0 10px 0 30px;
+  top: 30%;
+  text-align: center;
 }
 
 .home-intro .box-2 {
@@ -194,7 +191,7 @@ img {
   background-color: #fff;
 }
 
-.home-intro .search_empty{
+.home-intro .search_empty {
   min-height: 30rem;
   background-color: #fff;
 }
@@ -213,7 +210,7 @@ img {
   text-decoration: none;
 }
 
-.button-intro:hover{
+.button-intro:hover {
   color: #000;
 }
 
@@ -266,15 +263,13 @@ img {
   transform-origin: bottom left;
 }
 
-
-
 .home-content {
   background-color: rgb(255, 255, 255);
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
-.add-fil{
-  filter:brightness(0.8);
+.add-fil {
+  filter: brightness(0.8);
 }
 
 .overlay {
@@ -289,32 +284,32 @@ img {
   cursor: pointer;
 }
 
-.content{
+.content {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.home-flex{
+.home-flex {
   position: relative;
 }
 .home-flex:hover .overlay {
   opacity: 0.6;
 }
-.content .button-explore{
+.content .button-explore {
   background: none;
   color: #fff;
   font-size: 23px;
 }
 
-.home-intro .intro_row{
+.home-intro .intro_row {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   margin: 100px 0;
 }
 
-@media only screen and (max-width: 767px) {
+/* @media only screen and (max-width: 767px) {
   .home-intro .intro-1 {
     padding: 80px 0;
     width: fit-content;
@@ -353,9 +348,9 @@ img {
   background-color: #fff;
 }
 
-}
+} */
 
-@media only screen and (max-width: 1023px) and (min-width: 768px) {
+/* @media only screen and (max-width: 1023px) and (min-width: 768px) {
  
   .content .button-explore{
     font-size: 21px;
@@ -374,6 +369,104 @@ img {
 }
 }
 
+@media only screen and (min-width: 1400px) {
+  .intro-img img {
+    height: 60vh;
+  }
+} */
+
+/* xs */
+@media only screen and (max-width: 575px) {
+}
+
+/* sm */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .slide{
+    height: 23rem;
+    margin: 0 1rem;
+  }
+
+  .home-intro .intro-1 {
+    padding: 80px 0;
+    width: fit-content;
+    margin: 0 auto;
+  }
+  .home-intro .box-1 {
+    position: initial;
+    padding: 20px 27px 40px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .button-intro {
+    background-color: #fff;
+    font-weight: 600;
+  }
+  .home-intro .intro_row {
+    flex-direction: column;
+  }
+  .home-flex {
+    margin-bottom: 30px;
+    height: 100%;
+    width: 100% !important;
+  }
+  .home-intro .box-2 {
+    position: unset;
+    margin: 30px 0;
+    padding: 0 20px;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .home-intro .box-2 button {
+    background-color: #fff;
+  }
+}
+
+/* md */
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .content .button-explore {
+    font-size: 21px;
+  }
+  .home-intro .box-2 {
+    max-width: 46%;
+    top: 14%;
+    padding-left: 0;
+  }
+  .slide{
+    height: 23rem;
+    margin: 0 1rem;
+  }
+}
+/* lg */
+@media only screen and (max-width: 1199px) and (min-width: 992px) {
+  .content .button-explore {
+    font-size: 21px;
+  }
+  .home-intro .box-2 {
+    max-width: 46%;
+    top: 14%;
+    padding-left: 0;
+  }
+  .slide {
+    margin: 0 1rem;
+    height: 23rem;
+  }
+  .home-intro .box-2 {
+    max-width: 31rem;
+    padding-left: 10px;
+  }
+}
+
+/* xl */
+@media only screen and (max-width: 1399px) and (min-width: 1200px) {
+  .slide {
+    margin: 0 1rem;
+    height: 28rem;
+  }
+}
+
+/* xxl */
 @media only screen and (min-width: 1400px) {
   .intro-img img {
     height: 60vh;

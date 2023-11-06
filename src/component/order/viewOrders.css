@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Philosopher:ital@1&display=swap");
 .frame_detail {
   width: 100%;
-  height: 24rem;
+  height: fit-content;
   overflow: hidden;
   display: block;
   background-color: #fff;
@@ -10,17 +10,23 @@
   border-radius: 6px;
   max-height: 0;
   font-size: 15px;
-  transition: max-height 0.3s ease-in;
+  transition: max-height 0.1s ease-in;
 }
 
-.view_order_contain.add_padding{
+.no_order_icon {
+  display: block!important;
+  margin: 0 auto 20px;
+  color: #adb5bd;
+  text-align: center;
+  font-size: 35px!important;
+}
+
+.view_order_contain.add_padding {
   padding-top: 14rem;
 }
 
 .frame_detail.display {
-  max-height: 40rem; /* Độ cao tối thiểu */
-  /* transition: max-height 0.5s ease-in-out; */
-  /* padding-top: 1rem; */
+  max-height: 1000px; 
 }
 
 .frame_detail img {
@@ -88,10 +94,8 @@
   color: #000;
 }
 
-
-
-.h_frame_detail{
-  height: 16.5rem;
+.h_frame_detail {
+  height: fit-content;
 }
 
 .btn_hide:before {
@@ -142,8 +146,9 @@
 .his_order h1 {
   margin: 0 0 50px;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.7rem;
   text-transform: uppercase;
+  font-family: 'Playpen Sans', cursive;
 }
 
 .frame_detail a {
@@ -170,19 +175,17 @@
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
     rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
     rgba(0, 0, 0, 0.07) 5px 5px 10px;
-
 }
 
-.trans_effect{
+.trans_effect {
   transition: transform 0.2s;
-
 }
 
 .order_card .div_order {
   padding: 1.5rem 0;
 }
 
-.trans_effect:hover{
+.trans_effect:hover {
   transform: scale(1.02);
   background-color: #fff;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
@@ -226,6 +229,7 @@
   font-size: 20px;
   color: #518dff;
   font-weight: 600;
+  min-height: 20rem;
 }
 
 .view_order_contain {
@@ -255,7 +259,7 @@
   background-color: green;
 }
 
-.cancel::before{
+.cancel::before {
   background-color: rgb(170, 170, 170);
 }
 
@@ -274,7 +278,16 @@
   position: relative;
 }
 
-.cancel{
+.cancel {
   color: rgb(129, 129, 129);
   position: relative;
+}
+
+.id_not_exist{
+  text-align: start;
+  margin: 1.5rem 20px 0;
+  width: 65%;
+  font-style: italic;
+  font-weight: 300;
+  font-family: 'Playpen Sans', cursive;
 }

@@ -5,22 +5,11 @@ import Toast from "../home/toast";
 import { toast, ToastContainer } from "react-toastify";
 
 class AuthRoute extends React.Component {
-  // constructor() {
-  //   this.shouldRedirect = true; // Điều kiện để xác định xem có chuyển hướng hay không
-  // }
-
-  // toRedirect = () => {
-  //   if (this.shouldRedirect) {
-  //     // Nếu điều kiện đúng, sẽ chuyển hướng đến /login/1
-  //     return 
-  //   }
-  // }
   componentDidMount = () => {
-    if(this.isActive === false){
-      toast.warning(<Toast message="Đăng nhập để tiếp tục"/>,{
-          className: "warning",
-        })
-      return  <Redirect to={`/login/${1}`} />
+    if (this.isActive === false) {
+      toast.warning(<Toast message="Đăng nhập để tiếp tục" />, {
+        className: "warning",
+      });
     }
   };
 
@@ -32,8 +21,8 @@ class AuthRoute extends React.Component {
           <Route component={this.props.component}></Route>
         ) : (
           <Fragment>
-            <ToastContainer />
-            {/* <Redirect to="/login/1"></Redirect> */}
+            {/* <ToastContainer /> */}
+            <Redirect to={`/login/${1}`}></Redirect>
           </Fragment>
         )}
       </Fragment>

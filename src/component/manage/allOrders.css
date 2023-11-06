@@ -1,51 +1,99 @@
-.detail_frame table{
-    margin: 20px auto;
-    width: 90%;
-    text-align: center;
+.detail_frame table {
+  margin: 20px auto;
+  width: 90%;
+  text-align: center;
 }
 
-.btn_ad_detail{
-    border: none;
-    background: #fff;
-    font-size: 22px;
-    margin-right: 15px;
-    border-radius: 17px;
+.btn_ad_detail {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  margin-right: 15px;
+  border-radius: 17px;
 }
 
-.detail_frame .ad_detail_title{
-    margin: 20px 10px;
-    justify-content: space-between;
+.sts_order_placed {
+  color: #04a5ff;
+  font-weight: 600;
+}
+.sts_order_delivery {
+  color: orange;
+  font-weight: 600;
+}
+.sts_order_received {
+  color: green;
+  font-weight: 600;
+}
+.sts_order_cancel {
+  color: #ff2e2e;
+  font-weight: 600;
 }
 
-.ad_detail_title .phone{
-    text-align: end;
+.add_user_contain {
+  margin: 10px;
 }
 
-.ad_order_confirm{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 2rem;
+.detail_frame .ad_detail_title {
+  margin: 20px 10px;
+  justify-content: space-between;
 }
 
-.ad_btn_order{
-    color: #000;
-    background-color: #fff;
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    border-radius: 25px;
-    padding: 4px 12px;
-    font-size: 20px;
+.ad_detail_title .phone {
+  text-align: end;
 }
 
-.ad_btn_order:hover{
-    color: #00c5c5;
+.ad_order_confirm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2rem;
 }
 
-.placed{
-    background-color: #fffec669;
+.ad_btn_order {
+  color: #000;
+  background-color: #fff;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 25px;
+  padding: 4px 12px;
+  font-size: 20px;
 }
 
-.complete{
-    background-color: #93beff2e
+.ad_btn_order:disabled {
+  background-color: rgb(126 126 126 / 61%);
+  color: #fff;
 }
+
+.ad_btn_order:disabled:hover {
+  color: #fff;
+}
+
+.ad_btn_order:hover {
+  color: #00c5c5;
+}
+
+.placed {
+  background-color: #fffec669;
+}
+
+.complete {
+  background-color: #93beff2e;
+}
+
+.search_not_allorders {
+  margin-top: 3rem;
+  text-align: center;
+  font-family: "Playpen Sans", cursive;
+  font-size: 21px;
+}
+
+.filter_status {
+  padding: 5px 10px;
+  background-color: rgb(59 138 255 / 15%);
+  width: 50%;
+}
+
+.filter_status option:hover{
+    background-color: rgb(59 138 255 / 15%)!important;
+}
+

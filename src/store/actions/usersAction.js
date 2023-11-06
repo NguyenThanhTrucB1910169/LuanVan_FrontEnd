@@ -75,6 +75,7 @@ const logoutHandler = () => {
         .get("http://localhost:3005/api/logout", { withCredentials: true })
         .then((response) => {
           localStorage.setItem("isactive", false);
+          console.log('response.data.message ', response.data.message);
           dispatch({
             type: Types.LOGOUT_SUCCESS,
             payload: response.data.message,

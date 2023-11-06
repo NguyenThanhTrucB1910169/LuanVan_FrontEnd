@@ -26,6 +26,8 @@ import Profile from "./component/user/profile";
 import FileUploadComponent from "./component/user/upload";
 import AdRoute from './component/layouts/adRoute'
 import ProductsClassify from "./component/products/productsClassify";
+import UserReviews from "./component/user/userReviews";
+import ReviewsManage from "./component/manage/reviewsManage";
 function App() {
   return (
     <BrowserRouter>
@@ -42,8 +44,11 @@ function App() {
         <AdRoute path="/ad/orders" component={AllOrders}></AdRoute>
         <AdRoute path="/ad/allusers" component={AllUsers}></AdRoute>
         <Route path="/login/:tab" component={Login}></Route>
-        <AuthRoute path="/ad/dashboard" component={DashBoard}></AuthRoute>
+        <AdRoute path="/ad/dashboard" component={DashBoard}></AdRoute>
+        {/* <Route path="/ad/dashboard" component={DashBoard}></Route> */}
+        <AdRoute path="/ad/reviews" component={ReviewsManage}></AdRoute>
         <AuthRoute path="/cart" component={Cart} />
+        <AuthRoute path="/reviews/user" component={UserReviews} />
         <Route path="/order" component={Order}></Route>
         <Route path="/vieworder" component={ViewOrders}></Route>
         <Route path="/detailorder" component={OrderDetail}></Route>

@@ -13,6 +13,7 @@ function RatingChart() {
   const [total, setTotal] = useState(0);
   const [average, setAverage] = useState(0);
   const list = {
+    0: 0,
     1: 0,
     2: 0,
     3: 0,
@@ -23,7 +24,8 @@ function RatingChart() {
     if (data.length > 0) {
       // const updatedReviewsByRating = { ...reviewsByRating }; // Tạo một bản sao của đối tượng
       await data.forEach((review) => {
-        list[review.reviewData.rating]++;
+        console.log('review at char ', review)
+        list[review.rating]++;
       });
       setReviewsByRating(list);
     } else {
@@ -57,14 +59,10 @@ function RatingChart() {
     }
   }, [reviewsByRating, total, average]);
 
-  // console.log(Object.values(reviewsByRating).reduce)
-  // Tính tổng số đánh giá
-
-  console.log(total);
   return (
     <div>
       <div className={`div_average ${total > 0 ? "d-block" : "d-none"}`}>
-        <span className="average_num">{average.toFixed(2)}/5</span>
+        <span className="average_num">{average.toFixed(1)}/5</span>
         <div className="ms-3 d-inline-block">
           <Rating
             name="average-rating"

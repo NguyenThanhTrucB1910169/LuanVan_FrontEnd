@@ -1,0 +1,72 @@
+.card_reviews{
+    padding: 20px 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 60vw;
+    height: 13rem;
+}
+.ad_reviews{
+    left: 20%;
+    position: absolute;
+}
+
+.ad_reviews .review_card_empty{
+    background-color: rgb(204 204 204 / 14%);
+    height: 13.9rem;
+    overflow: scroll;
+    padding: 5px 15px;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    width: 95%;
+}
+
+.ad_reviews .contain_reviews{
+    padding-top: 2rem
+}
+
+.ad_reviews .reviews_title{
+    font-family: "Playpen Sans", cursive;
+    font-size: 60px;
+    text-align: center;
+}
+
+.ad_reviews .contain_reviews .review_card{
+    height: 18rem;
+    overflow: scroll;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 75px;
+    border-bottom-left-radius: 75px;
+    /* box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px 3px 6px 1px inset; */
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+
+.ad_reviews .user_contain .avatar_user{
+    width: 100%;
+    margin-top: 6px;
+    margin-left: 1px;
+    height: 80%;
+}
+
+.user_contain .img_div{
+    border-radius: 50%;
+    background-color: #b8b8b833;
+    width: 13%;
+}
+
+
+.ad_reviews .review_card_empty .img_div{
+    border-radius: 50%;
+    background-color: #b8b8b833;
+    width: 8%;
+    margin-left: 1rem;
+}
+
+.change_page:disabled{
+    color: gray;
+    cursor: default;
+}
+
+.change_page:disabled:hover{
+    transform: scale(1);
+}

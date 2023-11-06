@@ -8,15 +8,17 @@ import { createOrder } from "../../store/actions/orderAction";
 import OrderPayment from "./orderPayment";
 import Toast from "../home/toast";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const Order = () => {
   const [activeIndex, setActiveIndex] = useState(1);
   const [notes, setNotes] = useState("");
+  const history = useHistory();
   const infoUser = useSelector((state) => state.login);
   const cartItem = useSelector((state) => state.cart);
   // const [payment, setPayment] = useState(false);
   const placedAction = useSelector((state) => state.orderInfo.placed);
-  const infoById = useSelector((state) => state.orderInfo.infoByOrderId)
-  const [orderInfo, setOrderInfo] = useState({})
+  const infoById = useSelector((state) => state.orderInfo.infoByOrderId);
+  const [orderInfo, setOrderInfo] = useState({});
   const [alert, setAlert] = useState(false);
   // const [placed, setPlaced] = useState(false);
   const [orderSubmitted, setOrderSubmitted] = useState(false);
@@ -39,12 +41,14 @@ const Order = () => {
       const pdOrder = cartItem.cartItem.map((item) => {
         price += item.price * item.quantity;
         return {
-          id: item.productId,
+          name: item.name,
           quantity: item.quantity,
           price: item.price,
+          image: item.image,
         };
       });
-      console.log(paymentResult);
+      console.log('paymentResult ', paymentResult);
+      console.log('price ', price)
       await dispatch(
         createOrder({
           products: pdOrder,
@@ -61,53 +65,55 @@ const Order = () => {
       }
       // console.log(result);
       // setPlaced(result);
-    //   console.log(orderInfo)
-    //   if (orderInfo) {
-    //     console.log(orderInfo);
-    //     setOrderInfo(orderInfo);
-    //     toast.success(<Toast message="Hoàn thành thanh toán" />, {
-    //       className: "success",
-    //     });
-    //   } else {
-    //     setOrderInfo(null);
-    //     toast.error(<Toast message="Thanh toán thất bại" />, {
-    //       className: "fail",
-    //     });
-    //   }
+      //   console.log(orderInfo)
+      //   if (orderInfo) {
+      //     console.log(orderInfo);
+      //     setOrderInfo(orderInfo);
+      //     toast.success(<Toast message="Hoàn thành thanh toán" />, {
+      //       className: "success",
+      //     });
+      //   } else {
+      //     setOrderInfo(null);
+      //     toast.error(<Toast message="Thanh toán thất bại" />, {
+      //       className: "fail",
+      //     });
+      //   }
       setOrderSubmitted(true);
-    } else{
+    } else {
       setOrderSubmitted(false);
-
     }
   };
   useEffect(() => {
-    console.log(orderSubmitted)
+    console.log(orderSubmitted);
     if (orderSubmitted) {
       if (placedAction) {
-        toast.success(<Toast message='Hoàn thành thanh toán' />, {
+        toast.success(<Toast message="Hoàn thành thanh toán" />, {
           className: "success",
         });
-        handleNext(4)
+        handleNext(4);
         // setPayment(true);
       } else {
-        toast.error(<Toast message='Thanh toán thất bại' />, {
+        toast.error(<Toast message="Thanh toán thất bại" />, {
+          onClose: () => {
+           history.push('/')
+          },
           className: "fail",
         });
       }
-      console.log(infoById)
-      console.log(typeof infoById)
+      console.log(infoById);
+      console.log(typeof infoById);
 
-      if(infoById !== null) {
-        setOrderInfo(infoById)
+      if (infoById !== null) {
+        setOrderInfo(infoById);
       } else {
         setOrderInfo(null);
       }
     }
-  }, [orderSubmitted, infoById ]);
+  }, [orderSubmitted, infoById]);
 
   return (
     <Fragment>
-      {/* {activeIndex === 1 ? (
+      {activeIndex === 1 ? (
         <OrderInfo
           updateInfo={handleUpdate}
           handleNext={handleNext}
@@ -131,8 +137,8 @@ const Order = () => {
           //   notes={handleNotes}
         />
       ) : null}
-      {activeIndex === 4 ? <CompleteOrder orderInfo={orderInfo}/> : null} */}
-      <CompleteOrder />
+      {activeIndex === 4 ? <CompleteOrder orderInfo={orderInfo} /> : null}
+      {/* <CompleteOrder /> */}
     </Fragment>
   );
 };

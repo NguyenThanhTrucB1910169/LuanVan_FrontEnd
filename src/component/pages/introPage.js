@@ -1,13 +1,23 @@
 import React, { Fragment } from "react";
-import SubHeader from "../layouts/subHeader";
+import Header from "../home/header";
 import "./introPage.css";
 import Footer from "../home/footer";
 class IntroPage extends React.Component {
+  
+    constructor(props) {
+      super(props);
+    this.state = {
+      show: false
+    }
+  }
+  option = (op) =>{
+    this.setState({show: op})
+  }
   render() {
     return (
       <Fragment>
-        <SubHeader />
-        <div className="intro_contain">
+        <Header option={this.option}/>
+        <div className={`intro_contain ${this.state.show ? 'pt_page' : ''}`}>
           <h1 className="slogan">
             Timeless
             <span>Beauty</span>

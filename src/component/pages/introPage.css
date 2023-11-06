@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 .intro_contain{
     position: relative;
+    padding-top: 6rem;
+    transition: padding-top .3s ease-in;
     /* font-family: 'Raleway', sans-serif; */
 }
 
@@ -10,7 +12,12 @@
     color: #fff;
     font-size: 150px;
     left: 60px;
-    top: 30px;
+    top: 110px;
+    transition: top .3s ease-in;
+}
+
+.pt_page .slogan{
+    top: 15rem;
 }
 
 .slogan span{
@@ -113,4 +120,8 @@
 .intro_third{
     margin-top: 4rem;
     height: 100vh;
+}
+
+.pt_page{
+    padding-top: 12rem!important;
 }

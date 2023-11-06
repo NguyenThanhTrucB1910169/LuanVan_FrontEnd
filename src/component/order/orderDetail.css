@@ -92,3 +92,12 @@
   font-size: 19px;
   margin: 20px 43px;
 }
+
+.id_not_exist_detail{
+  text-align: start;
+  margin: 2rem 35px 0;
+  width: 90%;
+  font-style: italic;
+  font-weight: 300;
+  font-family: 'Playpen Sans', cursive;
+}
